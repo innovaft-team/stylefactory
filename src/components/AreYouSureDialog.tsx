@@ -10,9 +10,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-interface AreYouSureDialogProps extends AlertDialogProps {
+interface AreYouSureDialogProps extends Omit<AlertDialogProps, "children"> {
   onConfirm: () => void;
   onCancel: () => void;
+  children?: React.ReactNode;
 }
 
 export const AreYouSureDialog = ({

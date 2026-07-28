@@ -62,7 +62,7 @@ export const LanguagePicker = (props: StackProps) => {
     defaultValue: router.locale,
     // @ts-ignore
     onChange: (val) =>
-      router.push(router.pathname, router.pathname, { locale: val as Locale }),
+      router.push(router.pathname as any, router.pathname as any, { locale: val as Locale }),
   });
 
   const group = getRootProps();

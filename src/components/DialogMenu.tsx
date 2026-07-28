@@ -22,7 +22,7 @@ interface DialogMenuProps {
 export const DialogMenu = ({ blog, onDelete, path }: DialogMenuProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const ref = React.useRef();
+  const ref = React.useRef<HTMLButtonElement>(null);
 
   const { mutate } = useDeleteBlog();
 
