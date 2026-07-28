@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Home",
+    "portfolio": "Assortment",
+    "projects": "Partners",
+    "about": "About",
+    "sidebar": {
+      "professionalUniforms": "Professional Uniforms"
+    },
+    "languages": {
+      "en": "Eng",
+      "hr": "Cro"
+    }
+  },
+  "common": {
+    "shape": "Improve your brand image"
+  },
+  "about": {
+    "section1": "The agency was founded in 2016 by designer Vedrana Badrov with the aim of developing modern uniforms that create a visual identity for partners and strengthen recognition in the market.",
+    "section2": "With a holistic approach to the textile industry, we promote three basic goals through the agency. We encourage domestic production, promote ecologically sustainable business and act humanitarianly with every completed project.",
+    "section3": "The agency has a wide portfolio of business partners, among which are some of the leading hotel names such as Adriatic Luxury Hotels, Hotel Esplanade, Villa Dubrovnik, Hilton Hotels, Dubrovnik Sun Gardens, D-Resort, and others.",
+    "section4": "The wide range of products we offer is divided into custom design; designed and personalized according to the customer's wishes and finished products from renowned brands.",
+    "section5": "We offer protective and corporate clothing, footwear and safety accessories.",
+    "meta": {
+      "title": "Style Factory Uniforms - About",
+      "description": "Learn about Style Factory, a Zagreb textile agency designing and producing custom uniforms, workwear, and branded apparel for hospitality and corporate teams."
+    }
+  },
+  "home": {
+    "p1": "We believe that a uniform is not just a clothing item, but a powerful tool that improves the impression and business of our clients.",
+    "p2": "Style factory is a company founded in 2016 with a clear vision: the development of modern uniforms that build a visual identity for partners and strengthen their recognition on the market.",
+    "p3": "Our idea is to create products that, with their appearance andfunctionality, meet the high standards and needs of the modern market in step with the latest trends.",
+    "p4": "Our mission is to present your company in the best light through designed corporate clothing that emphasize professionalism, style and a unique identity in harmony with the interior and your brand policy.",
+    "p5": "With a holistic approach to the textile industry, we promote three basic goals through our agency:",
+    "p6": "Encouraging domestic production, promoting ecologically sustainable business and humanitarian action.",
+    "p7": "We are aware of the importance of the development of the local community and economy, and that is why we primarily cooperate with local producers and craftsmen, thereby ensuring high product quality.",
+    "p8": "At a time when sustainability has become essential in the industry, we strive to use environmentally friendly materials and processes in the production of our uniforms.",
+    "p9": "Every step, from the selection of fabrics, production methods to packaging, is carefully planned to have as little negative impact on the environment as possible. We believe that every completed project should have a positive impact on society, and that's why we invest part of the revenue from each sale in humanitarian projects.",
+    "p10": "Our agency has a wide portfolio of long-term business partners, including leading names in the region."
+  },
+  "trends": {
+    "meta": {
+      "title": "Style Factory Uniforms - Uniform Trends",
+      "description": "Explore Style Factory uniform trends, workwear ideas, fabrics, and product inspiration for hospitality, hotel, restaurant, and corporate teams."
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Style Factory Uniforms - Projects and Partners",
+      "description": "See Style Factory uniform projects and partner work for hotels, restaurants, hospitality groups, and corporate brands across Croatia and Europe."
+    }
+  }
+}

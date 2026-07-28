@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Početna",
+    "portfolio": "Asortiman",
+    "projects": "Partneri",
+    "about": "O nama",
+    "sidebar": {
+      "professionalUniforms": "Profesionalne Uniforme"
+    },
+    "languages": {
+      "en": "Eng",
+      "hr": "Hrv"
+    }
+  },
+  "common": {
+    "shape": "Improve your brand image"
+  },
+  "about": {
+    "section1": "Agenciju je 2016 godine osnovala dizajnerica Vedrana Badrov sa ciljem razvoja modernih uniformi koje izgrađuju vizualni identitet partnerima i jačaju prepoznatljivost na tržištu.",
+    "section2": "Holističkim pristupom tekstilnoj industriji kroz agenciju promičemo tri osnovna cilja. Potičemo domaću proizvodnju, promičemo ekološki održivo poslovanje i djelujemo humanitarno svakim ostvarenim projektom.",
+    "section3": "Agencija ima širok portfelj poslovnih partnera među kojima su jedne od vodećih hotelskih imena kao što su Jadranski Luksuzni hoteli, Hotel Esplanade, Villa Dubrovnik, Hoteli Hilton, Dubrovački vrtovi sunca, D-Resort Šibenik, i drugi.",
+    "section4": "Širok spektar asortimana koji nudimo dijelimo na custom design; dizajniran i personaliziran prema želji kupca i gotove proizvode od renomiranih proizvođača.",
+    "section5": " U ponudi imamo zaštitnu i koroporativnu odjeću, obuću te dodatke prilagođene uvjetima zaštite na radu.",
+    "meta": {
+      "title": "Style Factory uniforme - o nama",
+      "description": "Saznajte vise o Style Factory tekstilnoj agenciji iz Zagreba za dizajn i proizvodnju custom uniformi, radne odjece i brendirane odjece."
+    }
+  },
+  "home": {
+    "p1": "Mi vjerujemo da uniforma nije samo odjevni predmet, već moćan alat koji može unaprijediti dojam i poslovanje naših klijenata.",
+    "p2": "Style factory je tvrtka osnovana 2016. godine s jasnom vizijom: razvoj modernih uniformi koje izgrađuju vizualni identitet partnerima i jačaju njihovu prepoznatljivost na tržištu.",
+    "p3": "Ideja nam je stvoriti proizvode koji će svojim izgledom i funkcionalnošću zadovoljavati visoke standarde i potrebe suvremenog tržišta u koraku s najnovijim trendovima. ",
+    "p4": "Naša misija je Vašu tvrtku predstaviti u najboljem svjetlu kroz dizajniranu korporativnu odjeću koja odiše profesionalizmom, stilom i jedinstvenim identitetom u skladu sa interijerom i okolinom.",
+    "p5": "Holističkim pristupom tekstilnoj industriji, kroz našu agenciju promičemo tri osnovna cilja: ",
+    "p6": "Poticanje domaće proizvodnje, promicanje ekološki održivog poslovanja i humanitarno djelovanje.",
+    "p7": "Svjesni smo važnosti razvoja lokalne zajednice i ekonomije te zato primarno surađujemo s domaćim proizvođačima i obrtnicima, osiguravajući time visoku kvalitetu proizvoda.",
+    "p8": "U vremenu kada je održivost postala neizostavna u industriji, trudimo se koristiti ekološki prihvatljive materijale i procese u proizvodnji naših uniformi.",
+    "p9": "Svaki korak, od odabira tkanina, načina proizvodnje do pakiranja, pažljivo je planiran kako bi imao što manji negativan utjecaj na okoliš. Vjerujemo da svaki ostvareni projekt treba imati pozitivan utjecaj na društvo i zato dio prihoda od svake prodaje ulažemo u humanitarne projekte. ",
+    "p10": "Naša agencija ima širok portfelj dugogodišnjih poslovnih partnera među kojima su vodeća imena u regiji."
+  },
+  "trends": {
+    "meta": {
+      "title": "Style Factory uniforme - trendovi",
+      "description": "Istrazite trendove uniformi, ideje za radnu odjecu, materijale i inspiraciju za hotele, restorane, ugostiteljstvo i korporativne timove."
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Style Factory uniforme - projekti i partneri",
+      "description": "Pogledajte Style Factory projekte uniformi i partnere iz hotela, restorana, ugostiteljskih grupa i korporativnih brendova u Hrvatskoj i Europi."
+    }
+  }
+}
