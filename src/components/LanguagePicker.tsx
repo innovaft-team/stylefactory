@@ -15,24 +15,38 @@ import { useTranslations } from "next-intl";
 import { Locale } from "nextjs-routes";
 
 export function RadioCard(props: BoxProps) {
-  const { children, borderBottom, ...radioProps } = props;
-  const { getInputProps, getRadioProps } = useRadio(radioProps);
+  const { children, ...radioProps } = props;
+  const { getInputProps, getRadioProps, state } = useRadio(radioProps);
 
   const input = getInputProps();
   const checkbox = getRadioProps();
+  const isChecked = state?.isChecked;
 
   return (
-    <Box as="label" borderBottom={borderBottom}>
+    <Box as="label" className="relative cursor-pointer">
       <input {...input} />
       <Box
         {...checkbox}
-        cursor="pointer"
         fontSize={{ base: "14px", lg: "16px" }}
         _checked={{
           bg: "transparent",
           fontWeight: "bold",
         }}
         px={1}
+        className={`
+          relative
+          after:content-['']
+          after:absolute
+          after:bottom-[-6px]
+          after:left-0
+          after:w-full
+          after:h-[2px]
+          after:bg-current
+          after:transition-transform
+          after:duration-300
+          after:ease-out
+          ${isChecked ? "after:scale-x-100" : "after:scale-x-0"}
+        `}
       >
         {children}
       </Box>
@@ -75,7 +89,6 @@ export const LanguagePicker = (props: StackProps) => {
           <RadioCard
             key={value}
             {...radio}
-            borderBottom={router.locale === value ? "2px solid black" : ""}
           >
             {/*@ts-ignore */}
             {t(`languages.${value}`)}

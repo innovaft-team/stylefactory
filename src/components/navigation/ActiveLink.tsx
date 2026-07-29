@@ -17,10 +17,9 @@ export const ActiveLink = ({
         relative
         font-bold
         px-0 
-        pb-1 lg:pb-3
         after:content-['']
         after:absolute
-        after:bottom-[10px]
+        after:bottom-[-6px]
         after:left-0
         after:w-full
         after:h-[2px]

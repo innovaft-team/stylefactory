@@ -27,8 +27,6 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
         rounded
       `}
     >
-
-
       <div
         className="
           relative
@@ -36,7 +34,7 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
           w-full
           h-full
           justify-stretch
-          md:grid-cols-[auto_minmax(0,1fr)]
+          lg:grid-cols-[auto_minmax(0,1fr)]
         "
       >
         {/* Left Sidebar */}
@@ -48,7 +46,7 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
             items-center
             px-2
             md:px-12
-            pt-8
+            pt-16
           "
         >
           {/* Logo */}

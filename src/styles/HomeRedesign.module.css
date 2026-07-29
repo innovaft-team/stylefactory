@@ -428,7 +428,7 @@
   height: 220px;
   top: 2px;
   background-image: url("/images/home-redesign/timeline-contour.png");
-  opacity: 0.42;
+  opacity: 1;
 }
 
 .serviceMedallionDevelopment {
@@ -436,7 +436,7 @@
   height: 236px;
   top: 16px;
   background-image: url("/images/home-redesign/timeline-flower.png");
-  opacity: 0.26;
+  opacity: 1;
 }
 
 .serviceMedallionProduction {
@@ -444,7 +444,7 @@
   height: 214px;
   top: 16px;
   background-image: url("/images/home-redesign/timeline-ring.png");
-  opacity: 0.36;
+  opacity: 1;
   transform: translate(-50%, -50%) rotate(-12deg);
 }
 
@@ -1085,10 +1085,92 @@
 @keyframes fabricDrift {
   0%,
   100% {
-    transform: translateY(-2%);
+    transform: translateY(-2%); 
   }
   50% {
     transform: translateY(2%);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .whatSection {
+    min-height: auto !important;
+  }
+
+  .whatLayout {
+    display: grid !important;
+    grid-template-columns: minmax(120px, 1fr) minmax(400px, 660px) minmax(120px, 1fr) !important;
+    min-height: auto !important;
+    padding-top: 140px !important;
+    gap: 0px !important;
+  }
+
+  .whatSuitSlot {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 420px !important;
+    margin: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    align-self: start !important;
+  }
+
+  .whatSketchSlot {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 420px !important;
+    margin: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    align-self: end !important;
+  }
+
+  .whatSuit {
+    width: 240px !important;
+    min-height: 400px !important;
+    margin-top: 50px !important;
+    margin-left: -80px !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .placeholderFrame.whatSuit {
+    background-image: url("/images/home-redesign/jacket.jpg") !important;
+  }
+
+  .whatSketch {
+    width: 300px !important;
+    min-height: 420px !important;
+    margin-top: auto !important;
+    margin-bottom: 50px !important;
+    margin-right: -120px !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .placeholderFrame.whatSketch {
+    background-image: url("/images/home-redesign/shirt-sketch.jpg") !important;
+  }
+
+  .whatContent {
+    padding-top: 60px !important;
+    min-height: auto !important;
+    max-width: 580px !important;
+    align-self: center !important;
+    justify-self: center !important;
+  }
+
+  .whatContent .serviceCopy {
+    max-width: 420px !important;
+    margin-inline: auto !important;
   }
 }
 
@@ -1165,14 +1247,14 @@
     display: none;
   }
 
-  .whatSection {
-    min-height: 650px;
-    padding: 10px 0 28px;
+  .whatLayout {
+    display: block !important;
+    min-height: auto !important;
   }
 
-  .whatLayout {
-    display: block;
-    min-height: 602px;
+  .whatSection {
+    min-height: auto !important;
+    padding: 10px 0 28px;
   }
 
   .whatHeading {
@@ -1184,70 +1266,57 @@
   }
 
   .whatSuitSlot {
-    display: none;
+    display: block !important;
+    position: absolute !important;
+    left: -110px !important;
+    top: 20px !important;
+    bottom: auto !important;
+    z-index: 1 !important;
+    width: 200px !important;
+    height: 280px !important;
   }
 
   .whatSketchSlot {
-    position: absolute;
-    right: -116px;
-    top: 112px;
-    z-index: 1;
-    width: 252px;
-    height: 344px;
+    display: block !important;
+    position: absolute !important;
+    right: -110px !important;
+    bottom: 20px !important;
+    top: auto !important;
+    z-index: 1 !important;
+    width: 220px !important;
+    height: 300px !important;
   }
 
-  .whatSuit {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    margin: 0;
-    background-position: center top;
-    opacity: 0.96;
+  .whatSuit,
+  .whatSketch {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
   }
 
   .placeholderFrame.whatSuit {
-    min-height: 100%;
-    background: url("/images/home-redesign/jacket.jpg") center top / contain no-repeat;
-  }
-
-  .whatSuit::before {
-    left: 18%;
-    width: 76%;
-  }
-
-  .whatSketch {
-    position: relative;
-    right: auto;
-    top: auto;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    margin: 0;
-    background: url("/images/home-redesign/shirt-sketch.jpg") center center / contain no-repeat;
-    box-shadow: none;
-    opacity: 0.68;
+    background-image: url("/images/home-redesign/jacket.jpg") !important;
   }
 
   .placeholderFrame.whatSketch {
-    min-height: 100%;
-    background: url("/images/home-redesign/shirt-sketch.jpg") center center / contain no-repeat;
+    background-image: url("/images/home-redesign/shirt-sketch.jpg") !important;
   }
 
   .whatContent {
-    position: relative;
-    z-index: 2;
-    min-height: 596px;
-    justify-content: start;
-    padding: 72px 32px 0;
-    margin-top: 0;
+    position: relative !important;
+    z-index: 2 !important;
+    padding: 72px 16px 0 !important;
+    margin-top: 0 !important;
+    min-height: auto !important;
   }
 
   .whatContent .serviceCopy {
     max-width: 260px !important;
-    margin-inline: auto;
+    margin-inline: auto !important;
   }
 
   .whatContent .serviceTitle,
@@ -1287,19 +1356,19 @@
   .serviceMedallionDesign {
     width: 132px;
     height: 112px;
-    opacity: 0.13;
+    opacity: 1;
   }
 
   .serviceMedallionDevelopment {
     width: 92px;
     height: 126px;
-    opacity: 0.1;
+    opacity: 1;
   }
 
   .serviceMedallionProduction {
     width: 104px;
     height: 104px;
-    opacity: 0.12;
+    opacity: 1;
   }
 
   .clientsSection {
