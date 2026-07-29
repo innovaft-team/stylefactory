@@ -77,9 +77,6 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
         {/* Main Content */}
         <div className="relative w-full h-full">
           {/* Desktop Navigation */}
-          <div className="hidden md:block absolute top-0 left-0 w-full z-[999]">
-            <Navigation />
-          </div>
 
           {/* Mobile Navigation */}
           <div className="block md:hidden absolute top-0 left-0 w-full z-[1000]">

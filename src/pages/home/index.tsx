@@ -27,33 +27,8 @@ import {
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { HeroSection } from "@/modules/home/_components/HeroSection";
-
-const services = [
-  {
-    title: "Design",
-    copy: "From uniform concepts to complete brand guidelines, we help companies build a consistent and recognizable team image.",
-  },
-  {
-    title: "Development",
-    copy: "From sourcing and production coordination to final delivery, we manage the complete development process for each project.",
-  },
-  {
-    title: "Production",
-    copy: "Through our manufacturing network, we support hospitality brands and corporate teams with sourcing, production, and project coordination.",
-  },
-];
-
-const serviceMedallionClasses = [
-  "serviceMedallionDesign",
-  "serviceMedallionDevelopment",
-  "serviceMedallionProduction",
-] as const;
-
-const serviceItemClasses = [
-  "serviceItemDesign",
-  "serviceItemDevelopment",
-  "serviceItemProduction",
-] as const;
+import { Navigation } from "@/components/navigation/Navigation";
+import { WhatWeDoSection } from "@/modules/home/_components/WhatWeDoSection";
 
 const clients = [
   { name: "Adriatic", logo: "/images/home-redesign/logo-adriatic.jpg" },
@@ -189,105 +164,6 @@ function PlaceholderVisual({
   );
 }
 
-function WhatWeDoSection() {
-  return (
-    <Box
-      as="section"
-      className={styles.whatSection}
-      position="relative"
-      overflow="hidden"
-    >
-      <Box className={styles.seamGrid} />
-      <Box className={styles.whatHeading}>
-        <Text
-          as="h2"
-          className={styles.whatHeadingText}
-          fontFamily={open_sans.style.fontFamily}
-        >
-          <Box as="span" className={styles.whatHeadingStrong}>
-            WHAT
-          </Box>{" "}
-          <Box as="span" className={styles.whatHeadingSoft}>
-            WE DO
-          </Box>
-        </Text>
-      </Box>
-
-      <Grid
-        className={styles.whatLayout}
-        position="relative"
-        zIndex="1"
-        alignItems="start"
-        templateColumns={{
-          base: "1fr",
-          md: "minmax(120px, 1fr) minmax(400px, 660px) minmax(120px, 1fr)",
-          lg: "minmax(300px, 1fr) minmax(580px, 660px) minmax(300px, 1fr)",
-        }}
-      >
-        <Reveal amount={0.28} className={styles.whatSuitSlot}>
-          <PlaceholderVisual
-            className={`${styles.suitPlaceholder} ${styles.whatSuit}`}
-            label="jacket placeholder"
-          />
-        </Reveal>
-
-        <VStack className={styles.whatContent} position="relative" spacing="0">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              className={`${styles.serviceItem} ${styles[serviceItemClasses[index]]}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={softScale}
-              transition={{
-                duration: 0.72,
-                delay: index * 0.12,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              style={{ width: "100%" }}
-            >
-              <VStack
-                className={styles.serviceBlock}
-                position="relative"
-                spacing="0"
-                textAlign="center"
-              >
-                <Box
-                  className={`${styles.serviceMedallion} ${styles[serviceMedallionClasses[index]]}`}
-                />
-                <Text
-                  as="h3"
-                  className={styles.serviceTitle}
-                  position="relative"
-                  zIndex="1"
-                  fontFamily={open_sans.style.fontFamily}
-                >
-                  {service.title}
-                </Text>
-                <Text
-                  className={styles.serviceCopy}
-                  position="relative"
-                  zIndex="1"
-                  fontFamily={open_sans.style.fontFamily}
-                >
-                  {service.copy}
-                </Text>
-              </VStack>
-            </motion.div>
-          ))}
-        </VStack>
-
-        <Reveal delay={0.15} amount={0.28} className={styles.whatSketchSlot}>
-          <PlaceholderVisual
-            className={`${styles.sketchPlaceholder} ${styles.whatSketch}`}
-            label="sketch placeholder"
-          />
-        </Reveal>
-      </Grid>
-    </Box>
-  );
-}
 
 function ClientsSection() {
   return (
@@ -747,6 +623,9 @@ function Home() {
               }
             >
               <Box as="main">
+                <div className="hidden md:block absolute top-0 left-0 w-full z-[999]">
+                  <Navigation />
+                </div>
                 <HeroSection />
                 <WhatWeDoSection />
                 <ClientsSection />
