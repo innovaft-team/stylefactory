@@ -5,15 +5,16 @@ import {
   Grid,
   HStack,
   Input,
-  Link as ChakraLink,
   SimpleGrid,
   Text,
   Textarea,
   VStack,
+  VisuallyHidden,
 } from "@chakra-ui/react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import { motion } from "framer-motion";
-import type { CSSProperties, PropsWithChildren } from "react";
+import { useState, type CSSProperties, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
 import { Scroll } from "@/components/layout/Scroll";
 import { allura, open_sans, poppins } from "@/fonts";
@@ -29,143 +30,127 @@ import Image from "next/image";
 import { HeroSection } from "@/modules/home/_components/HeroSection";
 import { Navigation } from "@/components/navigation/Navigation";
 import { WhatWeDoSection } from "@/modules/home/_components/WhatWeDoSection";
+import {
+  Reveal,
+  REVEAL_EASE,
+  useFadeUpVariants,
+  useSoftScaleVariants,
+} from "@/components/Reveal";
 
 const clients = [
-  { name: "Adriatic", logo: "/images/home-redesign/logo-adriatic.jpg" },
-  { name: "Esplanade", logo: "/images/home-redesign/logo-esplanade.jpg" },
-  { name: "Movenpick", logo: "/images/home-redesign/logo-movenpick.jpg" },
-  { name: "Havas", logo: "/images/home-redesign/logo-havas.jpg" },
-  { name: "Materra", logo: "/images/home-redesign/logo-materra.jpg" },
-  { name: "Molum", logo: "/images/home-redesign/logo-molum.jpg" },
-  { name: "Suncani Hvar", logo: "/images/home-redesign/logo-suncani-hvar.jpg" },
-  { name: "Liburnia", logo: "/images/home-redesign/logo-liburnia.jpg" },
-  { name: "RHG", logo: "/images/home-redesign/logo-rhg.jpg" },
-  { name: "Pullman", logo: "/images/home-redesign/logo-pullman.jpg" },
-  { name: "Sun Gardens", logo: "/images/home-redesign/logo-sun-gardens.jpg" },
-  { name: "Terme Catez", logo: "/images/home-redesign/logo-terme-catez.jpg" },
+  {
+    name: "Adriatic",
+    logo: "/images/home-redesign/logo-adriatic.jpg",
+    width: 327,
+    height: 260,
+  },
+  {
+    name: "Esplanade",
+    logo: "/images/home-redesign/logo-esplanade.jpg",
+    width: 273,
+    height: 260,
+  },
+  {
+    name: "Movenpick",
+    logo: "/images/home-redesign/logo-movenpick.jpg",
+    width: 557,
+    height: 260,
+  },
+  {
+    name: "Havas",
+    logo: "/images/home-redesign/logo-havas.jpg",
+    width: 488,
+    height: 260,
+  },
+  {
+    name: "Materra",
+    logo: "/images/home-redesign/logo-materra.jpg",
+    width: 376,
+    height: 260,
+  },
+  {
+    name: "Molum",
+    logo: "/images/home-redesign/logo-molum.jpg",
+    width: 455,
+    height: 260,
+  },
+  {
+    name: "Suncani Hvar",
+    logo: "/images/home-redesign/logo-suncani-hvar.jpg",
+    width: 471,
+    height: 260,
+  },
+  {
+    name: "Liburnia",
+    logo: "/images/home-redesign/logo-liburnia.jpg",
+    width: 402,
+    height: 260,
+  },
+  {
+    name: "RHG",
+    logo: "/images/home-redesign/logo-rhg.jpg",
+    width: 482,
+    height: 260,
+  },
+  {
+    name: "Pullman",
+    logo: "/images/home-redesign/logo-pullman.jpg",
+    width: 519,
+    height: 260,
+  },
+  {
+    name: "Sun Gardens",
+    logo: "/images/home-redesign/logo-sun-gardens.jpg",
+    width: 469,
+    height: 260,
+  },
+  {
+    name: "Terme Catez",
+    logo: "/images/home-redesign/logo-terme-catez.jpg",
+    width: 415,
+    height: 260,
+  },
 ];
 
 const journeySteps = [
-  {
-    number: "1",
-    title: "Brief & Consultation",
-    copy: "We begin by understanding your brand, operational needs, and team requirements. Through a detailed briefing process, we define the standards, functionality, and visual direction of your uniform collection.",
-  },
-  {
-    number: "2",
-    title: "Design Development",
-    copy: "Every uniform concept is thoughtfully designed to reflect your brand identity. From sketches and fabric selection to styling and functionality, every detail is carefully considered.",
-  },
-  {
-    number: "3",
-    title: "Sampling & Approval",
-    copy: "Once the design concept is confirmed, we develop prototypes and samples to ensure the perfect fit, comfort, and final appearance before production begins.",
-  },
-  {
-    number: "4",
-    title: "Sizing & Production",
-    copy: "After sample approval, we collect sizing information for all team members and coordinate the full production process with our manufacturing partners.",
-  },
-  {
-    number: "5",
-    title: "Delivery",
-    copy: "The finished uniforms are quality-checked, organized, and delivered ready for your team to wear.",
-  },
-];
+  { number: "1", key: "brief" },
+  { number: "2", key: "design" },
+  { number: "3", key: "sampling" },
+  { number: "4", key: "production" },
+  { number: "5", key: "delivery" },
+] as const;
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 34 },
-  visible: { opacity: 1, y: 0 },
-};
+const contactPhonePrimary = "+385 99 6666 331";
+const contactPhoneSecondary = "+385 99 169 7537";
+const contactEmail = "info@stylefactory.hr";
 
-const softScale = {
-  hidden: { opacity: 0, y: 24, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1 },
-};
-
-function Reveal({
-  children,
-  delay = 0,
-  amount = 0.2,
-  className,
-}: PropsWithChildren<{ delay?: number; amount?: number; className?: string }>) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount }}
-      variants={fadeUp}
-      transition={{
-        duration: 0.78,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+function telHref(phone: string) {
+  return `tel:${phone.replace(/\s/g, "")}`;
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  align = "center",
-}: {
-  eyebrow?: string;
-  title?: string;
-  align?: "left" | "center";
-}) {
-  return (
-    <VStack
-      align={align === "center" ? "center" : "start"}
-      spacing="2"
-      textAlign={align}
-    >
-      {eyebrow ? (
-        <Text
-          color="rgba(20, 20, 20, 0.62)"
-          fontFamily={open_sans.style.fontFamily}
-          fontSize={{ base: "11px", md: "28px" }}
-          fontWeight="400"
-          textTransform="uppercase"
-        >
-          {eyebrow}
-        </Text>
-      ) : null}
-      {title ? (
-        <Text
-          as="h2"
-          fontFamily={poppins.style.fontFamily}
-          fontSize={{ base: "28px", md: "42px" }}
-          fontWeight="700"
-          lineHeight="1"
-        >
-          {title}
-        </Text>
-      ) : null}
-    </VStack>
-  );
-}
-
-function PlaceholderVisual({
-  label,
+function Visual({
   className,
   minH,
+  label,
 }: {
-  label: string;
   className: string;
   minH?: string | { base?: string; md?: string; lg?: string };
+  label: string;
 }) {
   return (
-    <Box className={`${styles.placeholderFrame} ${className}`} minH={minH}>
-      <Text className={styles.visualLabel}>{label}</Text>
-    </Box>
+    <Box
+      className={`${styles.placeholderFrame} ${className}`}
+      minH={minH}
+      role="img"
+      aria-label={label}
+    />
   );
 }
 
-
 function ClientsSection() {
+  const t = useTranslations("home.clients");
+  const softScale = useSoftScaleVariants();
+
   return (
     <Box as="section" className={styles.clientsSection} position="relative">
       <Grid
@@ -193,9 +178,9 @@ function ClientsSection() {
               textAlign={{ base: "center", lg: "left" }}
               textTransform="uppercase"
             >
-              Selected
+              {t("titleLine1")}
               <br />
-              Clients
+              {t("titleLine2")}
             </Text>
           </HStack>
         </Reveal>
@@ -218,14 +203,15 @@ function ClientsSection() {
               <motion.div
                 key={client.name}
                 variants={softScale}
-                transition={{ duration: 0.54, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.54, ease: REVEAL_EASE }}
               >
                 <Box className={styles.clientLogo}>
-                  <Box
-                    as="img"
-                    alt={`${client.name} logo`}
+                  <Image
+                    alt={t("logoAlt", { name: client.name })}
                     className={styles.clientLogoImage}
                     src={client.logo}
+                    width={client.width}
+                    height={client.height}
                   />
                 </Box>
               </motion.div>
@@ -237,7 +223,55 @@ function ClientsSection() {
   );
 }
 
+type ContactStatus = "idle" | "submitting" | "success" | "error";
+
 function ContactSection() {
+  const t = useTranslations("home.contact");
+  const [status, setStatus] = useState<ContactStatus>("idle");
+
+  const submitLabels: Record<ContactStatus, string> = {
+    idle: t("form.send"),
+    submitting: t("form.sending"),
+    success: t("form.sent"),
+    error: t("form.retry"),
+  };
+
+  const statusMessages: Record<ContactStatus, string> = {
+    idle: "",
+    submitting: t("form.statusSending"),
+    success: t("form.statusSuccess"),
+    error: t("form.statusError"),
+  };
+
+  // Chakra types `Grid as="form"` handlers against HTMLDivElement, hence the cast.
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    if (status === "submitting") return;
+
+    const form = event.currentTarget as HTMLFormElement;
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Contact request failed with ${response.status}`);
+      }
+
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <Box as="section" id="contact" className={styles.contactBand}>
       <Grid
@@ -248,7 +282,7 @@ function ContactSection() {
         templateColumns={{ base: "1fr", lg: "0.82fr 1.18fr" }}
       >
         <Reveal className={styles.contactTitleItem}>
-          <Box className={styles.contactTitle}>
+          <Box>
             <Text
               as="h2"
               className={styles.contactTitleText}
@@ -256,10 +290,10 @@ function ContactSection() {
               textTransform="uppercase"
             >
               <Box as="span" className={styles.contactTitleStrong}>
-                Get
+                {t("titleStrong")}
               </Box>{" "}
               <Box as="span" className={styles.contactTitleLight}>
-                in touch
+                {t("titleLight")}
               </Box>
             </Text>
           </Box>
@@ -276,11 +310,21 @@ function ContactSection() {
             spacing="1"
             textAlign="left"
           >
-            <Text className={styles.contactPhonePrimary}>+385 99 6666 331</Text>
-            <Text className={styles.contactPhoneSecondary}>
-              +385 99 169 7537
+            <Text className={styles.contactPhonePrimary}>
+              <Box as="a" href={telHref(contactPhonePrimary)}>
+                {contactPhonePrimary}
+              </Box>
             </Text>
-            <Text className={styles.contactEmail}>info@stylefactory.hr</Text>
+            <Text className={styles.contactPhoneSecondary}>
+              <Box as="a" href={telHref(contactPhoneSecondary)}>
+                {contactPhoneSecondary}
+              </Box>
+            </Text>
+            <Text className={styles.contactEmail}>
+              <Box as="a" href={`mailto:${contactEmail}`}>
+                {contactEmail}
+              </Box>
+            </Text>
           </VStack>
         </Reveal>
 
@@ -294,25 +338,26 @@ function ContactSection() {
             spacing="1"
             textAlign={{ base: "right", lg: "left" }}
           >
-            <Text fontWeight="700">CROATIA</Text>
-            <Text>Vrisnička 18</Text>
-            <Text>10 000 Zagreb</Text>
+            <Text fontWeight="700">{t("country")}</Text>
+            <Text>{t("street")}</Text>
+            <Text>{t("city")}</Text>
           </VStack>
         </Reveal>
 
         <Reveal delay={0.12} className={styles.contactFormItem}>
           <Grid
             as="form"
-            action="mailto:info@stylefactory.hr"
-            method="post"
-            encType="text/plain"
+            onSubmit={handleSubmit}
             className={styles.contactForm}
             gap="3"
             templateColumns={{ base: "1fr 1fr 1fr", md: "1fr 1fr 1fr" }}
           >
             <Input
               name="name"
-              placeholder="Name"
+              aria-label={t("form.name")}
+              placeholder={t("form.name")}
+              autoComplete="name"
+              maxLength={120}
               bg="rgba(255,255,255,0.78)"
               border="0"
               borderRadius="6px"
@@ -320,7 +365,11 @@ function ContactSection() {
             />
             <Input
               name="phone"
-              placeholder="Phone"
+              type="tel"
+              aria-label={t("form.phone")}
+              placeholder={t("form.phone")}
+              autoComplete="tel"
+              maxLength={40}
               bg="rgba(255,255,255,0.78)"
               border="0"
               borderRadius="6px"
@@ -329,7 +378,11 @@ function ContactSection() {
             <Input
               name="email"
               type="email"
-              placeholder="Email address*"
+              required
+              aria-label={t("form.email")}
+              placeholder={t("form.email")}
+              autoComplete="email"
+              maxLength={160}
               bg="rgba(255,255,255,0.78)"
               border="0"
               borderRadius="6px"
@@ -337,7 +390,11 @@ function ContactSection() {
             />
             <Input
               name="company"
-              placeholder="Company*"
+              required
+              aria-label={t("form.company")}
+              placeholder={t("form.company")}
+              autoComplete="organization"
+              maxLength={120}
               bg="rgba(255,255,255,0.78)"
               border="0"
               borderRadius="6px"
@@ -345,7 +402,10 @@ function ContactSection() {
             />
             <Textarea
               name="message"
-              placeholder="Message*"
+              required
+              aria-label={t("form.message")}
+              placeholder={t("form.message")}
+              maxLength={4000}
               bg="rgba(255,255,255,0.78)"
               border="0"
               borderRadius="6px"
@@ -354,6 +414,10 @@ function ContactSection() {
               minH="116px"
               resize="none"
             />
+            {/* Absolutely positioned, so it never becomes a grid item. */}
+            <VisuallyHidden role="status" aria-live="polite">
+              {statusMessages[status]}
+            </VisuallyHidden>
             <Button
               type="submit"
               className={styles.formRail}
@@ -373,7 +437,7 @@ function ContactSection() {
               fontWeight="700"
               textTransform="uppercase"
             >
-              <Box as="span">Send</Box>
+              <Box as="span">{submitLabels[status]}</Box>
               <Box
                 as="span"
                 className={styles.contactSendArrow}
@@ -396,6 +460,9 @@ function JourneyCard({
   step: (typeof journeySteps)[number];
   index: number;
 }) {
+  const t = useTranslations("home.journey");
+  const fadeUp = useFadeUpVariants();
+
   return (
     <motion.div
       initial="hidden"
@@ -405,7 +472,7 @@ function JourneyCard({
       transition={{
         duration: 0.78,
         delay: (index % 2) * 0.1,
-        ease: [0.22, 1, 0.36, 1],
+        ease: REVEAL_EASE,
       }}
       style={{ position: "relative" }}
     >
@@ -438,7 +505,7 @@ function JourneyCard({
             fontWeight="700"
             lineHeight="1.18"
           >
-            {step.title}
+            {t(`steps.${step.key}.title`)}
           </Text>
           <Text
             color="rgba(20, 20, 20, 0.75)"
@@ -446,7 +513,7 @@ function JourneyCard({
             fontSize={{ base: "12px", md: "25px" }}
             lineHeight={{ base: "1.65", md: "1.28" }}
           >
-            {step.copy}
+            {t(`steps.${step.key}.copy`)}
           </Text>
         </VStack>
       </Box>
@@ -455,13 +522,15 @@ function JourneyCard({
 }
 
 function JourneySection() {
+  const t = useTranslations("home.journey");
+
   return (
     <Box as="section" className={styles.journeySection} position="relative">
       <Text
         className={styles.scriptBackdrop}
         fontFamily={allura.style.fontFamily}
       >
-        process
+        {t("backdrop")}
       </Text>
       <Grid
         className={styles.journeyLayout}
@@ -481,10 +550,10 @@ function JourneySection() {
               textTransform="uppercase"
             >
               <Box as="span" className={styles.journeyTitleStrong}>
-                The Uniform
+                {t("titleStrong")}
               </Box>{" "}
               <Box as="span" className={styles.journeyTitleLight}>
-                Journey
+                {t("titleLight")}
               </Box>
             </Text>
           </Reveal>
@@ -496,9 +565,9 @@ function JourneySection() {
             templateColumns={{ base: "0.86fr 1fr", md: "0.86fr 1fr" }}
           >
             <Reveal delay={0.06} className={styles.journeyPhotoSlot}>
-              <PlaceholderVisual
+              <Visual
                 className={styles.photoPlaceholder}
-                label="photo placeholder"
+                label={t("visuals.consultation")}
                 minH={{ base: "280px", md: "615px" }}
               />
             </Reveal>
@@ -513,9 +582,9 @@ function JourneySection() {
           >
             <JourneyCard step={journeySteps[1]} index={1} />
             <Reveal delay={0.08} className={styles.journeyFabricSlot}>
-              <PlaceholderVisual
+              <Visual
                 className={styles.fabricBoard}
-                label="fabric placeholder"
+                label={t("visuals.fabric")}
                 minH={{ base: "340px", md: "860px" }}
               />
             </Reveal>
@@ -528,9 +597,9 @@ function JourneySection() {
           >
             <JourneyCard step={journeySteps[3]} index={3} />
             <Reveal delay={0.12} className={styles.journeyPantsSlot}>
-              <PlaceholderVisual
+              <Visual
                 className={styles.pantsPlaceholder}
-                label="pants placeholder"
+                label={t("visuals.pants")}
                 minH={{ base: "360px", md: "520px" }}
               />
             </Reveal>
@@ -542,9 +611,11 @@ function JourneySection() {
           gap={{ base: "7", md: "8" }}
         >
           <Reveal delay={0.1} className={styles.journeySketchSlot}>
-            <Box className={styles.journeySketch}>
-              <Text className={styles.visualLabel}>technical sketch</Text>
-            </Box>
+            <Box
+              className={styles.journeySketch}
+              role="img"
+              aria-label={t("visuals.sketch")}
+            />
           </Reveal>
           <Grid
             className={styles.journeyFinalCards}
@@ -572,7 +643,7 @@ function JourneySection() {
           lineHeight="1"
           textAlign="center"
         >
-          Because first impressions begin with what your team wears
+          {t("quote")}
         </Text>
       </Flex>
     </Box>
@@ -581,9 +652,9 @@ function JourneySection() {
 
 function Home() {
   const { locale } = useRouter();
-  const title = "Style Factory Uniforms";
-  const description =
-    "Custom uniform design, development, and production for hospitality, hotel, restaurant, and corporate teams in Croatia and Europe.";
+  const t = useTranslations("home");
+  const title = t("meta.title");
+  const description = t("meta.description");
 
   return (
     <>
@@ -592,15 +663,8 @@ function Home() {
         description={description}
         path="/"
         image="/images/home-redesign/hero-model.jpg"
-        imageAlt="Style Factory custom uniforms for modern hospitality and corporate brands"
-        keywords={[
-          "custom uniforms",
-          "hospitality uniforms",
-          "hotel uniforms",
-          "corporate workwear",
-          "uniform design Croatia",
-          "Style Factory Uniforms",
-        ]}
+        imageAlt={t("meta.imageAlt")}
+        keywords={t.raw("meta.keywords") as string[]}
         jsonLd={[
           createOrganizationJsonLd(),
           createWebsiteJsonLd(locale),
@@ -613,7 +677,7 @@ function Home() {
           }),
         ]}
       />
-      <NavigationLayout>
+      <NavigationLayout showDesktopNavigation={false}>
         <Scroll h="100vh">
           <Box className={styles.pageFrame}>
             <Box
@@ -622,10 +686,11 @@ function Home() {
                 { "--sf-script-font": allura.style.fontFamily } as CSSProperties
               }
             >
+              {/* Anchored to the shell, so it stays out of <main>. */}
+              <div className="hidden md:block absolute top-0 left-0 w-full z-999">
+                <Navigation />
+              </div>
               <Box as="main">
-                <div className="hidden md:block absolute top-0 left-0 w-full z-[999]">
-                  <Navigation />
-                </div>
                 <HeroSection />
                 <WhatWeDoSection />
                 <ClientsSection />
@@ -640,9 +705,7 @@ function Home() {
   );
 }
 
-export async function getServerSideProps({
-  locale,
-}: GetServerSidePropsContext) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,

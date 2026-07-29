@@ -36,7 +36,105 @@
     "p7": "We are aware of the importance of the development of the local community and economy, and that is why we primarily cooperate with local producers and craftsmen, thereby ensuring high product quality.",
     "p8": "At a time when sustainability has become essential in the industry, we strive to use environmentally friendly materials and processes in the production of our uniforms.",
     "p9": "Every step, from the selection of fabrics, production methods to packaging, is carefully planned to have as little negative impact on the environment as possible. We believe that every completed project should have a positive impact on society, and that's why we invest part of the revenue from each sale in humanitarian projects.",
-    "p10": "Our agency has a wide portfolio of long-term business partners, including leading names in the region."
+    "p10": "Our agency has a wide portfolio of long-term business partners, including leading names in the region.",
+    "meta": {
+      "title": "Style Factory Uniforms",
+      "description": "Custom uniform design, development, and production for hospitality, hotel, restaurant, and corporate teams in Croatia and Europe.",
+      "imageAlt": "Style Factory custom uniforms for modern hospitality and corporate brands",
+      "keywords": [
+        "custom uniforms",
+        "hospitality uniforms",
+        "hotel uniforms",
+        "corporate workwear",
+        "uniform design Croatia",
+        "Style Factory Uniforms"
+      ]
+    },
+    "hero": {
+      "titleLine1": "Beyond Uniforms.",
+      "titleLine2": "It's Your Brand Identity.",
+      "imageAlt": "Style Factory hospitality uniform collection",
+      "p1": "From concept to delivery, we shape every collection to reflect your brand <br></br> standards.",
+      "p2": "Creating professional uniforms for hospitality and corporate teams, we combine quality, comfort, and contemporary <br></br> design."
+    },
+    "whatWeDo": {
+      "headingStrong": "WHAT",
+      "headingLight": "WE DO",
+      "services": {
+        "design": {
+          "title": "Design",
+          "copy": "We create complete workwear solutions, from concept development and uniform design to comprehensive workwear standards manuals, ensuring consistency, a distinctive brand identity, and a polished, professional image for your team."
+        },
+        "development": {
+          "title": "Development",
+          "copy": "From sourcing and production coordination to final delivery, we manage the complete development process for each project."
+        },
+        "production": {
+          "title": "Production",
+          "copy": "Through our manufacturing network, we support hospitality brands and uniform companies with sourcing, production coordination and project development."
+        }
+      }
+    },
+    "clients": {
+      "titleLine1": "Selected",
+      "titleLine2": "Clients",
+      "logoAlt": "{name} logo"
+    },
+    "contact": {
+      "titleStrong": "Get",
+      "titleLight": "in touch",
+      "country": "CROATIA",
+      "street": "Vrisnička 18",
+      "city": "10 000 Zagreb",
+      "form": {
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email address*",
+        "company": "Company*",
+        "message": "Message*",
+        "send": "Send",
+        "sending": "Sending",
+        "sent": "Sent",
+        "retry": "Try again",
+        "statusSending": "Sending your message.",
+        "statusSuccess": "Thank you, your message has been sent.",
+        "statusError": "Your message could not be sent. Please try again or email us directly."
+      }
+    },
+    "journey": {
+      "backdrop": "process",
+      "titleStrong": "The Uniform",
+      "titleLight": "Journey",
+      "quote": "Because first impressions begin with what your team wears",
+      "steps": {
+        "brief": {
+          "title": "Brief & Consultation",
+          "copy": "We begin by understanding your brand, operational needs, and team requirements. Through a detailed briefing process, we define the standards, functionality, and visual direction of your uniform collection."
+        },
+        "design": {
+          "title": "Design Development",
+          "copy": "Every uniform concept is thoughtfully designed to reflect your brand identity. From sketches and fabric selection to styling and functionality, every detail is carefully considered."
+        },
+        "sampling": {
+          "title": "Sampling & Approval",
+          "copy": "Once the design concept is confirmed, we develop prototypes and samples to ensure the perfect fit, comfort, and final appearance before production begins."
+        },
+        "production": {
+          "title": "Sizing & Production",
+          "copy": "After sample approval, we collect sizing information for all team members and coordinate the full production process with our manufacturing partners."
+        },
+        "delivery": {
+          "title": "Delivery",
+          "copy": "The finished uniforms are quality-checked, organized, and delivered ready for your team to wear."
+        }
+      },
+      "visuals": {
+        "consultation": "Brief and consultation session for a new uniform collection",
+        "fabric": "Fabric and material board for uniform development",
+        "pants": "Uniform trousers production sample",
+        "sketch": "Technical sketch of uniform trousers"
+      }
+    }
   },
   "trends": {
     "meta": {

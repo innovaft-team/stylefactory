@@ -27,9 +27,9 @@ export const MobileNavigation = () => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-full z-[1000] flex justify-between items-center px-4 py-2 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-1000 flex justify-between items-center px-4 py-2 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-[8px] shadow-sm  border-b border-gray-100"
+            ? "bg-white/95 backdrop-blur-sm shadow-sm  border-b border-gray-100"
             : "bg-transparent"
         }`}
         data-role="navigation"
@@ -47,7 +47,7 @@ export const MobileNavigation = () => {
         {/* Hamburger Menu Icon on the right */}
         <button
           onClick={onOpen}
-          className="flex flex-col gap-[7px] items-end justify-center w-8 h-6 group focus:outline-none bg-transparent border-none p-0 cursor-pointer"
+          className="flex flex-col gap-1.75 items-end justify-center w-8 h-6 group focus:outline-none bg-transparent border-none p-0 cursor-pointer"
           aria-label="Toggle menu"
           style={{ display: isOpen ? "none" : "flex" }}
         >
@@ -72,7 +72,7 @@ export const MobileNavigation = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={onClose}
-              className="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-[10000]"
+              className="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-10000"
             />
             {/* Drawer */}
             <MobileNavigationDrawer onClose={onClose} />

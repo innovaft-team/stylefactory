@@ -8,7 +8,18 @@ import { useTranslations } from "next-intl";
 import { montserrat } from "@/fonts";
 import { ChakraLogoSmIcon } from "../atoms/icons";
 
-export const NavigationLayout = ({ children }: PropsWithChildren) => {
+type NavigationLayoutProps = PropsWithChildren<{
+  /**
+   * The home page anchors its own desktop navigation inside its scrolling
+   * shell, so it opts out of the one rendered here.
+   */
+  showDesktopNavigation?: boolean;
+}>;
+
+export const NavigationLayout = ({
+  children,
+  showDesktopNavigation = true,
+}: NavigationLayoutProps) => {
   const t = useTranslations("nav");
 
   return (
@@ -63,6 +74,7 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
               [writing-mode:vertical-rl]
               rotate-180
               mb-16
+              font-semibold
             "
           >
             {t("sidebar.professionalUniforms")}
@@ -77,9 +89,14 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
         {/* Main Content */}
         <div className="relative w-full h-full">
           {/* Desktop Navigation */}
+          {showDesktopNavigation ? (
+            <div className="hidden md:block absolute top-0 left-0 w-full z-999">
+              <Navigation />
+            </div>
+          ) : null}
 
           {/* Mobile Navigation */}
-          <div className="block md:hidden absolute top-0 left-0 w-full z-[1000]">
+          <div className="block md:hidden absolute top-0 left-0 w-full z-1000">
             <MobileNavigation />
           </div>
           {children}
