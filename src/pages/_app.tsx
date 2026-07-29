@@ -8,6 +8,7 @@ import {AbstractIntlMessages, NextIntlClientProvider} from "next-intl";
 import {AnimatePresence, motion, useReducedMotion} from "framer-motion";
 import {useEffect, useMemo, useState} from "react";
 import Head from "next/head";
+import { montserrat } from "@/fonts";
 
 const queryClient = new QueryClient();
 
@@ -50,43 +51,45 @@ export default function App({Component, pageProps}: Props) {
 
     return (
         <NextIntlClientProvider locale={router.locale} messages={pageProps.messages} timeZone={"Europe/Zagreb"}>
-            <Head>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <meta name="theme-color" content="#ffffff"/>
-                <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32"/>
-                <link rel="icon" href="/images/favicon-16x16.png" sizes="16x16"/>
-                <link rel="apple-touch-icon" href="/images/favicon-32x32.png"/>
-            </Head>
-            <ChakraProvider theme={theme}>
-                <QueryClientProvider client={queryClient}>
-                    <Box
-                        aria-hidden="true"
-                        bg="rgba(18, 18, 18, 0.72)"
-                        h="2px"
-                        left="0"
-                        opacity={isRouteChanging ? 1 : 0}
-                        position="fixed"
-                        right="0"
-                        top="0"
-                        transform={isRouteChanging ? "scaleX(1)" : "scaleX(0)"}
-                        transformOrigin="left center"
-                        transition="transform 520ms ease, opacity 180ms ease"
-                        zIndex="20000"
-                    />
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                            key={routeTransitionKey}
-                            initial={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: 10}}
-                            animate={{opacity: 1, y: 0}}
-                            exit={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: -8}}
-                            style={{minHeight: "100vh", width: "100%"}}
-                            transition={{duration: prefersReducedMotion ? 0.16 : 0.28, ease: [0.22, 1, 0.36, 1]}}
-                        >
-                            <Component {...pageProps} />
-                        </motion.div>
-                    </AnimatePresence>
-                </QueryClientProvider>
-            </ChakraProvider>
+            <div className={montserrat.className}>
+                <Head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <meta name="theme-color" content="#ffffff"/>
+                    <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32"/>
+                    <link rel="icon" href="/images/favicon-16x16.png" sizes="16x16"/>
+                    <link rel="apple-touch-icon" href="/images/favicon-32x32.png"/>
+                </Head>
+                <ChakraProvider theme={theme}>
+                    <QueryClientProvider client={queryClient}>
+                        <Box
+                            aria-hidden="true"
+                            bg="rgba(18, 18, 18, 0.72)"
+                            h="2px"
+                            left="0"
+                            opacity={isRouteChanging ? 1 : 0}
+                            position="fixed"
+                            right="0"
+                            top="0"
+                            transform={isRouteChanging ? "scaleX(1)" : "scaleX(0)"}
+                            transformOrigin="left center"
+                            transition="transform 520ms ease, opacity 180ms ease"
+                            zIndex="20000"
+                        />
+                        <AnimatePresence mode="wait" initial={false}>
+                            <motion.div
+                                key={routeTransitionKey}
+                                initial={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: 10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: -8}}
+                                style={{minHeight: "100vh", width: "100%"}}
+                                transition={{duration: prefersReducedMotion ? 0.16 : 0.28, ease: [0.22, 1, 0.36, 1]}}
+                            >
+                                <Component {...pageProps} />
+                            </motion.div>
+                        </AnimatePresence>
+                    </QueryClientProvider>
+                </ChakraProvider>
+            </div>
         </NextIntlClientProvider>
     )
 

@@ -1,23 +1,39 @@
-'use client';
-import {usePathname} from "next/navigation";
-import {Link} from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export const ActiveLink = ({children, href}: { children: React.ReactNode; href: string }) => {
-    const pathname = usePathname()
-
-
-    const isSelected = pathname === href;
-
-    return (
-        <Link as={NextLink} pb={{base: 1, lg: 3}} px={{base: 0, lg: 6}} href={href} aria-selected={isSelected} fontWeight={700}
-              _hover={{textDecoration: "none", cursor: 'pointer', color: 'gray.500'}}
-              _selected={{
-                  borderBottomWidth: '1px',
-                  borderColor: 'gray.300',
-              }}
-              >
-            {children}
-        </Link>
-    );
-}
+export const ActiveLink = ({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) => {
+  return (
+    <Link
+      as={NextLink}
+      href={href}
+      _hover={{ textDecoration: "none" }}
+      className="
+        relative
+        font-bold
+        px-0 
+        pb-1 lg:pb-3
+        after:content-['']
+        after:absolute
+        after:bottom-[10px]
+        after:left-0
+        after:w-full
+        after:h-[2px]
+        after:bg-current
+        after:scale-x-0
+        after:origin-left
+        after:transition-transform
+        after:duration-300
+        after:ease-out
+        hover:after:scale-x-100
+      "
+    >
+      {children}
+    </Link>
+  );
+};

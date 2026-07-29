@@ -34,10 +34,7 @@ export const Contact = () => {
     <Hide below="768px">
       <Grid
         gridTemplateColumns={"1.5rem"}
-        position={"fixed"}
-        top={"40%"}
         rowGap={6}
-        
       >
         <IconButton
           color={'rgb(128, 128, 128)'}

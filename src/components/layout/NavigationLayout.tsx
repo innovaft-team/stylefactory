@@ -1,62 +1,95 @@
-import {PropsWithChildren} from "react";
-import {Grid, Show, Text, VStack} from "@chakra-ui/react";
-import {Inter} from "next/font/google";
-import {MobileNavigation} from "../navigation/MobileNavigation";
-import {Navigation} from "../navigation/Navigation";
-import {Contact} from "../Contact bar/Contact";
-import {useTranslations} from "next-intl";
-import { color } from "framer-motion";
+"use client";
+
+import { PropsWithChildren } from "react";
+import { MobileNavigation } from "../navigation/MobileNavigation";
+import { Navigation } from "../navigation/Navigation";
+import { Contact } from "../Contact bar/Contact";
+import { useTranslations } from "next-intl";
+import { montserrat } from "@/fonts";
+import { ChakraLogoSmIcon } from "../atoms/icons";
+
+export const NavigationLayout = ({ children }: PropsWithChildren) => {
+  const t = useTranslations("nav");
+
+  return (
+    <div
+      className={`
+        ${montserrat.className}
+        grid
+        grid-rows-[1fr]
+        w-full
+        h-full
+        max-w-[1920px]
+        min-h-max
+        place-items-center
+        place-self-center
+        overflow-hidden
+        rounded
+      `}
+    >
 
 
-const inter = Inter({subsets: ["latin"]});
-
-export const NavigationLayout = ({children}: PropsWithChildren) => {
-    const t = useTranslations("nav")
-
-    return (
-        <Grid gridTemplateRows={"1fr"}
-              className={inter.className}
-              borderRadius={"4"}
-              maxW={"1920px"}
-              placeSelf={"center"}
-              w={"full"}
-              h={"full"}
-              overflow={"hidden"}
-              placeItems={"center"}
-              minH={"max-content"}
+      <div
+        className="
+          relative
+          grid
+          w-full
+          h-full
+          justify-stretch
+          md:grid-cols-[auto_minmax(0,1fr)]
+        "
+      >
+        {/* Left Sidebar */}
+        <div
+          className="
+            hidden
+            lg:flex
+            flex-col
+            items-center
+            px-2
+            md:px-12
+            pt-8
+          "
         >
-            <Show above="md">
-                <Navigation/>
-            </Show>
-            <Show below="md">
-                <MobileNavigation/>
-            </Show>
+          {/* Logo */}
+          <div className="flex justify-center mb-16">
+            <ChakraLogoSmIcon className="size-14" />
+          </div>
 
-            <Grid
-                w={"full"}
-                h="full"
-                gridTemplateColumns={{md: "auto minmax(0, 1fr)"}}
-                justifyContent={"stretch"}
-                position={"relative"}
-            >
-                <VStack px={{base: '2', md: '12'}} justifyContent={"space-between"} hideBelow={"lg"}>
-                    <Text mt={{base: '15px', md: '150px'} }
-                          display={{base: 'none', md: 'inherit'}}
-                          css={{
-                              writingMode: "vertical-rl",
-                              fontSize: "14px",
-                              transform: "rotate(180deg)",
+          {/* Vertical Text */}
+          <p
+            className="
+              hidden
+              md:block
+              text-[14px]
+              [writing-mode:vertical-rl]
+              rotate-180
+              mb-16
+            "
+          >
+            {t("sidebar.professionalUniforms")}
+          </p>
 
-                          }}
-                    >
-                        {t("sidebar.professionalUniforms")}
-                    </Text>
+          {/* Icons */}
+          <div className="flex justify-center">
+            <Contact />
+          </div>
+        </div>
 
-                    <Contact/>
-                </VStack>
-                {children}
-            </Grid>
+        {/* Main Content */}
+        <div className="relative w-full h-full">
+          {/* Desktop Navigation */}
+          <div className="hidden md:block absolute top-0 left-0 w-full z-[999]">
+            <Navigation />
+          </div>
 
-        </Grid>
-    )
-}
+          {/* Mobile Navigation */}
+          <div className="block md:hidden absolute top-0 left-0 w-full z-[1000]">
+            <MobileNavigation />
+          </div>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};

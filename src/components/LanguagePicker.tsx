@@ -75,7 +75,7 @@ export const LanguagePicker = (props: StackProps) => {
           <RadioCard
             key={value}
             {...radio}
-            borderBottom={router.locale === value ? "1px solid black" : ""}
+            borderBottom={router.locale === value ? "2px solid black" : ""}
           >
             {/*@ts-ignore */}
             {t(`languages.${value}`)}
