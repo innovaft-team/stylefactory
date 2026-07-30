@@ -37,10 +37,10 @@ export function RadioCard(props: BoxProps) {
           relative
           after:content-['']
           after:absolute
-          after:bottom-[-6px]
+          after:-bottom-1.5
           after:left-0
           after:w-full
-          after:h-[2px]
+          after:h-0.5
           after:bg-current
           after:transition-transform
           after:duration-300
@@ -76,7 +76,9 @@ export const LanguagePicker = (props: StackProps) => {
     defaultValue: router.locale,
     // @ts-ignore
     onChange: (val) =>
-      router.push(router.pathname as any, router.pathname as any, { locale: val as Locale }),
+      router.push(router.pathname as any, router.pathname as any, {
+        locale: val as Locale,
+      }),
   });
 
   const group = getRootProps();
@@ -86,10 +88,7 @@ export const LanguagePicker = (props: StackProps) => {
       {options.map((value) => {
         const radio = getRadioProps({ value });
         return (
-          <RadioCard
-            key={value}
-            {...radio}
-          >
+          <RadioCard key={value} {...radio}>
             {/*@ts-ignore */}
             {t(`languages.${value}`)}
           </RadioCard>

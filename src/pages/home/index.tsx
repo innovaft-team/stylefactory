@@ -30,6 +30,7 @@ import Image from "next/image";
 import { HeroSection } from "@/modules/home/_components/HeroSection";
 import { Navigation } from "@/components/navigation/Navigation";
 import { WhatWeDoSection } from "@/modules/home/_components/WhatWeDoSection";
+import { ClientsSection } from "@/modules/home/_components/ClientsSection";
 import {
   Reveal,
   REVEAL_EASE,
@@ -37,80 +38,7 @@ import {
   useSoftScaleVariants,
 } from "@/components/Reveal";
 
-const clients = [
-  {
-    name: "Adriatic",
-    logo: "/images/home-redesign/logo-adriatic.jpg",
-    width: 327,
-    height: 260,
-  },
-  {
-    name: "Esplanade",
-    logo: "/images/home-redesign/logo-esplanade.jpg",
-    width: 273,
-    height: 260,
-  },
-  {
-    name: "Movenpick",
-    logo: "/images/home-redesign/logo-movenpick.jpg",
-    width: 557,
-    height: 260,
-  },
-  {
-    name: "Havas",
-    logo: "/images/home-redesign/logo-havas.jpg",
-    width: 488,
-    height: 260,
-  },
-  {
-    name: "Materra",
-    logo: "/images/home-redesign/logo-materra.jpg",
-    width: 376,
-    height: 260,
-  },
-  {
-    name: "Molum",
-    logo: "/images/home-redesign/logo-molum.jpg",
-    width: 455,
-    height: 260,
-  },
-  {
-    name: "Suncani Hvar",
-    logo: "/images/home-redesign/logo-suncani-hvar.jpg",
-    width: 471,
-    height: 260,
-  },
-  {
-    name: "Liburnia",
-    logo: "/images/home-redesign/logo-liburnia.jpg",
-    width: 402,
-    height: 260,
-  },
-  {
-    name: "RHG",
-    logo: "/images/home-redesign/logo-rhg.jpg",
-    width: 482,
-    height: 260,
-  },
-  {
-    name: "Pullman",
-    logo: "/images/home-redesign/logo-pullman.jpg",
-    width: 519,
-    height: 260,
-  },
-  {
-    name: "Sun Gardens",
-    logo: "/images/home-redesign/logo-sun-gardens.jpg",
-    width: 469,
-    height: 260,
-  },
-  {
-    name: "Terme Catez",
-    logo: "/images/home-redesign/logo-terme-catez.jpg",
-    width: 415,
-    height: 260,
-  },
-];
+
 
 const journeySteps = [
   { number: "1", key: "brief" },
@@ -147,81 +75,7 @@ function Visual({
   );
 }
 
-function ClientsSection() {
-  const t = useTranslations("home.clients");
-  const softScale = useSoftScaleVariants();
 
-  return (
-    <Box as="section" className={styles.clientsSection} position="relative">
-      <Grid
-        className={styles.clientsLayout}
-        alignItems="center"
-        templateColumns={{ base: "1fr", lg: "220px minmax(0, 1fr)" }}
-      >
-        <Reveal>
-          <HStack
-            align="center"
-            justify={{ base: "center", lg: "start" }}
-            spacing="5"
-          >
-            <Box
-              display={{ base: "none", lg: "block" }}
-              h="180px"
-              w="1px"
-              bg="rgba(0,0,0,0.24)"
-            />
-            <Text
-              fontFamily={poppins.style.fontFamily}
-              fontSize={{ base: "18px", md: "21px" }}
-              fontWeight="700"
-              lineHeight="1.05"
-              textAlign={{ base: "center", lg: "left" }}
-              textTransform="uppercase"
-            >
-              {t("titleLine1")}
-              <br />
-              {t("titleLine2")}
-            </Text>
-          </HStack>
-        </Reveal>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.055 } },
-          }}
-        >
-          <SimpleGrid
-            className={styles.clientsGrid}
-            columns={{ base: 4, md: 6 }}
-            spacing={{ base: "3", md: "4" }}
-          >
-            {clients.map((client) => (
-              <motion.div
-                key={client.name}
-                variants={softScale}
-                transition={{ duration: 0.54, ease: REVEAL_EASE }}
-              >
-                <Box className={styles.clientLogo}>
-                  <Image
-                    alt={t("logoAlt", { name: client.name })}
-                    className={styles.clientLogoImage}
-                    src={client.logo}
-                    width={client.width}
-                    height={client.height}
-                  />
-                </Box>
-              </motion.div>
-            ))}
-          </SimpleGrid>
-        </motion.div>
-      </Grid>
-    </Box>
-  );
-}
 
 type ContactStatus = "idle" | "submitting" | "success" | "error";
 

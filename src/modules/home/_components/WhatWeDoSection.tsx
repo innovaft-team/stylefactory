@@ -7,8 +7,15 @@ export function WhatWeDoSection() {
   const t = useTranslations("home.whatWeDo");
 
   return (
-    <section className="relative overflow-hidden bg-white min-h-auto py-2.5 px-0 pb-7 md:min-h-auto md:p-0 xl:min-h-auto xl:pb-28">
+    <section className="relative overflow-hidden bg-white min-h-auto pt-5 px-0 pb-7 md:min-h-auto xl:min-h-auto">
       {/* Seam Grid background */}
+      <h2
+        className={`text-xl md:text-[33px] font-medium uppercase relative z-20 text-center`}
+      >
+        <span className="text-[#181818]">{t("headingStrong")}</span>{" "}
+        <span className="text-[#48443e]/58">{t("headingLight")}</span>
+      </h2>
+      <div className="w-20 h-[1.5px] bg-[#48443e]/18 mx-auto md:hidden" />
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.3]"
         style={{
@@ -22,18 +29,10 @@ export function WhatWeDoSection() {
       <div className="absolute inset-x-0 top-0 h-20 md:h-50 z-0 pointer-events-none bg-linear-to-b from-black/45 to-transparent" />
 
       {/* Section Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 z-3 pointer-events-none top-5.25 md:top-14.5 text-center">
-        <h2
-          className={`text-xl md:text-[33px] font-medium uppercase relative z-20`}
-        >
-          <span className="text-[#181818]">{t("headingStrong")}</span>{" "}
-          <span className="text-[#48443e]/58">{t("headingLight")}</span>
-        </h2>
-        <div className="w-20 h-[1.5px] bg-[#48443e]/18 mx-auto mt-2 md:hidden" />
-      </div>
+      <div className="absolute left-1/2 -translate-x-1/2 z-3 pointer-events-none text-center"></div>
 
       {/* Main Layout Grid */}
-      <div className="block md:grid relative z-1 items-start overflow-visible min-h-auto md:min-h-auto xl:min-h-auto mt-1 md:pt-20 xl:pt-0 gap-0 grid-cols-1 md:grid-cols-[minmax(120px,1fr)_minmax(400px,660px)_minmax(120px,1fr)] xl:grid-cols-[minmax(300px,1fr)_minmax(580px,660px)_minmax(300px,1fr)]">
+      <div className="block md:grid relative z-1 items-start overflow-visible min-h-auto md:min-h-auto xl:min-h-auto mt-5 md:pt-6 xl:pt-0 gap-0 grid-cols-1 md:grid-cols-[minmax(120px,1fr)_minmax(400px,660px)_minmax(120px,1fr)] xl:grid-cols-[minmax(300px,1fr)_minmax(580px,660px)_minmax(300px,1fr)]">
         {/* Left Visual: Jacket */}
         <Reveal
           amount={0.28}
@@ -47,7 +46,7 @@ export function WhatWeDoSection() {
           />
         </Reveal>
         {/* Center Services list */}
-        <div className=" xl:mt-30 w-full justify-self-center px-4">
+        <div className=" w-full justify-self-center px-4">
           <div className="mx-auto flex items-center justify-center flex-col">
             <div className="relative">
               <Image
@@ -57,17 +56,14 @@ export function WhatWeDoSection() {
                 height={180}
                 alt="timeline-contour"
               />
-              <span className="mt-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
-                Design
+              <span className="mt-3 text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+                {t("services.design.title")}
               </span>
             </div>
             <p
-              className={`max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
+              className={`text-black max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
             >
-              We create complete workwear solutions, from concept development
-              and uniform design to comprehensive workwear standards manuals,
-              ensuring consistency, a distinctive brand identity, and a
-              polished, professional image for your team.
+              {t("services.design.copy")}
             </p>
           </div>
           <div className="mx-auto flex items-center justify-center flex-col mt-4">
@@ -79,15 +75,14 @@ export function WhatWeDoSection() {
                 height={130}
                 alt="timeline-flower"
               />
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
-                Development
+              <span className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+                {t("services.development.title")}
               </span>
             </div>
             <p
-              className={`max-sm:px-6 max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
+              className={`max-sm:px-6 text-black max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
             >
-              From sourcing and production coordination to final delivery, we
-              manage the complete development process for each project.
+              {t("services.development.copy")}
             </p>
           </div>
           <div className="mx-auto flex items-center justify-center flex-col mt-4">
@@ -99,16 +94,14 @@ export function WhatWeDoSection() {
                 height={120}
                 alt="timeline-flower"
               />
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
-                Production
+              <span className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+                {t("services.production.title")}
               </span>
             </div>
             <p
-              className={`max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
+              className={`text-black max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
             >
-              Through our manufacturing network, we support hospitality brands
-              and uniform companies with sourcing, production coordination and
-              project development.
+              {t("services.production.copy")}
             </p>
           </div>
         </div>

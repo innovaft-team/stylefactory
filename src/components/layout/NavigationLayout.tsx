@@ -62,7 +62,12 @@ export const NavigationLayout = ({
         >
           {/* Logo */}
           <div className="flex justify-center mb-16">
-            <ChakraLogoSmIcon className="size-14" />
+            <a
+              href="/"
+              className="cursor-pointer transition-transform duration-300 ease-in-out hover:scale-108 inline-block"
+            >
+              <ChakraLogoSmIcon className="size-14" />
+            </a>
           </div>
 
           {/* Vertical Text */}

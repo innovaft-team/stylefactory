@@ -47,39 +47,7 @@
   animation: assetSheen 7s ease-in-out infinite;
 }
 
-.clientLogo {
-  position: relative;
-  display: grid;
-  min-height: 74px;
-  place-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(26, 26, 26, 0.08);
-  background: rgba(255, 255, 255, 0.64);
-}
 
-.clientLogoImage {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 90%;
-  height: 58px;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-}
-
-.clientsSection {
-  min-height: 500px;
-  padding: 86px clamp(64px, 6.7vw, 92px) 126px;
-  background: #fbfbf8;
-}
-
-.clientsLayout {
-  gap: clamp(36px, 5vw, 78px);
-}
-
-.clientsGrid {
-  align-items: center;
-}
 
 .clientLogo::after {
   display: none;
@@ -527,26 +495,6 @@
   .scriptBackdrop {
       top: -10px;
       opacity: 0.82;
-    }
-
-    .clientsSection {
-      min-height: auto;
-      padding: 22px 22px 34px;
-    }
-
-    .clientsLayout {
-      gap: 18px;
-    }
-
-    .clientLogo {
-      min-height: 54px;
-      border-color: transparent;
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    .clientLogoImage {
-      width: 94%;
-      height: 42px;
     }
 
     .contactBand {

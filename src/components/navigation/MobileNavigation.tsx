@@ -36,12 +36,12 @@ export const MobileNavigation = () => {
       >
         {/* "STYLE FACTORY" text on the left */}
         <div
-          className={`flex flex-col tracking-[0.14em] font-normal text-[25px] select-none transition-colors duration-300 ${
+          className={`flex flex-col font-normal text-[25px] ${
             isScrolled ? "text-black" : "text-[#f4f1ee]"
           }`}
         >
           <span>STYLE</span>
-          <span className="mt-1">FACTORY</span>
+          <span className="">FACTORY</span>
         </div>
 
         {/* Hamburger Menu Icon on the right */}

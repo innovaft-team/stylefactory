@@ -28,8 +28,9 @@ export const MobileContact = () => {
   return (
     <Grid gridTemplateColumns={"1.5rem"} rowGap={6} >
       <IconButton
-       color={'rgb(128, 128, 128)'}
-        _hover={{ bg: "transparent" }}
+        color={'rgb(128, 128, 128)'}
+        transition="all 0.3s ease"
+        _hover={{ color: "black", background: "transparent", transform: "scale(1.18)" }}
         minW={"fit-content"}
         onClick={onOpen}
         icon={<ChakraInfoIcon height={{ base: "6" }} />}
@@ -41,20 +42,37 @@ export const MobileContact = () => {
       <Link
         href={"https://www.instagram.com/stylefactory.uniforms/"}
         target="_blank"
-        
+        display="inline-flex"
       >
-        <ChakraInstagramIcon color={'rgb(128, 128, 128)'}/>
+        <ChakraInstagramIcon
+          color={'rgb(128, 128, 128)'}
+          transition="all 0.3s ease"
+          _hover={{ color: "black", transform: "scale(1.18)" }}
+        />
       </Link>
-      <Link href={"https://www.pinterest.com/StyleFactoryUniforms/"} target="_blank">
-        <ChakraPinterestIcon color={'rgb(128, 128, 128)'}/>
+      <Link
+        href={"https://www.pinterest.com/StyleFactoryUniforms/"}
+        target="_blank"
+        display="inline-flex"
+      >
+        <ChakraPinterestIcon
+          color={'rgb(128, 128, 128)'}
+          transition="all 0.3s ease"
+          _hover={{ color: "black", transform: "scale(1.18)" }}
+        />
       </Link>
       <Link
         href={
           "https://www.linkedin.com/company/style-factory-professional-uniforms/"
         }
         target="_blank"
+        display="inline-flex"
       >
-        <ChakraLinkedInIcon color={'rgb(128, 128, 128)'}/>
+        <ChakraLinkedInIcon
+          color={'rgb(128, 128, 128)'}
+          transition="all 0.3s ease"
+          _hover={{ color: "black", transform: "scale(1.18)" }}
+        />
       </Link>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered  >
