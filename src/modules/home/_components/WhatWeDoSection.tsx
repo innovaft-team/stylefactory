@@ -1,47 +1,13 @@
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Reveal } from "@/components/Reveal";
+import Image from "next/image";
 import { open_sans } from "@/fonts";
-import { Reveal, REVEAL_EASE, useSoftScaleVariants } from "@/components/Reveal";
-
-const services = [
-  {
-    key: "design",
-    itemHeightClass: "min-h-[146px] md:min-h-[286px]",
-    copySpacingClass:
-      "mt-[16px] xl:mt-[58px] max-w-[260px] md:max-w-[420px] xl:max-w-[590px]",
-    medallionClass: "top-[30px] md:top-[2px]",
-    medallionSizeClass: "w-[132px] h-[112px] md:w-[260px] md:h-[220px]",
-    medallionBg: "url('/images/home-redesign/timeline-contour.png')",
-    medallionRotate: "",
-  },
-  {
-    key: "development",
-    itemHeightClass: "min-h-[146px] md:min-h-[314px]",
-    copySpacingClass:
-      "mt-[16px] xl:mt-[104px] max-w-[260px] md:max-w-[420px] xl:max-w-[650px]",
-    medallionClass: "top-[30px] md:top-[16px]",
-    medallionSizeClass: "w-[92px] h-[126px] md:w-[172px] md:h-[236px]",
-    medallionBg: "url('/images/home-redesign/timeline-flower.png')",
-    medallionRotate: "",
-  },
-  {
-    key: "production",
-    itemHeightClass: "min-h-[142px] md:min-h-[250px]",
-    copySpacingClass:
-      "mt-[16px] xl:mt-[84px] max-w-[260px] md:max-w-[420px] xl:max-w-[640px]",
-    medallionClass: "top-[30px] md:top-[16px]",
-    medallionSizeClass: "w-[104px] h-[104px] md:w-[214px] md:h-[214px]",
-    medallionBg: "url('/images/home-redesign/timeline-ring.png')",
-    medallionRotate: "",
-  },
-] as const;
 
 export function WhatWeDoSection() {
   const t = useTranslations("home.whatWeDo");
-  const softScale = useSoftScaleVariants();
 
   return (
-    <section className="relative overflow-hidden bg-white min-h-auto py-2.5 px-0 pb-7 md:min-h-auto md:p-0 xl:min-h-295">
+    <section className="relative overflow-hidden bg-white min-h-auto py-2.5 px-0 pb-7 md:min-h-auto md:p-0 xl:min-h-auto xl:pb-28">
       {/* Seam Grid background */}
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.3]"
@@ -53,82 +19,104 @@ export function WhatWeDoSection() {
       />
 
       {/* Top Dark Gradient Overlay */}
-      <div className="absolute inset-x-0 top-0 h-50 z-0 pointer-events-none bg-linear-to-b from-black/45 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-20 md:h-50 z-0 pointer-events-none bg-linear-to-b from-black/45 to-transparent" />
 
       {/* Section Heading */}
-      <div className="absolute left-1/2 -translate-x-1/2 z-3 pointer-events-none top-5.25 md:top-14.5">
-        <h2 className={`md:text-[30px] font-medium uppercase`}>
+      <div className="absolute left-1/2 -translate-x-1/2 z-3 pointer-events-none top-5.25 md:top-14.5 text-center">
+        <h2
+          className={`text-xl md:text-[33px] font-medium uppercase relative z-20`}
+        >
           <span className="text-[#181818]">{t("headingStrong")}</span>{" "}
           <span className="text-[#48443e]/58">{t("headingLight")}</span>
         </h2>
+        <div className="w-20 h-[1.5px] bg-[#48443e]/18 mx-auto mt-2 md:hidden" />
       </div>
 
       {/* Main Layout Grid */}
-      <div className="block md:grid relative z-1 items-start overflow-visible min-h-auto md:min-h-auto xl:min-h-290 md:pt-35 xl:pt-0 gap-0 grid-cols-1 md:grid-cols-[minmax(120px,1fr)_minmax(400px,660px)_minmax(120px,1fr)] lg:grid-cols-[minmax(300px,1fr)_minmax(580px,660px)_minmax(300px,1fr)]">
+      <div className="block md:grid relative z-1 items-start overflow-visible min-h-auto md:min-h-auto xl:min-h-auto mt-1 md:pt-20 xl:pt-0 gap-0 grid-cols-1 md:grid-cols-[minmax(120px,1fr)_minmax(400px,660px)_minmax(120px,1fr)] xl:grid-cols-[minmax(300px,1fr)_minmax(580px,660px)_minmax(300px,1fr)]">
         {/* Left Visual: Jacket */}
         <Reveal
           amount={0.28}
-          className="block min-w-0 overflow-visible self-start justify-self-start absolute -left-27.5 top-5 z-1 w-50 h-70 md:relative md:left-auto md:top-auto md:z-2 md:w-full md:h-105 md:m-0 xl:h-195 mix-blend-multiply"
+          className="block min-w-0 overflow-visible self-start justify-self-start absolute -left-27.5 top-5 z-1 w-50 h-70 md:relative md:left-auto md:top-auto md:z-2 md:w-full md:h-105 md:m-0 xl:h-auto mix-blend-multiply"
         >
           <div
-            className="w-full h-full min-h-full m-0 bg-contain bg-center bg-no-repeat md:w-60 md:min-h-100 md:mt-12.5 md:-ml-20 xl:w-130 xl:min-h-183.75 xl:mt-18.5 xl:-ml-40 xl:bg-position-[84%_-48px] xl:bg-size-[790px_auto] shadow-none mix-blend-multiply"
+            className=" max-md:hidden absolute -top-26 xl:top-5 size-100 xl:size-150 -left-45 xl:-left-67 -z-10 mix-blend-multiply bg-center bg-no-repeat bg-cover"
             style={{
               backgroundImage: "url('/images/home-redesign/jacket.png')",
             }}
           />
         </Reveal>
         {/* Center Services list */}
-        <div className="relative md:static z-2 self-start justify-self-center w-full flex flex-col justify-start pt-18 px-4 pb-0 mt-0 min-h-auto md:pt-15 md:p-0 md:min-h-auto md:max-w-145 md:self-center md:justify-self-center xl:pt-62 xl:max-w-165 xl:min-h-265 xl:self-start space-y-0">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.key}
-              className={`w-full ${service.itemHeightClass}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={softScale}
-              transition={{
-                duration: 0.72,
-                delay: index * 0.12,
-                ease: REVEAL_EASE,
-              }}
+        <div className=" xl:mt-30 w-full justify-self-center px-4">
+          <div className="mx-auto flex items-center justify-center flex-col">
+            <div className="relative">
+              <Image
+                className="pointer-events-none opacity-70 size-30 md:size-43"
+                src={"/images/home-redesign/timeline-contour.png"}
+                width={180}
+                height={180}
+                alt="timeline-contour"
+              />
+              <span className="mt-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+                Design
+              </span>
+            </div>
+            <p
+              className={`max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
             >
-              <div className="w-full flex flex-col items-center relative text-center">
-                <div className="relative w-full flex items-center justify-center">
-                  {/* Medallion decoration background */}
-                  <div
-                    className={`absolute z-0 bg-center bg-no-repeat bg-contain mix-blend-multiply pointer-events-none opacity-100 left-1/2 top-1/2 ${service.medallionSizeClass}`}
-                    style={{
-                      backgroundImage: service.medallionBg,
-                      transform: "translate(-50%, -50%)",
-                    }}
-                  />
-                  {/* Title */}
-                  <h3
-                    className={`text-[#050505] font-normal tracking-normal relative z-1 text-[26px] leading-[1.08] md:text-[48px] md:leading-[1.04] [text-shadow:0_1px_24px_rgba(255,255,255,0.82)] md:text-shadow-none`}
-                  >
-                    {t(`services.${service.key}.title`)}
-                  </h3>
-                </div>
-                {/* Copy */}
-                <p
-                  className={`mx-auto text-[rgba(18,18,18,0.88)] mt-22 max-w-120.25 tracking-normal relative z-1  font-medium`}
-                >
-                  {t(`services.${service.key}.copy`)}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              We create complete workwear solutions, from concept development
+              and uniform design to comprehensive workwear standards manuals,
+              ensuring consistency, a distinctive brand identity, and a
+              polished, professional image for your team.
+            </p>
+          </div>
+          <div className="mx-auto flex items-center justify-center flex-col mt-4">
+            <div className="relative">
+              <Image
+                className="pointer-events-none opacity-70 object-contain size-25 md:size-40.5"
+                src={"/images/home-redesign/timeline-flower.png"}
+                width={130}
+                height={130}
+                alt="timeline-flower"
+              />
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+                Development
+              </span>
+            </div>
+            <p
+              className={`max-sm:px-6 max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
+            >
+              From sourcing and production coordination to final delivery, we
+              manage the complete development process for each project.
+            </p>
+          </div>
+          <div className="mx-auto flex items-center justify-center flex-col mt-4">
+            <div className="relative">
+              <Image
+                className="pointer-events-none opacity-70 object-contain size-20 md:size-30"
+                src={"/images/home-redesign/timeline-ring.png"}
+                width={120}
+                height={120}
+                alt="timeline-flower"
+              />
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+                Production
+              </span>
+            </div>
+            <p
+              className={`max-w-125 text-center mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%] ${open_sans.className}`}
+            >
+              Through our manufacturing network, we support hospitality brands
+              and uniform companies with sourcing, production coordination and
+              project development.
+            </p>
+          </div>
         </div>
 
         {/* Right Visual: Sketch */}
-        <Reveal
-          delay={0.15}
-          amount={0.28}
-          className="block min-w-0 overflow-visible self-start justify-self-end absolute -right-27.5 bottom-5 top-auto z-1 w-55 h-75 md:relative md:right-auto md:bottom-auto md:top-auto md:z-1 md:w-full md:h-105 md:m-0 md:self-end xl:h-225 xl:self-start mix-blend-multiply"
-        >
+        <Reveal delay={0.15} amount={0.28} className="">
           <div
-            className="w-full h-full min-h-full m-0 bg-contain bg-center bg-no-repeat md:w-75 md:min-h-105 md:mt-auto md:mb-12.5 md:-mr-30 xl:w-162.5 xl:min-h-190 xl:mt-71.5 xl:mb-0 xl:-mr-61.5 xl:bg-top-left xl:bg-size-[705px_auto] shadow-none mix-blend-multiply opacity-[0.86]"
+            className="absolute -right-42 bottom-27 sm:-right-36 sm:bottom-30 min-[1000px]:-bottom-26 xl:bottom-5 size-70 sm:size-80 md:size-100 xl:top-76.5  xl:-right-41.75 xl:size-150 -z-10 mix-blend-multiply bg-center bg-no-repeat bg-cover min-[1000px]:-right-32 min-[1000px]:top-100"
             style={{
               backgroundImage: "url('/images/home-redesign/shirt-sketch.png')",
             }}
