@@ -4,16 +4,13 @@ import {
   Flex,
   Grid,
   HStack,
-  Input,
   SimpleGrid,
   Text,
-  Textarea,
   VStack,
-  VisuallyHidden,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import { motion } from "framer-motion";
-import { useState, type CSSProperties, type FormEvent } from "react";
+import { type CSSProperties } from "react";
 import { useTranslations } from "next-intl";
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
 import { Scroll } from "@/components/layout/Scroll";
@@ -31,14 +28,8 @@ import { HeroSection } from "@/modules/home/_components/HeroSection";
 import { Navigation } from "@/components/navigation/Navigation";
 import { WhatWeDoSection } from "@/modules/home/_components/WhatWeDoSection";
 import { ClientsSection } from "@/modules/home/_components/ClientsSection";
-import {
-  Reveal,
-  REVEAL_EASE,
-  useFadeUpVariants,
-  useSoftScaleVariants,
-} from "@/components/Reveal";
-
-
+import { Reveal, REVEAL_EASE, useFadeUpVariants } from "@/components/Reveal";
+import ContactSection from "@/modules/home/_components/ContactSection";
 
 const journeySteps = [
   { number: "1", key: "brief" },
@@ -47,14 +38,6 @@ const journeySteps = [
   { number: "4", key: "production" },
   { number: "5", key: "delivery" },
 ] as const;
-
-const contactPhonePrimary = "+385 99 6666 331";
-const contactPhoneSecondary = "+385 99 169 7537";
-const contactEmail = "info@stylefactory.hr";
-
-function telHref(phone: string) {
-  return `tel:${phone.replace(/\s/g, "")}`;
-}
 
 function Visual({
   className,
@@ -72,238 +55,6 @@ function Visual({
       role="img"
       aria-label={label}
     />
-  );
-}
-
-
-
-type ContactStatus = "idle" | "submitting" | "success" | "error";
-
-function ContactSection() {
-  const t = useTranslations("home.contact");
-  const [status, setStatus] = useState<ContactStatus>("idle");
-
-  const submitLabels: Record<ContactStatus, string> = {
-    idle: t("form.send"),
-    submitting: t("form.sending"),
-    success: t("form.sent"),
-    error: t("form.retry"),
-  };
-
-  const statusMessages: Record<ContactStatus, string> = {
-    idle: "",
-    submitting: t("form.statusSending"),
-    success: t("form.statusSuccess"),
-    error: t("form.statusError"),
-  };
-
-  // Chakra types `Grid as="form"` handlers against HTMLDivElement, hence the cast.
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-
-    if (status === "submitting") return;
-
-    const form = event.currentTarget as HTMLFormElement;
-    const payload = Object.fromEntries(new FormData(form).entries());
-
-    setStatus("submitting");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Contact request failed with ${response.status}`);
-      }
-
-      form.reset();
-      setStatus("success");
-    } catch {
-      setStatus("error");
-    }
-  }
-
-  return (
-    <Box as="section" id="contact" className={styles.contactBand}>
-      <Grid
-        className={styles.contactLayout}
-        position="relative"
-        zIndex="1"
-        alignItems="end"
-        templateColumns={{ base: "1fr", lg: "0.82fr 1.18fr" }}
-      >
-        <Reveal className={styles.contactTitleItem}>
-          <Box>
-            <Text
-              as="h2"
-              className={styles.contactTitleText}
-              fontFamily={open_sans.style.fontFamily}
-              textTransform="uppercase"
-            >
-              <Box as="span" className={styles.contactTitleStrong}>
-                {t("titleStrong")}
-              </Box>{" "}
-              <Box as="span" className={styles.contactTitleLight}>
-                {t("titleLight")}
-              </Box>
-            </Text>
-          </Box>
-        </Reveal>
-
-        <Reveal delay={0.08} className={styles.contactDetailsItem}>
-          <VStack
-            className={styles.contactDetails}
-            align={{ base: "start", lg: "start" }}
-            color="#272727"
-            fontFamily={open_sans.style.fontFamily}
-            fontSize={{ base: "12px", md: "14px" }}
-            fontWeight="700"
-            spacing="1"
-            textAlign="left"
-          >
-            <Text className={styles.contactPhonePrimary}>
-              <Box as="a" href={telHref(contactPhonePrimary)}>
-                {contactPhonePrimary}
-              </Box>
-            </Text>
-            <Text className={styles.contactPhoneSecondary}>
-              <Box as="a" href={telHref(contactPhoneSecondary)}>
-                {contactPhoneSecondary}
-              </Box>
-            </Text>
-            <Text className={styles.contactEmail}>
-              <Box as="a" href={`mailto:${contactEmail}`}>
-                {contactEmail}
-              </Box>
-            </Text>
-          </VStack>
-        </Reveal>
-
-        <Reveal delay={0.1} className={styles.contactAddressItem}>
-          <VStack
-            className={styles.contactAddress}
-            align={{ base: "end", lg: "start" }}
-            color="#343434"
-            fontFamily={open_sans.style.fontFamily}
-            fontSize={{ base: "12px", md: "14px" }}
-            spacing="1"
-            textAlign={{ base: "right", lg: "left" }}
-          >
-            <Text fontWeight="700">{t("country")}</Text>
-            <Text>{t("street")}</Text>
-            <Text>{t("city")}</Text>
-          </VStack>
-        </Reveal>
-
-        <Reveal delay={0.12} className={styles.contactFormItem}>
-          <Grid
-            as="form"
-            onSubmit={handleSubmit}
-            className={styles.contactForm}
-            gap="3"
-            templateColumns={{ base: "1fr 1fr 1fr", md: "1fr 1fr 1fr" }}
-          >
-            <Input
-              name="name"
-              aria-label={t("form.name")}
-              placeholder={t("form.name")}
-              autoComplete="name"
-              maxLength={120}
-              bg="rgba(255,255,255,0.78)"
-              border="0"
-              borderRadius="6px"
-              h="52px"
-            />
-            <Input
-              name="phone"
-              type="tel"
-              aria-label={t("form.phone")}
-              placeholder={t("form.phone")}
-              autoComplete="tel"
-              maxLength={40}
-              bg="rgba(255,255,255,0.78)"
-              border="0"
-              borderRadius="6px"
-              h="52px"
-            />
-            <Input
-              name="email"
-              type="email"
-              required
-              aria-label={t("form.email")}
-              placeholder={t("form.email")}
-              autoComplete="email"
-              maxLength={160}
-              bg="rgba(255,255,255,0.78)"
-              border="0"
-              borderRadius="6px"
-              h="52px"
-            />
-            <Input
-              name="company"
-              required
-              aria-label={t("form.company")}
-              placeholder={t("form.company")}
-              autoComplete="organization"
-              maxLength={120}
-              bg="rgba(255,255,255,0.78)"
-              border="0"
-              borderRadius="6px"
-              h="52px"
-            />
-            <Textarea
-              name="message"
-              required
-              aria-label={t("form.message")}
-              placeholder={t("form.message")}
-              maxLength={4000}
-              bg="rgba(255,255,255,0.78)"
-              border="0"
-              borderRadius="6px"
-              gridColumn={{ base: "3", md: "3" }}
-              gridRow={{ base: "auto", md: "1 / 3" }}
-              minH="116px"
-              resize="none"
-            />
-            {/* Absolutely positioned, so it never becomes a grid item. */}
-            <VisuallyHidden role="status" aria-live="polite">
-              {statusMessages[status]}
-            </VisuallyHidden>
-            <Button
-              type="submit"
-              className={styles.formRail}
-              gridColumn={{ base: "2", md: "3" }}
-              justifySelf="center"
-              variant="unstyled"
-              display="inline-flex"
-              alignItems="center"
-              justifyContent="center"
-              w="180px"
-              h="34px"
-              border="1px solid rgba(20,20,20,0.42)"
-              borderRadius="999px"
-              color="#1b1b1b"
-              fontFamily={open_sans.style.fontFamily}
-              fontSize="10px"
-              fontWeight="700"
-              textTransform="uppercase"
-            >
-              <Box as="span">{submitLabels[status]}</Box>
-              <Box
-                as="span"
-                className={styles.contactSendArrow}
-                aria-hidden="true"
-              >
-                &rarr;
-              </Box>
-            </Button>
-          </Grid>
-        </Reveal>
-      </Grid>
-    </Box>
   );
 }
 
