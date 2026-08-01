@@ -87,7 +87,7 @@ export function ClientsSection() {
     <section className="relative bg-white pt-15 px-4 pb-10 md:py-20 xl:pb-24 w-full">
       <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] items-center w-full mx-auto max-w-217">
         <Reveal>
-          <div className="flex flex-col items-center lg:items-stretch w-full">
+          <div className="flex-col items-center lg:items-stretch w-full">
             <div className="flex items-center justify-center lg:justify-end gap-9.5 w-full">
               <p
                 style={{ fontFamily: poppins.style.fontFamily }}

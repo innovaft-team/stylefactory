@@ -39,7 +39,7 @@ export function WhatWeDoSection() {
           className="block min-w-0 overflow-visible self-start justify-self-start absolute -left-27.5 top-5 z-1 w-50 h-70 md:relative md:left-auto md:top-auto md:z-2 md:w-full md:h-105 md:m-0 xl:h-auto mix-blend-multiply"
         >
           <div
-            className=" max-md:hidden absolute -top-26 xl:top-5 size-100 xl:size-150 -left-45 xl:-left-67 -z-10 mix-blend-multiply bg-center bg-no-repeat bg-cover"
+            className=" max-md:hidden absolute -top-26 size-100 xl:size-150 -left-45 xl:-left-67 -z-10 mix-blend-multiply bg-center bg-no-repeat bg-cover"
             style={{
               backgroundImage: "url('/images/home-redesign/jacket.png')",
             }}
@@ -50,13 +50,13 @@ export function WhatWeDoSection() {
           <div className="mx-auto flex items-center justify-center flex-col">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 size-30 md:size-43"
+                className="pointer-events-none opacity-70 size-30 md:size-58"
                 src={"/images/home-redesign/timeline-contour.png"}
                 width={180}
                 height={180}
                 alt="timeline-contour"
               />
-              <span className="mt-3 text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+              <span className={`mt-3 text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap ${open_sans.className}`} >
                 {t("services.design.title")}
               </span>
             </div>
@@ -66,7 +66,7 @@ export function WhatWeDoSection() {
               {t("services.design.copy")}
             </p>
           </div>
-          <div className="mx-auto flex items-center justify-center flex-col mt-4">
+          <div className="mx-auto flex items-center justify-center flex-col mt-10 xl:mt-16">
             <div className="relative">
               <Image
                 className="pointer-events-none opacity-70 object-contain size-25 md:size-40.5"
@@ -85,10 +85,10 @@ export function WhatWeDoSection() {
               {t("services.development.copy")}
             </p>
           </div>
-          <div className="mx-auto flex items-center justify-center flex-col mt-4">
+          <div className="mx-auto flex items-center justify-center flex-col mt-10 xl:mt-16">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 object-contain size-20 md:size-30"
+                className="pointer-events-none opacity-70 object-contain size-20 md:size-42.5"
                 src={"/images/home-redesign/timeline-ring.png"}
                 width={120}
                 height={120}

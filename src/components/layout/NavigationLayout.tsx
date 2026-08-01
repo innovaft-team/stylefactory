@@ -56,7 +56,7 @@ export const NavigationLayout = ({
             flex-col
             items-center
             px-2
-            md:px-12
+            md:px-8
             pt-16
           "
         >

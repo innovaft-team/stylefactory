@@ -13,14 +13,14 @@ declare module "nextjs-routes" {
   export type Route =
     | StaticRoute<"/about">
     | StaticRoute<"/api/contact">
-    | DynamicRoute<"/blog/[id]", { "id": string }>
     | StaticRoute<"/blog">
+    | DynamicRoute<"/blog/[id]", { "id": string }>
     | StaticRoute<"/home">
     | StaticRoute<"/">
     | StaticRoute<"/login">
     | StaticRoute<"/sitemap">
-    | DynamicRoute<"/trends/[id]", { "id": string }>
-    | StaticRoute<"/trends">;
+    | StaticRoute<"/trends">
+    | DynamicRoute<"/trends/[id]", { "id": string }>;
 
   interface StaticRoute<Pathname> {
     pathname: Pathname;

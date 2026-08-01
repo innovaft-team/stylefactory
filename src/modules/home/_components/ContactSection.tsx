@@ -61,7 +61,7 @@ const ContactSection = () => {
             CONTACT:
           </h3>
           <div className="mt-3 sm:mt-4 relative z-20 text-black flex flex-row justify-between md:flex-col md:justify-start">
-            <div className="flex flex-col text-left text-xs min-[450px]:text-base">
+            <div className="flex flex-col text-left text-xs min-[450px]:text-base items-start">
               <a href="tel:+385996666331">+385 99 6666 331</a>
               <a href="tel:+385991697357">+385 99 169 7357</a>
               <a className="md:mt-4" href="mailto:info@stylefactory.hr">
