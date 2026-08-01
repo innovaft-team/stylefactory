@@ -7,6 +7,7 @@ import { Contact } from "../Contact bar/Contact";
 import { useTranslations } from "next-intl";
 import { montserrat } from "@/fonts";
 import { ChakraLogoSmIcon } from "../atoms/icons";
+import Link from "next/link";
 
 type NavigationLayoutProps = PropsWithChildren<{
   /**
@@ -62,12 +63,12 @@ export const NavigationLayout = ({
         >
           {/* Logo */}
           <div className="flex justify-center mb-16">
-            <a
+            <Link
               href="/"
               className="cursor-pointer transition-transform duration-300 ease-in-out hover:scale-108 inline-block"
             >
               <ChakraLogoSmIcon className="size-14" />
-            </a>
+            </Link>
           </div>
 
           {/* Vertical Text */}
