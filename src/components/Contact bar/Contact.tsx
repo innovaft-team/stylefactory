@@ -85,11 +85,10 @@ export const Contact = () => {
         </Link>
 
         <Modal isOpen={isOpen} onClose={onClose} isCentered  >
-          <ModalOverlay />
+          <ModalOverlay backdropFilter="blur(8px)" bg="blackAlpha.600" />
           <ModalContent
             maxW="56rem"
-            backgroundColor={'rgba(255,255,255, 0.7)'
-            }>
+            backgroundColor={'#fbfbf8'}>
 
             <ModalCloseButton />
             <ModalBody m={'auto'}>

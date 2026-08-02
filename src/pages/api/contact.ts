@@ -60,26 +60,185 @@ function escapeHtml(value: string) {
 }
 
 function buildEmail(payload: ContactPayload) {
-  const rows: Array<[string, string]> = [
-    ["Name", payload.name || "—"],
-    ["Phone", payload.phone || "—"],
-    ["Email", payload.email],
-    ["Company", payload.company],
-    ["Message", payload.message],
-  ];
+  const name = payload.name || "—";
+  const phone = payload.phone || "—";
+  const email = payload.email;
+  const company = payload.company;
+  const message = payload.message;
 
-  return {
-    text: rows.map(([label, value]) => `${label}: ${value}`).join("\n"),
-    html: rows
-      .map(
-        ([label, value]) =>
-          `<p><strong>${label}:</strong><br/>${escapeHtml(value).replace(
-            /\n/g,
-            "<br/>",
-          )}</p>`,
-      )
-      .join(""),
-  };
+  const text = `
+Website Enquiry details:
+------------------------
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Company: ${company}
+Message:
+${message}
+`;
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Enquiry</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f7f7f4;
+      color: #161616;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrapper {
+      width: 100%;
+      background-color: #f7f7f4;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #e5e5e0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .header {
+      background-color: #161616;
+      padding: 30px 40px;
+      text-align: center;
+      border-bottom: 3px solid #8C8476;
+    }
+    .header h1 {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0;
+    }
+    .content {
+      padding: 40px;
+    }
+    .intro {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #605c56;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+    .table-container {
+      margin-bottom: 30px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .data-table th {
+      width: 30%;
+      background-color: #fbfbf8;
+      color: #8C8476;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #e5e5e0;
+      border-right: 1px solid #e5e5e0;
+    }
+    .data-table td {
+      color: #161616;
+      border-bottom: 1px solid #e5e5e0;
+    }
+    .message-box {
+      background-color: #fbfbf8;
+      border: 1px dashed #B1ABA8;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 2px;
+    }
+    .message-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8C8476;
+      margin-bottom: 10px;
+    }
+    .message-content {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #161616;
+      white-space: pre-wrap;
+      margin: 0;
+    }
+    .footer {
+      background-color: #fbfbf8;
+      padding: 20px 40px;
+      text-align: center;
+      border-top: 1px solid #e5e5e0;
+      font-size: 12px;
+      color: #b1aba8;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header">
+        <h1>Style Factory</h1>
+      </div>
+      <div class="content">
+        <p class="intro">You have received a new business inquiry from the website contact form. The details are provided below:</p>
+        
+        <div class="table-container">
+          <table class="data-table">
+            <tr>
+              <th>Name</th>
+              <td>${escapeHtml(name)}</td>
+            </tr>
+            <tr>
+              <th>Company</th>
+              <td>${escapeHtml(company)}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td><a href="mailto:${escapeHtml(email)}" style="color: #8C8476; text-decoration: none;">${escapeHtml(email)}</a></td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>${escapeHtml(phone)}</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="message-box">
+          <div class="message-title">Message</div>
+          <pre class="message-content">${escapeHtml(message)}</pre>
+        </div>
+      </div>
+      <div class="footer">
+        <p>This inquiry was sent automatically from the Style Factory website contact form.</p>
+        <p>&copy; ${new Date().getFullYear()} Style Factory. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+  return { text, html };
 }
 
 export default async function handler(

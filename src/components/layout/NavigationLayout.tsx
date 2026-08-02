@@ -32,6 +32,7 @@ export const NavigationLayout = ({
         w-full
         h-full
         max-w-[1920px]
+        mx-auto
         min-h-max
         place-items-center
         place-self-center

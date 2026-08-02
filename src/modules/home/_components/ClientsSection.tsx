@@ -7,75 +7,45 @@ import { Reveal, REVEAL_EASE, useSoftScaleVariants } from "@/components/Reveal";
 const clients = [
   {
     name: "Adriatic",
-    logo: "/images/home-redesign/logo-adriatic.jpg",
-    width: 327,
-    height: 260,
+    logo: "/images/homegrid/10.png",
+    width: 494,
+    height: 399,
   },
   {
     name: "Esplanade",
-    logo: "/images/home-redesign/logo-esplanade.jpg",
-    width: 273,
-    height: 260,
-  },
-  {
-    name: "Movenpick",
-    logo: "/images/home-redesign/logo-movenpick.jpg",
-    width: 557,
-    height: 260,
-  },
-  {
-    name: "Havas",
-    logo: "/images/home-redesign/logo-havas.jpg",
-    width: 488,
-    height: 260,
-  },
-  {
-    name: "Suncani Hvar",
-    logo: "/images/home-redesign/logo-suncani-hvar.jpg",
-    width: 471,
-    height: 260,
-  },
-  {
-    name: "Liburnia",
-    logo: "/images/home-redesign/logo-liburnia.jpg",
-    width: 402,
-    height: 260,
-  },
-  {
-    name: "RHG",
-    logo: "/images/home-redesign/logo-rhg.jpg",
-    width: 482,
-    height: 260,
-  },
-  {
-    name: "Pullman",
-    logo: "/images/home-redesign/logo-pullman.jpg",
-    width: 519,
-    height: 260,
-  },
-  {
-    name: "Materra",
-    logo: "/images/home-redesign/logo-materra.jpg",
+    logo: "/images/homegrid/1.png",
     width: 376,
-    height: 260,
+    height: 363,
   },
+  {
+    name: "Mövenpick",
+    logo: "/images/homegrid/2.png",
+    width: 464,
+    height: 208,
+  },
+  { name: "Havas", logo: "/images/homegrid/11.png", width: 529, height: 294 },
+  { name: "Materra", logo: "/images/homegrid/12.png", width: 376, height: 260 },
+  { name: "Molum", logo: "/images/homegrid/8.png", width: 486, height: 254 },
+  {
+    name: "Sunčani Hvar",
+    logo: "/images/homegrid/3.png",
+    width: 398,
+    height: 224,
+  },
+  { name: "Liburnia", logo: "/images/homegrid/4.png", width: 402, height: 320 },
+  { name: "RHG", logo: "/images/homegrid/5.png", width: 516, height: 88 },
+  { name: "Pullman", logo: "/images/homegrid/6.png", width: 636, height: 257 },
   {
     name: "Sun Gardens",
-    logo: "/images/home-redesign/logo-sun-gardens.jpg",
-    width: 469,
-    height: 260,
+    logo: "/images/homegrid/7.png",
+    width: 474,
+    height: 257,
   },
   {
-    name: "Molum",
-    logo: "/images/home-redesign/logo-molum.jpg",
-    width: 455,
-    height: 260,
-  },
-  {
-    name: "Terme Catez",
-    logo: "/images/home-redesign/logo-terme-catez.jpg",
-    width: 415,
-    height: 260,
+    name: "Terme Čatež",
+    logo: "/images/homegrid/9.png",
+    width: 486,
+    height: 369,
   },
 ];
 
@@ -105,7 +75,7 @@ export function ClientsSection() {
                   <span className="text-[#48443e]/58">{t("titleLine2")}</span>
                 </span>
               </p>
-              <div className="hidden lg:block h-125.5 w-0.5 bg-[#B1ABA8] xl:mr-21.75" />
+              <div className="hidden lg:block h-125.5 w-[2px] rounded-sm bg-[#B1ABA8] xl:mr-10.75" />
             </div>
             {/* Horizontal line under heading on mobile/tablet */}
             <div className="block lg:hidden w-20 h-[1.5px] bg-[#dfdccc] mx-auto mt-2" />
@@ -122,24 +92,21 @@ export function ClientsSection() {
             visible: { transition: { staggerChildren: 0.055 } },
           }}
         >
-          <div className="grid grid-cols-6 sm:grid-cols-4 w-full items-center">
+          <div className="grid grid-cols-6 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-x-5 sm:gap-y-5 xl:gap-y-12 w-full items-center justify-items-center mt-10 lg:mt-0">
             {clients.map((client) => (
               <motion.div
                 key={client.name}
                 variants={softScale}
                 transition={{ duration: 0.54, ease: REVEAL_EASE }}
+                className="w-full flex justify-center items-center"
               >
-                <div className="relative grid place-items-center overflow-hidden border-none bg-transparent w-full">
+                <div className="relative flex justify-center items-center overflow-hidden border-none bg-transparent h-12 min-[400px]:h-14 sm:h-16 w-full">
                   <Image
                     alt={t("logoAlt", { name: client.name })}
-                    className="relative z-1 block object-contain mix-blend-multiply max-w-full"
+                    className="object-contain max-h-full max-w-full"
                     src={client.logo}
                     width={client.width}
                     height={client.height}
-                    style={{
-                      width: `${client.width * 0.28}px`,
-                      height: `${client.height * 0.28}px`,
-                    }}
                   />
                 </div>
               </motion.div>

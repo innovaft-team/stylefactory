@@ -7,7 +7,7 @@ export function usePersistLocaleCookie() {
     useEffect(persistLocaleCookie, [locale, defaultLocale]);
 
     function persistLocaleCookie() {
-        if (locale !== defaultLocale) {
+        if (locale) {
             const date = new Date();
             const expireMs = 100 * 24 * 60 * 60 * 1000; // 100 days
             date.setTime(date.getTime() + expireMs);

@@ -50,13 +50,15 @@ export function WhatWeDoSection() {
           <div className="mx-auto flex items-center justify-center flex-col">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 size-30 md:size-58"
+                className="pointer-events-none opacity-70 max-md:h-[110px] size-30 md:size-[200px]"
                 src={"/images/home-redesign/timeline-contour.png"}
                 width={180}
                 height={180}
                 alt="timeline-contour"
               />
-              <span className={`mt-3 text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap ${open_sans.className}`} >
+              <span
+                className={`mt-3 md:mt-6 text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap ${open_sans.className}`}
+              >
                 {t("services.design.title")}
               </span>
             </div>
@@ -66,16 +68,16 @@ export function WhatWeDoSection() {
               {t("services.design.copy")}
             </p>
           </div>
-          <div className="mx-auto flex items-center justify-center flex-col mt-10 xl:mt-16">
+          <div className="mx-auto flex items-center justify-center flex-col mt-4 sm:mt-6 md:mt-10 xl:mt-16">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 object-contain size-25 md:size-40.5"
+                className="pointer-events-none opacity-70 object-contain size-25 md:size-[163px]"
                 src={"/images/home-redesign/timeline-flower.png"}
                 width={130}
                 height={130}
                 alt="timeline-flower"
               />
-              <span className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
+              <span className="md:mt-3 text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-[33px] font-medium whitespace-nowrap">
                 {t("services.development.title")}
               </span>
             </div>
@@ -85,10 +87,10 @@ export function WhatWeDoSection() {
               {t("services.development.copy")}
             </p>
           </div>
-          <div className="mx-auto flex items-center justify-center flex-col mt-10 xl:mt-16">
+          <div className="mx-auto flex items-center justify-center flex-col mt-4 sm:mt-6 md:mt-10 xl:mt-16">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 object-contain size-20 md:size-42.5"
+                className="pointer-events-none opacity-70 object-contain size-20 md:size-[136px]"
                 src={"/images/home-redesign/timeline-ring.png"}
                 width={120}
                 height={120}
