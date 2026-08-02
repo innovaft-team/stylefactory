@@ -221,7 +221,7 @@
 
 .photoPlaceholder {
   min-height: 615px;
-  background: url("/images/home-redesign/consultation.jpg") center center / cover no-repeat;
+  background: url("/images/home-redesign/consultation.webp") center center / cover no-repeat;
 }
 
 .photoPlaceholder::before {
@@ -242,7 +242,7 @@
 
 .fabricBoard {
   min-height: 860px;
-  background: url("/images/home-redesign/fabric-board.jpg") center center / contain no-repeat;
+  background: url("/images/home-redesign/fabric-board.webp") center center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -265,7 +265,7 @@
   position: relative;
   min-height: 1280px;
   overflow: visible;
-  background: url("/images/home-redesign/pants-sketch.jpg") center top / contain no-repeat;
+  background: url("/images/home-redesign/pants-sketch.webp") center top / contain no-repeat;
   mix-blend-mode: multiply;
   opacity: 0.5;
 }
@@ -405,7 +405,7 @@
 
 .pantsPlaceholder {
   min-height: 520px;
-  background: url("/images/home-redesign/pants-render.jpg") center bottom / contain no-repeat;
+  background: url("/images/home-redesign/pants-render.webp") center bottom / contain no-repeat;
   box-shadow: none;
   mix-blend-mode: multiply;
 }

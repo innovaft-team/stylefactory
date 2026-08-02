@@ -41,7 +41,7 @@ export function WhatWeDoSection() {
           <div
             className=" max-md:hidden absolute -top-26 size-100 xl:size-150 -left-45 xl:-left-67 -z-10 mix-blend-multiply bg-center bg-no-repeat bg-cover"
             style={{
-              backgroundImage: "url('/images/home-redesign/jacket.png')",
+              backgroundImage: "url('/images/home-redesign/jacket.webp')",
             }}
           />
         </Reveal>
@@ -51,7 +51,7 @@ export function WhatWeDoSection() {
             <div className="relative">
               <Image
                 className="pointer-events-none opacity-70 max-md:h-[110px] size-30 md:size-[200px]"
-                src={"/images/home-redesign/timeline-contour.png"}
+                src={"/images/home-redesign/timeline-contour.webp"}
                 width={180}
                 height={180}
                 alt="timeline-contour"
@@ -72,7 +72,7 @@ export function WhatWeDoSection() {
             <div className="relative">
               <Image
                 className="pointer-events-none opacity-70 object-contain size-25 md:size-[163px]"
-                src={"/images/home-redesign/timeline-flower.png"}
+                src={"/images/home-redesign/timeline-flower.webp"}
                 width={130}
                 height={130}
                 alt="timeline-flower"
@@ -91,7 +91,7 @@ export function WhatWeDoSection() {
             <div className="relative">
               <Image
                 className="pointer-events-none opacity-70 object-contain size-20 md:size-[136px]"
-                src={"/images/home-redesign/timeline-ring.png"}
+                src={"/images/home-redesign/timeline-ring.webp"}
                 width={120}
                 height={120}
                 alt="timeline-flower"
@@ -113,7 +113,7 @@ export function WhatWeDoSection() {
           <div
             className="absolute -right-42 bottom-27 sm:-right-36 sm:bottom-30 min-[1000px]:-bottom-26 xl:bottom-5 size-70 sm:size-80 md:size-100 xl:top-76.5  xl:-right-41.75 xl:size-150 -z-10 mix-blend-multiply bg-center bg-no-repeat bg-cover min-[1000px]:-right-32 min-[1000px]:top-100"
             style={{
-              backgroundImage: "url('/images/home-redesign/shirt-sketch.png')",
+              backgroundImage: "url('/images/home-redesign/shirt-sketch.webp')",
             }}
           />
         </Reveal>

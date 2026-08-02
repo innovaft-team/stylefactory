@@ -8,7 +8,7 @@ export const HeroSection = () => {
     <section className="relative overflow-hidden min-h-[700px] 2xl:min-h-[950px] flex justify-start items-end pb-4 sm:pb-6 px-4 sm:px-5 xl:px-7  md:mt-20 max-sm:-mt-22">
       <Image
         className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover z-0 object-[60%_center] md:object-center"
-        src="/images/home-redesign/hero.png"
+        src="/images/home-redesign/hero.webp"
         alt={t("imageAlt")}
         fill
         priority
