@@ -43,6 +43,13 @@
     "sharp": "^0.35.3",
     "string-strip-html": "^13.4.8"
   },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 128",
+    "safari >= 16.4",
+    "not dead"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "4",
     "@types/mime-types": "^2.1.4",

@@ -50,7 +50,7 @@ export function WhatWeDoSection() {
           <div className="mx-auto flex items-center justify-center flex-col">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 max-md:h-[110px] size-30 md:size-[200px]"
+                className="pointer-events-none opacity-70 max-md:h-27.5 size-30 md:size-50"
                 src={"/images/home-redesign/timeline-contour.webp"}
                 width={180}
                 height={180}
@@ -71,7 +71,7 @@ export function WhatWeDoSection() {
           <div className="mx-auto flex items-center justify-center flex-col mt-4 sm:mt-6 md:mt-10 xl:mt-16">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 object-contain size-25 md:size-[163px]"
+                className="pointer-events-none opacity-70 object-contain size-25 md:size-40.75"
                 src={"/images/home-redesign/timeline-flower.webp"}
                 width={130}
                 height={130}
@@ -90,7 +90,7 @@ export function WhatWeDoSection() {
           <div className="mx-auto flex items-center justify-center flex-col mt-4 sm:mt-6 md:mt-10 xl:mt-16">
             <div className="relative">
               <Image
-                className="pointer-events-none opacity-70 object-contain size-20 md:size-[136px]"
+                className="pointer-events-none opacity-70 object-contain size-20 md:size-34"
                 src={"/images/home-redesign/timeline-ring.webp"}
                 width={120}
                 height={120}

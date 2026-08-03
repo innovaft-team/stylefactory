@@ -20,6 +20,27 @@ const nextConfig = withRoutes({
         defaultLocale,
         locales,
     },
+    images: {
+        // AVIF first: roughly 20-30% smaller than WebP at the same quality,
+        // with WebP kept as the fallback for browsers that can't take it.
+        formats: ["image/avif", "image/webp"],
+        minimumCacheTTL: 31536000,
+    },
+    compiler: {
+        removeConsole: process.env.NODE_ENV === "production"
+            ? {exclude: ["error", "warn"]}
+            : false,
+    },
+    experimental: {
+        // Chakra and framer-motion are barrel-exported; without this the whole
+        // package lands in the shared _app chunk.
+        optimizePackageImports: [
+            "@chakra-ui/react",
+            "@chakra-ui/next-js",
+            "framer-motion",
+            "ahooks",
+        ],
+    },
     async redirects() {
         return [
             {

@@ -72,7 +72,11 @@ const ContactSection = () => {
       }
 
       // Set popup message and open it
-      setPopupMessage(isHr ? "Hvala, vaša poruka je poslana." : "Thank you, your message has been sent.");
+      setPopupMessage(
+        isHr
+          ? "Hvala, vaša poruka je poslana."
+          : "Thank you, your message has been sent.",
+      );
       setShowPopup(true);
 
       setSubmitStatus("success");
@@ -93,10 +97,14 @@ const ContactSection = () => {
           {t("titleStrong")}{" "}
           <span className="text-[#48443e]/58">{t("titleLight")}</span>
         </h3>
+        {/* Without `sizes` the browser assumes 100vw and multiplies by DPR, so
+            a 412px phone at DPR 2.6 pulled the 2000w variant of this banner. */}
         <Image
           src={"/images/home-redesign/contact-bd.webp"}
           width={1000}
           height={1000}
+          sizes="100vw"
+          quality={70}
           className="w-full h-full absolute top-0 left-0 object-cover"
           alt={"contact section banner"}
         />
@@ -105,7 +113,7 @@ const ContactSection = () => {
             <div className="grid grid-cols-2 w-full md:max-w-100 xl:max-w-124.75 gap-2.5">
               <div className="flex flex-col">
                 <input
-                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-[7px] py-[14px] outline-0 bg-white ${
+                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-1.75 py-3.5 outline-0 bg-white ${
                     errors.name
                       ? "border border-red-500"
                       : "border border-transparent"
@@ -117,7 +125,7 @@ const ContactSection = () => {
               </div>
               <div className="flex flex-col">
                 <input
-                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-[7px] py-[14px] outline-0 bg-white ${
+                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-1.75 py-3.5 outline-0 bg-white ${
                     errors.phone
                       ? "border border-red-500"
                       : "border border-transparent"
@@ -130,7 +138,7 @@ const ContactSection = () => {
               <div className="flex flex-col">
                 <input
                   required
-                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-[7px] py-[14px] outline-0 bg-white ${
+                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-1.75 py-3.5 outline-0 bg-white ${
                     errors.email
                       ? "border border-red-500"
                       : "border border-transparent"
@@ -154,7 +162,7 @@ const ContactSection = () => {
               <div className="flex flex-col">
                 <input
                   required
-                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-[7px] py-[14px] outline-0 bg-white ${
+                  className={`text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-1.75 py-3.5 outline-0 bg-white ${
                     errors.company
                       ? "border border-red-500"
                       : "border border-transparent"
@@ -173,7 +181,7 @@ const ContactSection = () => {
             <div className="flex-1 flex flex-col">
               <textarea
                 required
-                className={`w-full h-full min-h-[110px] text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-1.75 py-3.5 outline-0 resize-none bg-white ${
+                className={`w-full h-full min-h-27.5 text-[13px] text-black placeholder-[#B0ABA7] placeholder:text-[13px] px-1.75 py-3.5 outline-0 resize-none bg-white ${
                   errors.message
                     ? "border border-red-500"
                     : "border border-transparent"
@@ -204,7 +212,7 @@ const ContactSection = () => {
               disabled={submitStatus === "sending"}
               className="w-41.5 min-[450px]:w-50.5 h-10 min-[450px]:h-12 flex items-center justify-center text-[10px] font-bold uppercase bg-no-repeat bg-size-[100%_100%] bg-transparent transition-all duration-300 hover:scale-108 hover:opacity-90 disabled:opacity-50 cursor-pointer"
               style={{
-                backgroundImage: "url(/images/home-redesign/btn-bg.png)",
+                backgroundImage: "url(/images/home-redesign/btn-bg.webp)",
               }}
             >
               <span className="text-[#8C8476]">
@@ -227,7 +235,7 @@ const ContactSection = () => {
                 onClick={() => setShowPopup(false)}
                 className="absolute inset-0 bg-black/50 backdrop-blur-xs"
               />
-              
+
               {/* Modal Content */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -245,26 +253,30 @@ const ContactSection = () => {
                     stroke="currentColor"
                     strokeWidth={2}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
                 </div>
-                
-                <h4 
+
+                <h4
                   className="text-lg font-semibold uppercase tracking-wider text-[#161616]"
                   style={{ fontFamily: montserrat.style.fontFamily }}
                 >
                   {isHr ? "Uspješno!" : "Success!"}
                 </h4>
-                
+
                 <p className="text-sm text-[#48443e] mt-2 font-light leading-relaxed">
                   {popupMessage}
                 </p>
-                
+
                 <button
                   onClick={() => setShowPopup(false)}
                   className="mt-6 w-32 h-10 flex items-center justify-center text-[10px] font-bold uppercase bg-no-repeat bg-size-[100%_100%] bg-transparent transition-all duration-300 hover:scale-108 hover:opacity-90 cursor-pointer"
                   style={{
-                    backgroundImage: "url(/images/home-redesign/btn-bg.png)",
+                    backgroundImage: "url(/images/home-redesign/btn-bg.webp)",
                   }}
                 >
                   <span className="text-[#8C8476]">

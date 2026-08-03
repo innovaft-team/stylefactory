@@ -75,7 +75,7 @@ export function ClientsSection() {
                   <span className="text-[#48443e]/58">{t("titleLine2")}</span>
                 </span>
               </p>
-              <div className="hidden lg:block h-125.5 w-[2px] rounded-sm bg-[#B1ABA8] xl:mr-10.75" />
+              <div className="hidden lg:block h-125.5 w-0.5 rounded-sm bg-[#B1ABA8] xl:mr-10.75" />
             </div>
             {/* Horizontal line under heading on mobile/tablet */}
             <div className="block lg:hidden w-20 h-[1.5px] bg-[#dfdccc] mx-auto mt-2" />
@@ -101,12 +101,17 @@ export function ClientsSection() {
                 className="w-full flex justify-center items-center"
               >
                 <div className="relative flex justify-center items-center overflow-hidden border-none bg-transparent h-12 min-[400px]:h-14 sm:h-16 w-full">
+                  {/* Grid is 6 / 3 / 4 columns, so each logo occupies roughly
+                      16 / 30 / 24 vw. Without `sizes` next/image falls back to
+                      1x/2x descriptors and ships the full-size logo (up to
+                      636px wide) into a ~60px slot. */}
                   <Image
                     alt={t("logoAlt", { name: client.name })}
                     className="object-contain max-h-full max-w-full"
                     src={client.logo}
                     width={client.width}
                     height={client.height}
+                    sizes="(max-width: 639px) 16vw, (max-width: 767px) 30vw, 24vw"
                   />
                 </div>
               </motion.div>
