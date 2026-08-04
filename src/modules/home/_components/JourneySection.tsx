@@ -1,11 +1,12 @@
 import React from "react";
 import { poppins, montserrat, inter } from "@/fonts";
 import Image from "next/image";
+import styles from "@/styles/HomeRedesign.module.css";
 
 const JourneySection = () => {
   return (
-    <>
-      <section className="pt-21 relative bg-white">
+    <div className={styles.journeyViewport}>
+      <section className={`${styles.journeyCanvas} pt-21 relative bg-white`}>
         {/* Top Shadow Gradient Overlay */}
         <div className="absolute top-0 right-0 h-357.5 max-w-185 w-full">
           <Image
@@ -146,7 +147,7 @@ const JourneySection = () => {
             manufacturing partners.
           </p>
         </div>
-        <div className="relative w-full h-[456px] -translate-y-50">
+        <div className="relative w-full h-114 -translate-y-50">
           {/* Centered Pants Image */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-54.75 h-full">
             <Image
@@ -184,7 +185,7 @@ const JourneySection = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

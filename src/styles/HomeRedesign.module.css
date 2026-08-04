@@ -797,6 +797,46 @@
     }
 }
 
+/* The uniform-journey composition is a fixed 1320px canvas (the content column
+   width at a 1440px viewport) built from absolutely positioned pieces, so it
+   cannot reflow. Anywhere narrower than that the canvas is scaled down as a
+   whole instead: `zoom` shrinks the layout box too, so every piece keeps its
+   position and only the size drops. The scale is continuous, so the section
+   fits exactly at any width and meets the unscaled desktop layout at 1440px. */
+@media (max-width: 1439.98px) {
+  .journeyViewport {
+    container-type: inline-size;
+  }
+
+  .journeyCanvas {
+    width: 1320px;
+    /* Stepped fallbacks below, for engines without <length>/<length> division
+       in calc(); each is the scale at the narrow end of its range. */
+    zoom: 0.87;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .journeyCanvas {
+    zoom: 0.58;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .journeyCanvas {
+    zoom: 0.29;
+  }
+}
+
+/* Kept last so it wins over the fallbacks wherever it parses. min() keeps the
+   canvas inside the viewport even when the surrounding shell is stretched
+   wider than the screen by other content. */
+@media (max-width: 1439.98px) {
+  .journeyCanvas {
+    zoom: calc(min(100cqw, 100vw) / 1320px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .placeholderFrame::after,
   .clientLogo::after,
