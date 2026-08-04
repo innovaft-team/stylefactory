@@ -15,11 +15,17 @@ type NavigationLayoutProps = PropsWithChildren<{
    * shell, so it opts out of the one rendered here.
    */
   showDesktopNavigation?: boolean;
+  /**
+   * When true the mobile nav starts with light text (for pages with a dark
+   * hero image). Defaults to true for backward compatibility.
+   */
+  darkHero?: boolean;
 }>;
 
 export const NavigationLayout = ({
   children,
   showDesktopNavigation = true,
+  darkHero = true,
 }: NavigationLayoutProps) => {
   const t = useTranslations("nav");
 
@@ -104,7 +110,7 @@ export const NavigationLayout = ({
 
           {/* Mobile Navigation */}
           <div className="block md:hidden absolute top-0 left-0 w-full z-1000">
-            <MobileNavigation />
+            <MobileNavigation darkHero={darkHero} />
           </div>
           {children}
         </div>

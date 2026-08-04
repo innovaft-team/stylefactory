@@ -193,7 +193,7 @@ const JourneySection = () => {
       {/* Bottom Quote & Line */}
       <div className="max-sm:hidden flex flex-col items-center justify-center w-full z-20 relative bg-white pb-12 px-10 -mt-24">
         <p
-          className="text-[42px] text-center"
+          className="text-[42px] xl:text-[64px] text-center"
           style={{
             fontFamily: allura.style.fontFamily,
             color: "#8F8475",

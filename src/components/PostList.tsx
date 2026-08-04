@@ -7,9 +7,27 @@ import { PostItem } from "./PostItem";
 import Link from "next/link";
 import { getUniquePostSlug } from "@/utils/posts";
 
+/**
+ * A single value for every width, or a pair that switches at MOBILE_BREAKPOINT.
+ * Not Chakra's `sm` token — that one is 480px, and we want 640px here.
+ */
+type ResponsiveSpacing = string | { mobile: string; desktop: string };
+
+const MOBILE_BREAKPOINT = "640px";
+
+const at = (value: ResponsiveSpacing, width: "mobile" | "desktop") =>
+  typeof value === "string" ? value : value[width];
+
 interface BlogListProps {
   blogs: Blog[];
   bucket: string;
+  /**
+   * Space above the first card / below the last one. Both default to the
+   * shared values below; pass them from a page to tune that page on its own,
+   * and pass `{mobile, desktop}` to split the value at 640px.
+   */
+  paddingTop?: ResponsiveSpacing;
+  paddingBottom?: ResponsiveSpacing;
 }
 
 function scrollHandler() {
@@ -36,7 +54,11 @@ function scrollHandler() {
   });
 }
 
-export const PostList = (props: BlogListProps) => {
+export const PostList = ({
+  paddingTop = "176px",
+  paddingBottom = "80px",
+  ...props
+}: BlogListProps) => {
   useEffect(() => {
     const scrollElement = document.getElementById("blog-scroll");
     if (!scrollElement) return;
@@ -50,20 +72,24 @@ export const PostList = (props: BlogListProps) => {
   const page = props.bucket === BlogBuckets.blogs ? "blog" : "trends";
 
   return (
-    <Scroll
-      pt={{ base: "0", md: "150px" }}
-      px={{ base: "5", md: "20" }}
-      h="100vh"
-      id={"blog-scroll"}
-    >
+    <Scroll pt={0} pb={0} px={"16px"} h="100vh" id={"blog-scroll"}>
       <VStack
-        spacing={10}
+        spacing={0}
         css={{
           direction: "ltr",
         }}
         alignItems={"stretch"}
-        __css={{
-          "@media screen and (min-width: 48em)": {
+        // sx, not __css: Stack emits its own `gap` from `spacing`, and a style
+        // prop outranks __css — which silently zeroed the gap below 1024px.
+        sx={{
+          paddingTop: at(paddingTop, "mobile"),
+          paddingBottom: at(paddingBottom, "mobile"),
+          gap: "0px",
+          [`@media screen and (min-width: ${MOBILE_BREAKPOINT})`]: {
+            paddingTop: at(paddingTop, "desktop"),
+            paddingBottom: at(paddingBottom, "desktop"),
+          },
+          "@media screen and (min-width: 768px)": {
             "& > div:nth-of-type(even)": {
               marginLeft: "auto",
             },
@@ -78,7 +104,7 @@ export const PostList = (props: BlogListProps) => {
 
           return (
             <AnimatePresence key={item.id}>
-              <div id={`blog-item`}>
+              <div id={`blog-item`} style={{ overflow: "hidden" }}>
                 <Link
                   id={item.id}
                   href={{
@@ -91,9 +117,9 @@ export const PostList = (props: BlogListProps) => {
                   <Box
                     position={"relative"}
                     key={`${index}-blog`}
+                    transition={"transform 0.7s ease"}
                     _hover={{
-                      transform: "scale(1.05)",
-                      transitionDuration: "0.7s",
+                      transform: "scale(1.02)",
                     }}
                   >
                     <PostItem data={item} />

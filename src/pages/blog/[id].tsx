@@ -4,9 +4,9 @@ import {Box, CloseButton, Text, VStack, chakra} from "@chakra-ui/react";
 import {DialogMenu} from "@/components/DialogMenu";
 import {Carousel} from "@/components/Carousel/Carousel";
 import {cormorant_garamond, open_sans, playfair} from "@/fonts";
-import {motion} from "framer-motion";
 import {useRouter} from "next/router";
 import {NavigationLayout} from "@/components/layout/NavigationLayout";
+import {Scroll} from "@/components/layout/Scroll";
 import Link from "next/link";
 import {SeoHead} from "@/components/SeoHead";
 import {
@@ -18,6 +18,9 @@ import {
     localizedPath
 } from "@/utils/seo";
 import {getPostSeoData, getPostTitle, getUniquePostSlug, resolvePostByIdentifier} from "@/utils/posts";
+
+/** Shared by the close button and the spacer that keeps the title centred. */
+const CLOSE_BUTTON_SIZE = {base: "32px", lg: "40px"};
 
 
 export async function getServerSideProps({locale, params}: GetServerSidePropsContext) {
@@ -56,10 +59,7 @@ export async function getServerSideProps({locale, params}: GetServerSidePropsCon
     };
 }
 
-const AnimatedBox = motion(Box);
-
 const BlogPage = ({blog, postHtml, seoDescription, seoTitle, slug}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const isPair = Math.random() < 0.5;
 
     const {locale} = useRouter()
     const title = getPostTitle(blog, locale);
@@ -112,110 +112,82 @@ const BlogPage = ({blog, postHtml, seoDescription, seoTitle, slug}: InferGetServ
                     }),
                 ]}
             />
-            <NavigationLayout>
-                <AnimatedBox display={"grid"}
-                             as={"article"}
-                             gridTemplateColumns={{base: "1fr", lg: "repeat(2, 1fr)"}}
-                             gridTemplateRows={{base: "repeat(2, auto)", lg: "1fr"}}
-                             layoutId={blog.id.toString()}
-                             position={"fixed"}
-                             w='100vw'
-                             h='100vh'
-                             overflowY={"scroll"}
-                             overflowX={'hidden'}
-                             top={"0"}
-                             left={"0"}
-                             zIndex={"modal"}
-                             bg={"white"}
-                             gap={{base: 0, lg: 8}}
-                             itemScope
-                             itemType={'https://schema.org/BlogPosting'}
+            <Box
+                as={"article"}
+                position={"relative"}
+                w="100vw"
+                h="100vh"
+                overflow={"hidden"}
+                bg={"white"}
+                display={"flex"}
+                flexDirection={"column"}
+                gap={"40px"}
+                itemScope
+                itemType={'https://schema.org/BlogPosting'}
+            >
+                <DialogMenu blog={blog} onDelete={() => console.log("delete")} path={BlogBuckets.blogs}/>
+
+                {/* Title row - the close button sits in flow at the top right */}
+                <Box
+                    display={"flex"}
+                    alignItems={"flex-start"}
+                    justifyContent={"center"}
+                    gap={{base: 3, lg: 5}}
+                    px={{base: 5, lg: 10}}
+                    pt={{base: 4, lg: 6}}
+                    pb={0}
+                    flexShrink={0}
                 >
+                    {/* Mirrors the close button so the title stays centred */}
+                    <Box boxSize={CLOSE_BUTTON_SIZE} flexShrink={0} aria-hidden/>
+                    <Text
+                        as={"h1"}
+                        flex={1}
+                        fontFamily={playfair.style.fontFamily}
+                        fontSize={{base: "1.8rem", md: "2.5rem", lg: "3.5rem"}}
+                        itemProp="headline"
+                        color={"#988C81"}
+                        fontWeight={700}
+                        letterSpacing={{base: 1, lg: 3}}
+                        lineHeight={1.1}
+                        textAlign={"center"}
+                    >
+                        {title}
+                    </Text>
                     <CloseButton
                         as={Link}
                         href={{
                             pathname: "/blog",
                             hash: blog.id
                         }}
-                        w={"fit-content"}
-                        zIndex={"9999"}
-                        position={'fixed'}
-                        p={"3"}
-                        right={5}
-                        top={5}
+                        boxSize={CLOSE_BUTTON_SIZE}
+                        flexShrink={0}
                     />
-                    <DialogMenu blog={blog} onDelete={() => console.log("delete")} path={BlogBuckets.blogs}/>
+                </Box>
 
+                {/* Full-width media - keeps its aspect ratio, never cropped */}
+                <Box position={"relative"} w={"100%"} flex={1} minH={0} overflow={"hidden"}>
                     {
                         blog.isVideo ? <chakra.video
                             src={blog.images[0]}
                             title={`${imageAlt} video`}
                             aria-label={`${imageAlt} video`}
-                            gridColumn={{base: 1, lg: isPair ? 1 : 2}}
-                            h={'auto'}
-                            w={{base: '100vw', lg: 'full'}}
-                            gridRow={{md: "1 / -1"}}
-                            placeSelf={{base: "center", md: "center"}}
+                            w={"100%"}
+                            h={"auto"}
+                            maxH={"100%"}
                             objectFit={"contain"}
                             preload="metadata"
                             controls
                         /> : <Carousel
                             items={blog.images}
                             imageAlt={imageAlt}
-                            gridColumn={{base: 1, lg: isPair ? 1 : 2}}
-                            h={{base: '50vh', md: '70vh', lg: "full"}}
-                            w={{base: '100vw', lg: 'full'}}
-                            gridRow={{md: "1 / -1"}}
-                            placeSelf={{base: "center", md: "initial"}}
+                            fit={"contain"}
+                            w={"100%"}
+                            maxH={"100%"}
                         />
                     }
-                    <VStack
-                        spacing={8}
-                        gridRow={{lg: "1 / -1"}}
-                        px={'8'}
-                        textAlign={"start"}
-                        alignItems={"stretch"}
-                        m={{base: 5, lg: 20}}
-                        w={{base: '90vw', lg: '40vw'}}
-                        justifyContent={"stretch"}>
-
-
-                        <Text as={"h1"} fontFamily={playfair.style.fontFamily} fontSize={{base: '3em', lg: "4rem"}}
-                              itemProp="headline"
-                              color={"#988C81"} fontWeight={700} letterSpacing={2} lineHeight={1} textAlign={'center'}>
-                            {title}
-                        </Text>
-                        <Text
-                            as="p"
-                            color="#5f5750"
-                            fontFamily={open_sans.style.fontFamily}
-                            fontSize={{base: "1rem", lg: "1.1rem"}}
-                            fontWeight={600}
-                            itemProp="description"
-                            lineHeight={1.7}
-                            textAlign="center"
-                        >
-                            {seoDescription}
-                        </Text>
-                        <Box itemProp="articleBody" dangerouslySetInnerHTML={{__html: postHtml ?? ''}} textAlign={'justify'} __css={{
-                            'strong': {
-                                fontFamily: playfair.style.fontFamily
-                            },
-                            'p': {
-                                fontFamily: open_sans.style.fontFamily,
-                                py: '1rem',
-
-                            },
-                            'h1': {
-                                fontFamily: cormorant_garamond.style.fontFamily,
-                            },
-                            'h2': {
-                                fontFamily: cormorant_garamond.style.fontFamily,
-                            },
-                        }}/>
-                    </VStack>
-                </AnimatedBox>
-            </NavigationLayout>
+                </Box>
+            </Box>
         </Box>
     );
 }

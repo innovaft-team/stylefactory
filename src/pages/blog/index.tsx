@@ -4,25 +4,23 @@ import { CreateBlogFormModal } from "@/components/CreateBlogForm";
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { Box } from "@chakra-ui/react";
-import {useTranslations} from "next-intl";
-import {SeoHead} from "@/components/SeoHead";
+import { useTranslations } from "next-intl";
+import { SeoHead } from "@/components/SeoHead";
 import {
   createBreadcrumbJsonLd,
   createItemListJsonLd,
   createOrganizationJsonLd,
   createWebPageJsonLd,
-  createWebsiteJsonLd
+  createWebsiteJsonLd,
 } from "@/utils/seo";
-import {getPostTitle, getUniquePostSlug} from "@/utils/posts";
-import {useRouter} from "next/router";
-
+import { getPostTitle, getUniquePostSlug } from "@/utils/posts";
+import { useRouter } from "next/router";
 
 const Index = ({
   blogs,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   const t = useTranslations("projects.meta");
-  const {locale} = useRouter();
+  const { locale } = useRouter();
   const title = t("title");
   const description = t("description");
   const path = "/blog";
@@ -33,7 +31,9 @@ const Index = ({
       slug: getUniquePostSlug(blog, blogs ?? []),
       title: getPostTitle(blog, locale),
       image: blog.images?.[0],
-      imageAlt: blog.coverImageAlt || `${getPostTitle(blog, locale)} - Style Factory uniform project`,
+      imageAlt:
+        blog.coverImageAlt ||
+        `${getPostTitle(blog, locale)} - Style Factory uniform project`,
     })),
   });
 
@@ -58,8 +58,8 @@ const Index = ({
           createBreadcrumbJsonLd({
             locale,
             items: [
-              {name: "Home", path: "/"},
-              {name: "Projects and Partners", path},
+              { name: "Home", path: "/" },
+              { name: "Projects and Partners", path },
             ],
           }),
           createWebPageJsonLd({
@@ -73,9 +73,15 @@ const Index = ({
           }),
         ]}
       />
-      <NavigationLayout>
-        <PostList blogs={blogs ?? []} bucket={BlogBuckets.blogs}/>
-        <CreateBlogFormModal path={BlogBuckets.blogs}/>
+      <NavigationLayout darkHero={false}>
+        {/* Spacing for this page only — /trends keeps PostList's defaults. */}
+        <PostList
+          blogs={blogs ?? []}
+          bucket={BlogBuckets.blogs}
+          paddingTop={{ mobile: "60px", desktop: "60px" }}
+          paddingBottom={{ mobile: "50px", desktop: "50px" }}
+        />
+        <CreateBlogFormModal path={BlogBuckets.blogs} />
       </NavigationLayout>
     </Box>
   );

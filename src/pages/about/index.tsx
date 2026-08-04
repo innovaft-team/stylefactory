@@ -85,7 +85,7 @@ function About() {
                     }),
                 ]}
             />
-            <NavigationLayout>
+            <NavigationLayout darkHero={false}>
                 <Scroll
                     h="100vh"
                     position={"relative"}
