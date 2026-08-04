@@ -6,7 +6,7 @@ import styles from "@/styles/HomeRedesign.module.css";
 const ghost =
   "absolute z-0 opacity-54 text-[100px] font-black text-[#EAE7E2] leading-none";
 const heading = "text-[11px] font-bold leading-none";
-const copy = "mt-2 text-[10px] font-normal leading-[145%] text-black ";
+const copy = "mt-4 text-[10px] font-normal leading-[145%] text-black ";
 
 /**
  * Phone version of the uniform journey. It is a different composition from the
@@ -80,20 +80,20 @@ const JourneySectionMobile = () => {
 
         {/* 3 — Sampling & Approval */}
         <Image
-          className="absolute left-1.75 top-131.5 w-42 h-104.5"
-          src={"/images/home-redesign/sub-footer-r.webp"}
+          className="absolute left-1.75 top-131.5 w-42 h-104.5 "
+          src={"/images/home-redesign/white-dress.png"}
           width={400}
           height={400}
           alt="sub-footer"
         />
         <span
-          className={`${ghost} left-46.5 top-146.25`}
+          className={`${ghost} left-35.5 top-147.25`}
           style={{ fontFamily: inter.style.fontFamily }}
         >
           3
         </span>
         <div
-          className="absolute left-43.75 top-185 w-47.5 z-10"
+          className="absolute left-37.75 top-174 w-47.5 z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
           <h3 className={heading}>Sampling &amp; Approval</h3>
@@ -106,13 +106,13 @@ const JourneySectionMobile = () => {
 
         {/* 4 — Sizing & Production */}
         <span
-          className={`${ghost} left-11.25 top-228.75`}
+          className={`${ghost} left-7.25 top-220.75`}
           style={{ fontFamily: inter.style.fontFamily }}
         >
           4
         </span>
         <div
-          className="absolute left-43.25 top-249 w-49 z-10"
+          className="absolute left-27 top-236 w-49 z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
           <h3 className={heading}>Sizing &amp; Production</h3>
@@ -125,20 +125,20 @@ const JourneySectionMobile = () => {
 
         {/* 5 — Delivery */}
         <span
-          className={`${ghost} left-46.5 top-291.25`}
+          className={`${ghost} left-61.5 top-272.25`}
           style={{ fontFamily: inter.style.fontFamily }}
         >
           5
         </span>
         <Image
-          className="absolute right-0 top-285 w-28.25 h-81"
+          className="absolute -right-8 top-269 w-28.25 h-81"
           src={"/images/home-redesign/sub-footer-b.webp"}
           width={300}
           height={300}
           alt="sub-footer"
         />
         <div
-          className="absolute left-18.5 top-332.5 w-50.75 text-right z-10"
+          className="absolute left-24.5 top-318.5 w-50.75 text-right z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
           <h3 className={heading}>Delivery</h3>
