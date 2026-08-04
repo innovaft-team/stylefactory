@@ -58,7 +58,7 @@ function Home() {
           }),
         ]}
       />
-      <NavigationLayout showDesktopNavigation={false}>
+      <NavigationLayout>
         <Scroll h="100vh">
           <Box className={styles.pageFrame}>
             <Box
@@ -67,10 +67,6 @@ function Home() {
                 { "--sf-script-font": allura.style.fontFamily } as CSSProperties
               }
             >
-              {/* Anchored to the shell, so it stays out of <main>. */}
-              <div className="hidden md:block absolute top-0 left-0 w-full z-999">
-                <Navigation />
-              </div>
               <Box as="main">
                 <HeroSection />
                 <WhatWeDoSection />

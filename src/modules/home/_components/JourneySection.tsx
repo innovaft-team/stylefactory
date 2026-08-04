@@ -2,11 +2,15 @@ import React from "react";
 import { poppins, montserrat, inter } from "@/fonts";
 import Image from "next/image";
 import styles from "@/styles/HomeRedesign.module.css";
+import JourneySectionMobile from "./JourneySectionMobile";
 
 const JourneySection = () => {
   return (
     <div className={styles.journeyViewport}>
-      <section className={`${styles.journeyCanvas} pt-21 relative bg-white`}>
+      <JourneySectionMobile />
+      <section
+        className={`${styles.journeyCanvas} max-sm:hidden pt-21 relative bg-white`}
+      >
         {/* Top Shadow Gradient Overlay */}
         <div className="absolute top-0 right-0 h-357.5 max-w-185 w-full">
           <Image

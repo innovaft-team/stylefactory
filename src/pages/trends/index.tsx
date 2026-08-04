@@ -1,6 +1,5 @@
 import {NavigationLayout} from "@/components/layout/NavigationLayout";
 import {motion} from "framer-motion";
-import ShapeYourBrandText from "@/components/ShapeYourBrandtext/ShapeYourBrandText";
 import {PostList} from "@/components/PostList";
 import {BlogBuckets, fetchBlogs} from "@/hooks/useListBlogs";
 import {CreateBlogFormModal} from "@/components/CreateBlogForm";
@@ -71,7 +70,6 @@ export default function Home({blogs}: InferGetServerSidePropsType<typeof getServ
                 ]}
             />
             <NavigationLayout>
-                <ShapeYourBrandText/>
                 <motion.div
                     initial={{opacity: 0}}
                     whileInView={{opacity: 1}}

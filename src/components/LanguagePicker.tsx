@@ -74,11 +74,12 @@ export const LanguagePicker = (props: StackProps) => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "framework",
     defaultValue: router.locale,
-    // @ts-ignore
-    onChange: (val) =>
-      router.push(router.pathname as any, router.pathname as any, {
+    onChange: (val) => {
+      const { pathname, query, asPath } = router;
+      router.push({ pathname, query }, asPath, {
         locale: val as Locale,
-      }),
+      });
+    },
   });
 
   const group = getRootProps();

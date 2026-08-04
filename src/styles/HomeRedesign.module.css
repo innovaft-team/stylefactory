@@ -797,6 +797,18 @@
     }
 }
 
+/* Phones (< 640px) get their own composition — see JourneySectionMobile. It is
+   authored on a 390px canvas and scaled to the screen the same way, capped so a
+   large phone in landscape does not blow the type up past ~1.15x. */
+.journeyCanvasMobile {
+  position: relative;
+  width: 100%;
+  height: 1464px;
+  margin-inline: auto;
+  zoom: 1;
+  zoom: min(calc(min(100cqw, 100vw) / 390px), 1.15);
+}
+
 /* The uniform-journey composition is a fixed 1320px canvas (the content column
    width at a 1440px viewport) built from absolutely positioned pieces, so it
    cannot reflow. Anywhere narrower than that the canvas is scaled down as a
@@ -819,12 +831,6 @@
 @media (max-width: 1023.98px) {
   .journeyCanvas {
     zoom: 0.58;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .journeyCanvas {
-    zoom: 0.29;
   }
 }
 

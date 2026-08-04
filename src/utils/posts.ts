@@ -63,6 +63,7 @@ export function resolvePostByIdentifier(blogs: Blog[], identifier: string) {
             getPostSlug(blog),
             blog.slug,
             ...LOCALES.map((locale) => blog.slugs?.[locale]),
+            ...LOCALES.map((locale) => getPostTitle(blog, locale)),
         ].filter(Boolean);
 
         return candidateSlugs.some((candidate) => slugify(candidate) === normalizedIdentifier);
