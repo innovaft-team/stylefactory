@@ -1,5 +1,5 @@
 import React from "react";
-import { poppins, montserrat, inter } from "@/fonts";
+import { poppins, montserrat, inter, allura } from "@/fonts";
 import Image from "next/image";
 import styles from "@/styles/HomeRedesign.module.css";
 
@@ -8,11 +8,6 @@ const ghost =
 const heading = "text-[11px] font-bold leading-none";
 const copy = "mt-4 text-[10px] font-normal leading-[145%] text-black ";
 
-/**
- * Phone version of the uniform journey. It is a different composition from the
- * desktop one, authored on a 390px canvas and scaled to the screen by
- * `.journeyCanvasMobile`, so the pieces keep their positions on any handset.
- */
 const JourneySectionMobile = () => {
   return (
     <div className="sm:hidden bg-white">
@@ -146,6 +141,20 @@ const JourneySectionMobile = () => {
             The finished uniforms are quality-checked, organized and delivered
             ready for your team to wear.
           </p>
+        </div>
+
+        {/* Bottom Quote & Line */}
+        <div className="mt-20 absolute left-0 right-0 top-345 flex flex-col items-center justify-center px-4 w-full">
+          <p
+            className="text-[22px] text-center"
+            style={{
+              fontFamily: allura.style.fontFamily,
+              color: "#8F8475",
+            }}
+          >
+            Because first impressions begin with what your team wears.
+          </p>
+          <hr className="w-full border-t-2 border-[#8C8476] mt-4 block" />
         </div>
       </section>
     </div>

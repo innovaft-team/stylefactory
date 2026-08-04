@@ -1,4 +1,4 @@
-import { Montserrat, Poppins, Open_Sans, Inter, Archivo_Black } from "next/font/google";
+import { Montserrat, Poppins, Open_Sans, Inter, Archivo_Black, Allura } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -40,9 +40,15 @@ export const open_sans = Open_Sans({
   preload: false,
 });
 
+export const allura = Allura({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+});
+
 export const lato = montserrat;
 export const playfair = montserrat;
-export const allura = montserrat;
 export const cormorant_garamond = montserrat;
 export const antic = montserrat;
 export const comforterBrush = montserrat;

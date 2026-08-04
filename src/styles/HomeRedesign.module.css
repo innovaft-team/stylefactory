@@ -803,7 +803,7 @@
 .journeyCanvasMobile {
   position: relative;
   width: 100%;
-  height: 1464px;
+  height: 1580px;
   margin-inline: auto;
   zoom: 1;
   zoom: min(calc(min(100cqw, 100vw) / 390px), 1.15);
