@@ -40,8 +40,8 @@ export const PostItem = ({
       >
         {isVideo ? (
           <chakra.video
-            w={{ base: "100%", lg: "auto" }}
-            h={{ base: "auto", lg: 600 }}
+            w={{ base: "100%", lg: "1028.57px" }}
+            h={{ base: "auto", lg: "600px" }}
             src={images[0]}
             as={motion.video}
             objectFit="cover"
@@ -55,12 +55,6 @@ export const PostItem = ({
         ) : (
           <Image
             placeholder={"blur"}
-            /**
-             * Pinned on width rather than height so that trimming the white
-             * band off the artwork makes the card shorter instead of wider.
-             * These are the widths a 250px / 600px tall card rendered at when
-             * the artwork still carried the band (height x its 12:7 ratio).
-             */
             w={{ base: "100%", lg: "1028.57px" }}
             maxW={"100%"}
             h={"auto"}
@@ -79,15 +73,14 @@ export const PostItem = ({
       spacing={2}
       alignItems={"start"}
       layoutId={id.toString()}
-
       data-variant={variantSafe}
       ref={containerRef}
       {...rest}
     >
       {isVideo ? (
         <chakra.video
-          w={{ base: "100%", lg: 500 }}
-          h={{ base: "auto", lg: 600 }}
+          w={{ base: "100%", lg: "1028.57px" }}
+          h={{ base: "auto", lg: "600px" }}
           src={images[0]}
           as={motion.video}
           objectFit="cover"
@@ -107,8 +100,7 @@ export const PostItem = ({
           as={motion.img}
           src={images[0]}
           alt={thumbnailAlt}
-          sizes="(min-width: 62em) 1029px, 100vw"
-          style={{ objectFit: "cover" }}
+          sizes="(min-width: 20em) 1029px, 100vw"
         />
       )}
     </MotionStack>

@@ -51,3 +51,6 @@ export const notoSansJP = Noto_Sans_JP({
 export const lato = montserrat;
 export const playfair = montserrat;
 export const cormorant_garamond = montserrat;
+export const comforterBrush = montserrat;
+export const mrsSaintDelafield = montserrat;
+export const qwitcherGrypen = montserrat;

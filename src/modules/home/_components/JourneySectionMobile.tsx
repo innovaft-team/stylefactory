@@ -69,7 +69,7 @@ const JourneySectionMobile = () => {
 
         {/* 3 — Sampling & Approval */}
         <Image
-          className="absolute left-1.75 top-131.5 w-42 h-104.5 "
+          className="absolute left-1.75 top-131.5 w-42 h-104.5 object-cover"
           src={"/images/home-redesign/white-dress.png"}
           width={400}
           height={400}
@@ -112,7 +112,7 @@ const JourneySectionMobile = () => {
           5
         </span>
         <Image
-          className="absolute -right-8 top-269 w-28.25 h-81"
+          className="absolute -right-8 top-269 w-28.25 h-81 object-cover"
           src={"/images/home-redesign/sub-footer-b.webp"}
           width={300}
           height={300}
