@@ -2,13 +2,16 @@ import { useDisclosure } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MobileNavigationDrawer } from "./MobileNavigationDrawer";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 interface MobileNavigationProps {
   /** When true the un-scrolled nav uses light text (for pages with a dark hero). */
   darkHero?: boolean;
 }
 
-export const MobileNavigation = ({ darkHero = true }: MobileNavigationProps) => {
+export const MobileNavigation = ({
+  darkHero = true,
+}: MobileNavigationProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -42,14 +45,15 @@ export const MobileNavigation = ({ darkHero = true }: MobileNavigationProps) => 
         data-role="navigation"
       >
         {/* "STYLE FACTORY" text on the left */}
-        <div
+        <Link
+          href="/"
           className={`flex flex-col font-normal text-[25px] ${
             isScrolled || !darkHero ? "text-black" : "text-[#f4f1ee]"
           }`}
         >
           <span>STYLE</span>
           <span className="">FACTORY</span>
-        </div>
+        </Link>
 
         {/* Hamburger Menu Icon on the right */}
         <button

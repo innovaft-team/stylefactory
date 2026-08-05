@@ -1,7 +1,8 @@
 import React from "react";
-import { poppins, montserrat, inter, allura } from "@/fonts";
+import { poppins, montserrat, inter, allura, notoSansJP } from "@/fonts";
 import Image from "next/image";
 import styles from "@/styles/HomeRedesign.module.css";
+import { useTranslations } from "next-intl";
 
 const ghost =
   "absolute z-0 opacity-54 text-[100px] font-black text-[#EAE7E2] leading-none";
@@ -9,6 +10,8 @@ const heading = "text-[11px] font-bold leading-none";
 const copy = "mt-4 text-[10px] font-normal leading-[145%] text-black ";
 
 const JourneySectionMobile = () => {
+  const t = useTranslations("home.journey");
+
   return (
     <div className="sm:hidden bg-white">
       <section className={styles.journeyCanvasMobile}>
@@ -16,8 +19,8 @@ const JourneySectionMobile = () => {
           className="absolute top-3.5 inset-x-0 text-center text-[21px] font-medium leading-none"
           style={{ fontFamily: poppins.style.fontFamily }}
         >
-          THE UNIFORM
-          <span className="text-[#8C8476] font-normal"> JOURNEY</span>
+          {t("titleStrong")}
+          <span className="text-[#8C8476] font-normal"> {t("titleLight")}</span>
         </h3>
 
         {/* 1 — Brief & Consultation */}
@@ -26,25 +29,20 @@ const JourneySectionMobile = () => {
           src={"/images/home-redesign/sub-footer-l.webp"}
           width={300}
           height={300}
-          alt="sub-footer"
+          alt={t("visuals.consultation")}
         />
         <span
-          className={`${ghost} left-32 top-15`}
-          style={{ fontFamily: inter.style.fontFamily }}
+          className={`${ghost} left-32 top-13.25`}
+          style={{ fontFamily: notoSansJP.style.fontFamily }}
         >
           1
         </span>
         <div
           className="absolute left-46.25 top-23 w-38 z-10"
-          style={{ fontFamily: montserrat.style.fontFamily }}
+          style={{ fontFamily: notoSansJP.style.fontFamily }}
         >
-          <h3 className={heading}>Brief &amp; Consultation</h3>
-          <p className={copy}>
-            We begin by understanding your brand, operational needs and team
-            requirements. Through a detailed briefing process, we define the
-            standards, functionality and visual direction of your uniform
-            collection.
-          </p>
+          <h3 className={heading}>{t("steps.brief.title")}</h3>
+          <p className={copy}>{t("steps.brief.copy")}</p>
         </div>
 
         {/* 2 — Design Development */}
@@ -53,7 +51,7 @@ const JourneySectionMobile = () => {
           src={"/images/home-redesign/sub-footer-c.webp"}
           width={400}
           height={400}
-          alt="sub-footer"
+          alt={t("visuals.fabric")}
         />
         <span
           className={`${ghost} left-68 top-86 z-30`}
@@ -65,12 +63,8 @@ const JourneySectionMobile = () => {
           className="absolute left-3.25 top-89 w-62 text-right z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
-          <h3 className={heading}>Design Development</h3>
-          <p className={copy}>
-            Every uniform concept is thoughtfully designed to reflect your brand
-            identity. From sketches and fabric selection to styling and
-            functionality, every detail is carefully considered.
-          </p>
+          <h3 className={heading}>{t("steps.design.title")}</h3>
+          <p className={copy}>{t("steps.design.copy")}</p>
         </div>
 
         {/* 3 — Sampling & Approval */}
@@ -79,7 +73,7 @@ const JourneySectionMobile = () => {
           src={"/images/home-redesign/white-dress.png"}
           width={400}
           height={400}
-          alt="sub-footer"
+          alt={t("visuals.sketch")}
         />
         <span
           className={`${ghost} left-35.5 top-147.25`}
@@ -91,12 +85,8 @@ const JourneySectionMobile = () => {
           className="absolute left-37.75 top-174 w-47.5 z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
-          <h3 className={heading}>Sampling &amp; Approval</h3>
-          <p className={copy}>
-            Once the design concept is confirmed, we develop prototypes and
-            samples to ensure the perfect fit, comfort and final appearance
-            before production begins.
-          </p>
+          <h3 className={heading}>{t("steps.sampling.title")}</h3>
+          <p className={copy}>{t("steps.sampling.copy")}</p>
         </div>
 
         {/* 4 — Sizing & Production */}
@@ -110,12 +100,8 @@ const JourneySectionMobile = () => {
           className="absolute left-27 top-236 w-49 z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
-          <h3 className={heading}>Sizing &amp; Production</h3>
-          <p className={copy}>
-            After sample approval, we collect sizing information for all team
-            members and coordinate the full production process with our
-            manufacturing partners.
-          </p>
+          <h3 className={heading}>{t("steps.production.title")}</h3>
+          <p className={copy}>{t("steps.production.copy")}</p>
         </div>
 
         {/* 5 — Delivery */}
@@ -130,17 +116,14 @@ const JourneySectionMobile = () => {
           src={"/images/home-redesign/sub-footer-b.webp"}
           width={300}
           height={300}
-          alt="sub-footer"
+          alt={t("visuals.pants")}
         />
         <div
           className="absolute left-24.5 top-318.5 w-50.75 text-right z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
-          <h3 className={heading}>Delivery</h3>
-          <p className={copy}>
-            The finished uniforms are quality-checked, organized and delivered
-            ready for your team to wear.
-          </p>
+          <h3 className={heading}>{t("steps.delivery.title")}</h3>
+          <p className={copy}>{t("steps.delivery.copy")}</p>
         </div>
 
         {/* Bottom Quote & Line */}
@@ -152,7 +135,7 @@ const JourneySectionMobile = () => {
               color: "#8F8475",
             }}
           >
-            Because first impressions begin with what your team wears.
+            {t("quote")}
           </p>
           <hr className="w-full border-t-2 border-[#8C8476] mt-4 block" />
         </div>

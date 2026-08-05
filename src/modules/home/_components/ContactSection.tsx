@@ -293,23 +293,30 @@ const ContactSection = () => {
             className="max-md:mt-5 text-center md:text-left text-[13px] min-[450px]:text-lg leading-[162%] md:text-[21px] font-medium uppercase relative z-20 text-[#8C8476]"
             style={{ fontFamily: montserrat.style.fontFamily }}
           >
-            CONTACT:
+            {t("heading")}
           </h3>
           <div className="mt-3 sm:mt-4 relative z-20 text-black flex flex-row justify-between md:flex-col md:justify-start">
-            <div className="flex flex-col text-left text-xs min-[450px]:text-base items-start">
-              <a href="tel:+385996666331">+385 99 6666 331</a>
-              <a href="tel:+385991697357">+385 99 169 7357</a>
-              <a className="md:mt-4" href="mailto:info@stylefactory.hr">
+            <div className="flex flex-col text-left text-xs min-[450px]:text-base items-start gap-0.5">
+              <a href="tel:+385996666331" className="contact-link">
+                +385 99 6666 331
+              </a>
+              <a href="tel:+385991697357" className="contact-link">
+                +385 99 169 7357
+              </a>
+              <a
+                href="mailto:info@stylefactory.hr"
+                className="contact-link md:mt-4"
+              >
                 info@stylefactory.hr
               </a>
             </div>
             <div className="flex flex-col text-right md:text-left md:mt-1.5 text-xs min-[450px]:text-base">
-              <span>CROATIA</span>
+              <span>{t("country")}</span>
               <span className="hidden md:inline">
-                Vrisnička 18, 10 000 Zagreb
+                {t("street")}, {t("city")}
               </span>
-              <span className="md:hidden">Vrisnička 18</span>
-              <span className="md:hidden">10 000 Zagreb</span>
+              <span className="md:hidden">{t("street")}</span>
+              <span className="md:hidden">{t("city")}</span>
             </div>
           </div>
         </div>

@@ -81,6 +81,7 @@
       "logoAlt": "{name} logotip"
     },
     "contact": {
+      "heading": "KONTAKT:",
       "titleStrong": "Kontaktirajte",
       "titleLight": "nas",
       "country": "HRVATSKA",
@@ -103,8 +104,8 @@
     },
     "journey": {
       "backdrop": "proces",
-      "titleStrong": "Put",
-      "titleLight": "uniforme",
+      "titleStrong": "PUT",
+      "titleLight": "UNIFORME",
       "quote": "Jer prvi dojam počinje onime što vaš tim nosi",
       "steps": {
         "brief": {

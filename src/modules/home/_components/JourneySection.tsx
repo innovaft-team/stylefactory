@@ -1,10 +1,13 @@
 import React from "react";
-import { poppins, montserrat, inter, allura } from "@/fonts";
+import { poppins, montserrat, inter, allura, notoSansJP } from "@/fonts";
 import Image from "next/image";
 import styles from "@/styles/HomeRedesign.module.css";
 import JourneySectionMobile from "./JourneySectionMobile";
+import { useTranslations } from "next-intl";
 
 const JourneySection = () => {
+  const t = useTranslations("home.journey");
+
   return (
     <div className={styles.journeyViewport}>
       <JourneySectionMobile />
@@ -34,15 +37,13 @@ const JourneySection = () => {
               className="text-lg font-bold"
               style={{ fontFamily: montserrat.style.fontFamily }}
             >
-              Sampling & Approval
+              {t("steps.sampling.title")}
             </h3>
             <p
               style={{ fontFamily: montserrat.style.fontFamily }}
               className="text-black mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
             >
-              Once the design concept is confirmed, we develop prototypes and
-              samples to ensure the perfect fit, comfort and final appearance
-              before production begins.
+              {t("steps.sampling.copy")}
             </p>
           </div>
         </div>
@@ -53,8 +54,8 @@ const JourneySection = () => {
             fontFamily: poppins.style.fontFamily,
           }}
         >
-          THE UNIFORM
-          <span className="text-[#8C8476] font-normal">JOURNEY</span>
+          {t("titleStrong")}
+          <span className="text-[#8C8476] font-normal">{t("titleLight")}</span>
         </h3>
         <div className="flex items-center gap-16 mt-27.25">
           <div className="relative">
@@ -63,12 +64,12 @@ const JourneySection = () => {
               src={"/images/home-redesign/sub-footer-l.webp"}
               width={300}
               height={300}
-              alt="sub-footer"
+              alt={t("visuals.consultation")}
             />
-            <div className="absolute opacity-54 -top-9 -right-3 z-30">
+            <div className="absolute opacity-54 -top-14 -right-13 z-30">
               <h2
                 className="text-[255px] font-black text-[#EAE7E2] leading-none"
-                style={{ fontFamily: inter.style.fontFamily }}
+                style={{ fontFamily: notoSansJP.style.fontFamily }}
               >
                 1
               </h2>
@@ -77,18 +78,15 @@ const JourneySection = () => {
           <div className="max-w-71.75 relative z-20 -mt-20">
             <h3
               className="text-lg font-bold"
-              style={{ fontFamily: montserrat.style.fontFamily }}
+              style={{ fontFamily: notoSansJP.style.fontFamily }}
             >
-              Brief & Consultation
+              {t("steps.brief.title")}
             </h3>
             <p
-              style={{ fontFamily: montserrat.style.fontFamily }}
+              style={{ fontFamily: notoSansJP.style.fontFamily }}
               className="text-black max-w-125 mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
             >
-              We begin by understanding your brand, operational needs and team
-              requirements. Through a detailed briefing process, we define the
-              standards, functionality and visual direction of your uniform
-              collection.
+              {t("steps.brief.copy")}
             </p>
           </div>
         </div>
@@ -98,10 +96,10 @@ const JourneySection = () => {
               src={"/images/home-redesign/sub-footer-c.webp"}
               width={400}
               height={400}
-              alt="sub-footer"
+              alt={t("visuals.fabric")}
               className="w-full h-full object-cover  translate-y-20"
             />
-            <div className="absolute opacity-54 top-70 -left-28 z-30">
+            <div className="absolute opacity-54 top-70 -left-23 z-30">
               <h2
                 className="text-[255px] font-black text-[#EAE7E2] leading-none"
                 style={{ fontFamily: inter.style.fontFamily }}
@@ -124,15 +122,13 @@ const JourneySection = () => {
             className="text-lg font-bold"
             style={{ fontFamily: montserrat.style.fontFamily }}
           >
-            Design Development
+            {t("steps.design.title")}
           </h3>
           <p
             style={{ fontFamily: montserrat.style.fontFamily }}
             className="text-black max-w-125 mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
           >
-            Every uniform concept is thoughtfully designed to reflect your brand
-            identity. From sketches and fabric selection to styling and
-            functionality, every detail is carefully considered.
+            {t("steps.design.copy")}
           </p>
         </div>
         <div className="ml-22 mt-113.75 max-w-71.75 relative">
@@ -140,15 +136,13 @@ const JourneySection = () => {
             className="text-lg font-bold"
             style={{ fontFamily: montserrat.style.fontFamily }}
           >
-            Sizing & Production
+            {t("steps.production.title")}
           </h3>
           <p
             style={{ fontFamily: montserrat.style.fontFamily }}
             className="text-black max-w-125 mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
           >
-            After sample approval, we collect sizing information for all team
-            members and coordinate the full production process with our
-            manufacturing partners.
+            {t("steps.production.copy")}
           </p>
         </div>
         <div className="relative w-full h-114 -translate-y-50">
@@ -159,7 +153,7 @@ const JourneySection = () => {
               src={"/images/home-redesign/sub-footer-b.webp"}
               width={300}
               height={300}
-              alt="sub-footer"
+              alt={t("visuals.pants")}
             />
           </div>
 
@@ -176,14 +170,13 @@ const JourneySection = () => {
                 className="text-lg font-bold"
                 style={{ fontFamily: montserrat.style.fontFamily }}
               >
-                Delivery
+                {t("steps.delivery.title")}
               </h3>
               <p
                 style={{ fontFamily: montserrat.style.fontFamily }}
                 className="text-black mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
               >
-                The finished uniforms are quality-checked, organized and
-                delivered ready for your team to wear.
+                {t("steps.delivery.copy")}
               </p>
             </div>
           </div>
@@ -191,18 +184,18 @@ const JourneySection = () => {
       </section>
 
       {/* Bottom Quote & Line */}
-      <div className="max-sm:hidden flex flex-col items-center justify-center w-full z-20 relative bg-white pb-12 px-10 -mt-24">
+      <div className="max-sm:hidden flex flex-col items-center justify-center w-full z-20 relative bg-white pb-0 px-10 -mt-24">
         <p
-          className="text-[42px] xl:text-[64px] text-center"
+          className="text-[42px] xl:text-[60px] text-center mb-6"
           style={{
             fontFamily: allura.style.fontFamily,
             color: "#8F8475",
           }}
         >
-          Because first impressions begin with what your team wears.
+          {t("quote")}
         </p>
-        <hr className="w-full border-t-4 border-[#8C8476] mt-6 block" />
       </div>
+      <hr className="max-sm:hidden w-full border-t-4 border-[#8C8476] block relative z-20 bg-white pb-12" />
     </div>
   );
 };

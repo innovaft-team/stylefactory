@@ -81,6 +81,7 @@
       "logoAlt": "{name} logo"
     },
     "contact": {
+      "heading": "CONTACT:",
       "titleStrong": "Get",
       "titleLight": "in touch",
       "country": "CROATIA",
@@ -103,8 +104,8 @@
     },
     "journey": {
       "backdrop": "process",
-      "titleStrong": "The Uniform",
-      "titleLight": "Journey",
+      "titleStrong": "THE UNIFORM",
+      "titleLight": "JOURNEY",
       "quote": "Because first impressions begin with what your team wears",
       "steps": {
         "brief": {

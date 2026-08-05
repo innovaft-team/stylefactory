@@ -79,7 +79,7 @@ export const PostItem = ({
       spacing={2}
       alignItems={"start"}
       layoutId={id.toString()}
-      pr={{ base: 0, lg: 5 }}
+
       data-variant={variantSafe}
       ref={containerRef}
       {...rest}
@@ -101,12 +101,13 @@ export const PostItem = ({
       ) : (
         <Image
           placeholder={"blur"}
-          w={{ base: "100%", lg: 700 }}
+          w={{ base: "100%", lg: "1028.57px" }}
+          maxW={"100%"}
           h={"auto"}
           as={motion.img}
           src={images[0]}
           alt={thumbnailAlt}
-          sizes="(min-width: 62em) 700px, 80vw"
+          sizes="(min-width: 62em) 1029px, 100vw"
           style={{ objectFit: "cover" }}
         />
       )}
