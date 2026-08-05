@@ -1,18 +1,14 @@
-// 1. Create a component that consumes the `useRadio` hook
 import {
   Box,
   BoxProps,
-  Divider,
   HStack,
   StackProps,
   useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { usePersistLocaleCookie } from "@/hooks/usePersistLocaleCookie";
-import { ChakraEnIcon, ChakraHrIcon } from "@/components/atoms/icons";
 import { useTranslations } from "next-intl";
-import { Locale } from "nextjs-routes";
+import { LOCALES } from "@/utils/seo";
+import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
 
 export function RadioCard(props: BoxProps) {
   const { children, ...radioProps } = props;
@@ -54,39 +50,24 @@ export function RadioCard(props: BoxProps) {
   );
 }
 
-const ImageIcon = (lang: string) => {
-  switch (lang) {
-    case "eng":
-      return <ChakraEnIcon />;
-    case "cro":
-      return <ChakraHrIcon />;
-    default:
-      return <ChakraEnIcon />;
-  }
-};
-
 export const LanguagePicker = (props: StackProps) => {
   const t = useTranslations("nav");
+  const { locale, switchLocale } = useLocaleSwitch();
 
-  const router = useRouter();
-  usePersistLocaleCookie();
-  const options = ["en", "hr"];
+  // Controlled by the router rather than by local radio state: a locale change
+  // can also come from the mobile drawer, a back/forward navigation or a
+  // canonical-slug redirect, and the underline has to follow all of them.
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "framework",
-    defaultValue: router.locale,
-    onChange: (val) => {
-      const { pathname, query, asPath } = router;
-      router.push({ pathname, query }, asPath, {
-        locale: val as Locale,
-      });
-    },
+    name: "locale",
+    value: locale,
+    onChange: switchLocale,
   });
 
   const group = getRootProps();
 
   return (
     <HStack alignSelf={"center"} {...group} {...props}>
-      {options.map((value) => {
+      {LOCALES.map((value) => {
         const radio = getRadioProps({ value });
         return (
           <RadioCard key={value} {...radio}>

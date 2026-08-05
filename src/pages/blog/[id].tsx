@@ -5,8 +5,6 @@ import {DialogMenu} from "@/components/DialogMenu";
 import {Carousel} from "@/components/Carousel/Carousel";
 import {cormorant_garamond, open_sans, playfair} from "@/fonts";
 import {useRouter} from "next/router";
-import {NavigationLayout} from "@/components/layout/NavigationLayout";
-import {Scroll} from "@/components/layout/Scroll";
 import Link from "next/link";
 import {SeoHead} from "@/components/SeoHead";
 import {

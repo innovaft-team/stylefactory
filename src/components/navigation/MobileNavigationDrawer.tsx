@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/router";
+import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
 import { ActiveLink } from "./ActiveLink";
 import {
   ChakraInfoIcon,
@@ -29,12 +29,12 @@ export const MobileNavigationDrawer = ({
   onClose,
 }: MobileNavigationDrawerProps) => {
   const t = useTranslations("nav");
-  const router = useRouter();
+  const { locale, switchLocale } = useLocaleSwitch();
   const { isOpen, onOpen, onClose: onInfoClose } = useDisclosure();
 
   const handleLocaleChange = (newLocale: string) => {
-    const { pathname, query, asPath } = router;
-    router.push({ pathname, query }, asPath, { locale: newLocale as any });
+    switchLocale(newLocale);
+    onClose();
   };
 
   return (
@@ -138,7 +138,7 @@ export const MobileNavigationDrawer = ({
             <span
               onClick={() => handleLocaleChange("en")}
               className={`cursor-pointer transition-colors ${
-                router.locale === "en"
+                locale === "en"
                   ? "text-[#F7F7F4] border-b border-[#8C8476]/60 pb-0.5"
                   : "opacity-50 hover:text-[#F7F7F4]"
               }`}
@@ -149,7 +149,7 @@ export const MobileNavigationDrawer = ({
             <span
               onClick={() => handleLocaleChange("hr")}
               className={`cursor-pointer transition-colors ${
-                router.locale === "hr"
+                locale === "hr"
                   ? "text-[#F7F7F4] border-b border-[#8C8476]/60 pb-0.5"
                   : "opacity-50 hover:text-[#F7F7F4]"
               }`}

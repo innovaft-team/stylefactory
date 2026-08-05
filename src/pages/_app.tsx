@@ -14,6 +14,7 @@ import { montserrat } from "@/fonts";
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
 import { BackToTop } from "@/components/BackToTop";
 import NextTopLoader from "nextjs-toploader";
+import { usePersistLocaleCookie } from "@/hooks/usePersistLocaleCookie";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ type AppPropsWithLayout = AppProps & {
 
 export default function App({Component, pageProps}: AppPropsWithLayout) {
     const router = useRouter()
+    usePersistLocaleCookie();
     const prefersReducedMotion = useReducedMotion();
     const [isRouteChanging, setIsRouteChanging] = useState(false);
     const routeTransitionKey = useMemo(
@@ -65,7 +67,8 @@ export default function App({Component, pageProps}: AppPropsWithLayout) {
                     <meta name="theme-color" content="#ffffff"/>
                     <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32"/>
                     <link rel="icon" href="/images/favicon-16x16.png" sizes="16x16"/>
-                    <link rel="apple-touch-icon" href="/images/favicon-32x32.png"/>
+                    <link rel="shortcut icon" href="/images/favicon-32x32.png"/>
+                    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
                 </Head>
                 <ChakraProvider theme={theme}>
                     <QueryClientProvider client={queryClient}>
