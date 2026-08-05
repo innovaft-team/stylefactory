@@ -115,13 +115,14 @@ const BlogPage = ({blog, postHtml, seoDescription, seoTitle, slug}: InferGetServ
             <Box
                 as={"article"}
                 position={"relative"}
-                w="100vw"
+                w="100%"
                 h="100vh"
+                pt={{ base: "110px", md: "120px" }}
                 overflow={"hidden"}
                 bg={"white"}
                 display={"flex"}
                 flexDirection={"column"}
-                gap={"40px"}
+                gap={"20px"}
                 itemScope
                 itemType={'https://schema.org/BlogPosting'}
             >
@@ -134,7 +135,7 @@ const BlogPage = ({blog, postHtml, seoDescription, seoTitle, slug}: InferGetServ
                     justifyContent={"center"}
                     gap={{base: 3, lg: 5}}
                     px={{base: 5, lg: 10}}
-                    pt={{base: 4, lg: 6}}
+                    pt={{base: 2, md: 4, lg: 6}}
                     pb={0}
                     flexShrink={0}
                 >
@@ -192,7 +193,5 @@ const BlogPage = ({blog, postHtml, seoDescription, seoTitle, slug}: InferGetServ
     );
 }
 
-
-BlogPage.getLayout = (page: React.ReactElement) => page;
-
 export default BlogPage;
+

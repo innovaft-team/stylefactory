@@ -6,17 +6,33 @@ import type {Blog} from "@/hooks/useListBlogs";
 import {DEFAULT_LOCALE, LOCALES, resolveLocale} from "@/utils/seo";
 
 export function getPostTitle(blog: Blog, locale?: string | null) {
+    if (!blog) return "Style Factory";
     const resolvedLocale = resolveLocale(locale);
-    const localizedTitle = resolvedLocale === "en" ? blog.eng?.title : blog.cro?.title;
 
-    return localizedTitle || blog.eng?.title || blog.cro?.title || "Style Factory";
+    if (resolvedLocale === "hr") {
+        const croTitle = blog.cro?.title || (blog.cro as any)?.heading || (blog.cro as any)?.name;
+        if (croTitle) return croTitle;
+    } else {
+        const engTitle = blog.eng?.title || (blog.eng as any)?.heading || (blog.eng as any)?.name;
+        if (engTitle) return engTitle;
+    }
+
+    return blog.cro?.title || blog.eng?.title || blog.seoTitle || "Style Factory";
 }
 
 export function getPostMarkdown(blog: Blog, locale?: string | null) {
+    if (!blog) return "";
     const resolvedLocale = resolveLocale(locale);
-    const localizedContent = resolvedLocale === "en" ? blog.eng?.content : blog.cro?.content;
 
-    return localizedContent || blog.eng?.content || blog.cro?.content || "";
+    if (resolvedLocale === "hr") {
+        const croContent = blog.cro?.content;
+        if (croContent) return croContent;
+    } else {
+        const engContent = blog.eng?.content;
+        if (engContent) return engContent;
+    }
+
+    return blog.cro?.content || blog.eng?.content || "";
 }
 
 export function slugify(value = "") {
@@ -103,9 +119,11 @@ export async function getPostSeoData(blog: Blog, locale?: string | null) {
     const html = await renderMarkdownToHtml(markdown);
     const description = blog.seoDescription || createExcerpt(html) || `${title} by Style Factory Uniforms.`;
 
+    const seoTitle = title;
+
     return {
         title,
-        seoTitle: blog.seoTitle || title,
+        seoTitle,
         html,
         description,
     };
