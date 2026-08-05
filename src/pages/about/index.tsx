@@ -81,12 +81,10 @@ function About() {
                         description,
                         locale,
                         pageType: "AboutPage",
-                        image: "/images/aboutimages/1.jpg",
                     }),
                 ]}
             />
-            <NavigationLayout darkHero={false}>
-                <Scroll
+            <Scroll
                     h="100vh"
                     position={"relative"}
                     pt={{
@@ -288,7 +286,6 @@ function About() {
                         />
                     </motion.div>
                 </Scroll>
-            </NavigationLayout>
         </>
     );
 }

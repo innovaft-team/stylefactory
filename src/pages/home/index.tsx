@@ -58,7 +58,6 @@ function Home() {
           }),
         ]}
       />
-      <NavigationLayout>
         <Scroll h="100vh">
           <Box className={styles.pageFrame}>
             <Box
@@ -77,7 +76,6 @@ function Home() {
             </Box>
           </Box>
         </Scroll>
-      </NavigationLayout>
     </>
   );
 }

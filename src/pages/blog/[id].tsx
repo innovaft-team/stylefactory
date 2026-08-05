@@ -193,4 +193,6 @@ const BlogPage = ({blog, postHtml, seoDescription, seoTitle, slug}: InferGetServ
 }
 
 
+BlogPage.getLayout = (page: React.ReactElement) => page;
+
 export default BlogPage;

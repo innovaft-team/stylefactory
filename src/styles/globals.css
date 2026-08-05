@@ -56,3 +56,29 @@ textarea:-webkit-autofill:active {
   width: 100%;
 }
 
+/* ── Premium shimmer skeleton for image placeholders ── */
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    #eae6df 0%,
+    #f5f2ec 20%,
+    #fff 40%,
+    #f5f2ec 60%,
+    #eae6df 80%,
+    #eae6df 100%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}

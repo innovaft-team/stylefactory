@@ -122,7 +122,7 @@ export const PostList = ({
                       transform: "scale(1.02)",
                     }}
                   >
-                    <PostItem data={item} />
+                    <PostItem data={item} priority={index < 2} />
                   </Box>
                 </Link>
               </div>

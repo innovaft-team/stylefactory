@@ -73,7 +73,6 @@ export default function Home({
           }),
         ]}
       />
-      <NavigationLayout darkHero={false}>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -92,7 +91,6 @@ export default function Home({
           />
         </motion.div>
         <CreateBlogFormModal path={BlogBuckets.trends} />
-      </NavigationLayout>
     </>
   );
 }

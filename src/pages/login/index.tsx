@@ -81,5 +81,8 @@ export default function Page() {
 
 
         </VStack>
-    )
+    );
 }
+
+Page.getLayout = (page: React.ReactElement) => page;
+

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MobileNavigationDrawer } from "./MobileNavigationDrawer";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface MobileNavigationProps {
   /** When true the un-scrolled nav uses light text (for pages with a dark hero). */
@@ -14,6 +15,8 @@ export const MobileNavigation = ({
 }: MobileNavigationProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const isHomePage = router.pathname === "/" || router.pathname === "/home";
 
   useEffect(() => {
     const handleScroll = (event: any) => {
@@ -32,15 +35,18 @@ export const MobileNavigation = ({
     return () => window.removeEventListener("scroll", handleScroll, true);
   }, []);
 
+  const isDarkNav = isHomePage || darkHero;
+  const showDarkBg = isScrolled || !isDarkNav;
+
   return (
     <>
       <div
         className={`fixed top-0 left-0 w-full z-1000 flex justify-between items-center px-4 py-2 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-sm"
-            : darkHero
-              ? "bg-transparent"
-              : "bg-white/95 backdrop-blur-sm"
+          isScrolled && isHomePage
+            ? "bg-white shadow-md"
+            : showDarkBg
+              ? "bg-white/95 backdrop-blur-sm"
+              : "bg-transparent"
         }`}
         data-role="navigation"
       >
@@ -48,7 +54,7 @@ export const MobileNavigation = ({
         <Link
           href="/"
           className={`flex flex-col font-normal text-[25px] ${
-            isScrolled || !darkHero ? "text-black" : "text-[#f4f1ee]"
+            showDarkBg ? "text-black" : "text-[#f4f1ee]"
           }`}
         >
           <span>STYLE</span>
@@ -63,13 +69,13 @@ export const MobileNavigation = ({
           style={{ display: isOpen ? "none" : "flex" }}
         >
           <span
-            className={`w-8 h-[1.5px] transition-all duration-200 ${isScrolled || !darkHero ? "bg-black" : "bg-white"}`}
+            className={`w-8 h-[1.5px] transition-all duration-200 ${showDarkBg ? "bg-black" : "bg-white"}`}
           />
           <span
-            className={`w-6 h-[1.5px] transition-all duration-200 group-hover:w-8 ${isScrolled || !darkHero ? "bg-black" : "bg-white"}`}
+            className={`w-6 h-[1.5px] transition-all duration-200 group-hover:w-8 ${showDarkBg ? "bg-black" : "bg-white"}`}
           />
           <span
-            className={`w-8 h-[1.5px] transition-all duration-200 ${isScrolled || !darkHero ? "bg-black" : "bg-white"}`}
+            className={`w-8 h-[1.5px] transition-all duration-200 ${showDarkBg ? "bg-black" : "bg-white"}`}
           />
         </button>
       </div>

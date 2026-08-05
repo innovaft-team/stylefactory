@@ -73,7 +73,6 @@ const Index = ({
           }),
         ]}
       />
-      <NavigationLayout darkHero={false}>
         {/* Spacing for this page only — /trends keeps PostList's defaults. */}
         <PostList
           blogs={blogs ?? []}
@@ -82,7 +81,6 @@ const Index = ({
           paddingBottom={{ mobile: "50px", desktop: "50px" }}
         />
         <CreateBlogFormModal path={BlogBuckets.blogs} />
-      </NavigationLayout>
     </Box>
   );
 };

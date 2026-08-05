@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 import type {AppProps} from "next/app";
+import type {NextPage} from "next";
+import type {ReactElement, ReactNode} from "react";
 import {Box, ChakraProvider} from "@chakra-ui/react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import theme from "@/theme/theme";
@@ -9,19 +11,19 @@ import {AnimatePresence, motion, useReducedMotion} from "framer-motion";
 import {useEffect, useMemo, useState} from "react";
 import Head from "next/head";
 import { montserrat } from "@/fonts";
+import { NavigationLayout } from "@/components/layout/NavigationLayout";
 
 const queryClient = new QueryClient();
 
-type PageProps = {
-    messages: AbstractIntlMessages;
-    now: number;
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout?: (page: ReactElement) => ReactNode;
 };
 
-type Props = Omit<AppProps<PageProps>, 'pageProps'> & {
-    pageProps: PageProps;
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
 };
 
-export default function App({Component, pageProps}: Props) {
+export default function App({Component, pageProps}: AppPropsWithLayout) {
     const router = useRouter()
     const prefersReducedMotion = useReducedMotion();
     const [isRouteChanging, setIsRouteChanging] = useState(false);
@@ -49,6 +51,10 @@ export default function App({Component, pageProps}: Props) {
         };
     }, [router.asPath, router.events]);
 
+    const getLayout = Component.getLayout ?? ((page: ReactElement) => (
+        <NavigationLayout darkHero={false}>{page}</NavigationLayout>
+    ));
+
     return (
         <NextIntlClientProvider locale={router.locale} messages={pageProps.messages} timeZone={"Europe/Zagreb"}>
             <div className={montserrat.className}>
@@ -75,23 +81,23 @@ export default function App({Component, pageProps}: Props) {
                             transition="transform 520ms ease, opacity 180ms ease"
                             zIndex="20000"
                         />
-                        <AnimatePresence mode="wait" initial={false}>
-                            <motion.div
-                                key={routeTransitionKey}
-                                initial={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: 10}}
-                                animate={{opacity: 1, y: 0}}
-                                exit={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: -8}}
-                                style={{minHeight: "100vh", width: "100%"}}
-                                transition={{duration: prefersReducedMotion ? 0.16 : 0.28, ease: [0.22, 1, 0.36, 1]}}
-                            >
-                                <Component {...pageProps} />
-                            </motion.div>
-                        </AnimatePresence>
+                        {getLayout(
+                            <AnimatePresence mode="wait" initial={false}>
+                                <motion.div
+                                    key={routeTransitionKey}
+                                    initial={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: 10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={prefersReducedMotion ? {opacity: 0} : {opacity: 0, y: -8}}
+                                    style={{minHeight: "100vh", width: "100%"}}
+                                    transition={{duration: prefersReducedMotion ? 0.16 : 0.28, ease: [0.22, 1, 0.36, 1]}}
+                                >
+                                    <Component {...pageProps} />
+                                </motion.div>
+                            </AnimatePresence>
+                        )}
                     </QueryClientProvider>
                 </ChakraProvider>
             </div>
         </NextIntlClientProvider>
     )
-
-
 }
