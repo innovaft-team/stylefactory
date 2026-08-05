@@ -5,7 +5,7 @@ export const HeroSection = () => {
   const t = useTranslations("home.hero");
 
   return (
-    <section className="relative overflow-hidden min-h-175 2xl:min-h-237.5 flex justify-start items-end pb-4 sm:pb-6 px-4 sm:px-5 xl:px-7  md:mt-20 max-sm:-mt-22">
+    <section className="pt-75 max-md:object-[50%_10%] relative overflow-hidden  flex justify-start items-end pb-4 sm:pb-6 px-4 sm:px-5 xl:px-7  md:mt-20 max-sm:-mt-22">
       <Image
         className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover z-0 object-[60%_center] md:object-center"
         src="/images/home-redesign/hero.webp"

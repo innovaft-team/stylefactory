@@ -12,6 +12,8 @@ import {useEffect, useMemo, useState} from "react";
 import Head from "next/head";
 import { montserrat } from "@/fonts";
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
+import { BackToTop } from "@/components/BackToTop";
+import NextTopLoader from "nextjs-toploader";
 
 const queryClient = new QueryClient();
 
@@ -67,19 +69,17 @@ export default function App({Component, pageProps}: AppPropsWithLayout) {
                 </Head>
                 <ChakraProvider theme={theme}>
                     <QueryClientProvider client={queryClient}>
-                        <Box
-                            aria-hidden="true"
-                            bg="rgba(18, 18, 18, 0.72)"
-                            h="2px"
-                            left="0"
-                            opacity={isRouteChanging ? 1 : 0}
-                            position="fixed"
-                            right="0"
-                            top="0"
-                            transform={isRouteChanging ? "scaleX(1)" : "scaleX(0)"}
-                            transformOrigin="left center"
-                            transition="transform 520ms ease, opacity 180ms ease"
-                            zIndex="20000"
+                        <NextTopLoader
+                            color="#8C8476"
+                            initialPosition={0.08}
+                            crawlSpeed={200}
+                            height={3}
+                            crawl={true}
+                            showSpinner={false}
+                            easing="ease"
+                            speed={200}
+                            shadow="0 0 10px #8C8476,0 0 5px #8C8476"
+                            zIndex={999999}
                         />
                         {getLayout(
                             <AnimatePresence mode="wait" initial={false}>
@@ -95,6 +95,7 @@ export default function App({Component, pageProps}: AppPropsWithLayout) {
                                 </motion.div>
                             </AnimatePresence>
                         )}
+                        <BackToTop />
                     </QueryClientProvider>
                 </ChakraProvider>
             </div>

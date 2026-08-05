@@ -37,7 +37,7 @@ const JourneySection = () => {
               className="text-lg font-bold"
               style={{ fontFamily: montserrat.style.fontFamily }}
             >
-              {t("steps.sampling.title")}
+              {t.rich("steps.sampling.title", { br: () => <br /> })}
             </h3>
             <p
               style={{ fontFamily: montserrat.style.fontFamily }}
@@ -80,7 +80,7 @@ const JourneySection = () => {
               className="text-lg font-bold"
               style={{ fontFamily: notoSansJP.style.fontFamily }}
             >
-              {t("steps.brief.title")}
+              {t.rich("steps.brief.title", { br: () => <br /> })}
             </h3>
             <p
               style={{ fontFamily: notoSansJP.style.fontFamily }}
@@ -128,7 +128,7 @@ const JourneySection = () => {
             style={{ fontFamily: montserrat.style.fontFamily }}
             className="text-black max-w-125 mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
           >
-            {t("steps.design.copy")}
+            {t.rich("steps.design.copy", { br: () => <br /> })}
           </p>
         </div>
         <div className="ml-22 mt-113.75 max-w-71.75 relative">

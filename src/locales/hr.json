@@ -54,79 +54,79 @@
       "titleLine1": "Uniform Collection",
       "titleLine2": "for Modern Brands",
       "imageAlt": "Style Factory kolekcija ugostiteljskih uniformi",
-      "p1": "Od koncepta do isporuke, svaku kolekciju oblikujemo prema standardima <br></br> vašeg brenda.",
-      "p2": "Stvaramo profesionalne uniforme za ugostiteljske i korporativne timove, spajajući kvalitetu, udobnost i suvremeni <br></br> dizajn."
+      "p1": "Od ideje do isporuke, <br></br> svaku kolekciju oblikujemo prema standardu vašeg brenda.",
+      "p2": "Stvarajući profesionalne uniforme za ugostiteljske i korporativne timove, spajamo kvalitetu, udobnost i suvremeni <br></br> dizajn."
     },
     "whatWeDo": {
-      "headingStrong": "ŠTO",
-      "headingLight": "RADIMO",
+      "headingStrong": "NAŠE",
+      "headingLight": "USLUGE",
       "services": {
         "design": {
           "title": "Dizajn",
-          "copy": "Stvaramo cjelovita rješenja radne odjeće, od razvoja koncepta i dizajna uniforme do sveobuhvatnih priručnika o standardima radne odjeće, osiguravajući dosljednost, prepoznatljiv identitet brenda i profesionalan imidž vašeg tima."
+          "copy": "Razvijamo cjelovita rješenja za radnu odjeću – od koncepta i dizajna uniformi do izrade knjige standarda koja osigurava dosljednu primjenu, prepoznatljiv vizualni identitet i profesionalan izgled vašeg tima."
         },
         "development": {
           "title": "Razvoj",
-          "copy": "Od nabave i koordinacije proizvodnje do konačne isporuke, vodimo cjelokupan proces razvoja za svaki projekt."
+          "copy": "Od odabira materijala i koordinacije proizvodnje do konačne isporuke, vodimo cijeli proces razvoja svakog projekta."
         },
         "production": {
           "title": "Proizvodnja",
-          "copy": "Kroz našu proizvodnu mrežu podržavamo ugostiteljske brendove i tvrtke za uniforme u nabavi, koordinaciji proizvodnje i razvoju projekata."
+          "copy": "Kroz našu mrežu proizvodnih partnera pružamo cjelovitu podršku u nabavi, koordinaciji proizvodnje i razvoju projekata za hospitality brendove i tvrtke koje posluju u području uniformi."
         }
       }
     },
     "clients": {
-      "titleLine1": "Odabrani",
+      "titleLine1": "Izdvojeni",
       "titleLine2": "Klijenti",
       "logoAlt": "{name} logotip"
     },
     "contact": {
       "heading": "KONTAKT:",
-      "titleStrong": "Kontaktirajte",
-      "titleLight": "nas",
-      "country": "HRVATSKA",
+      "titleStrong": "se",
+      "titleLight": "Povežimo",
+      "country": "CROATIA",
       "street": "Vrisnička 18",
       "city": "10 000 Zagreb",
       "form": {
-        "name": "Ime",
-        "phone": "Telefon",
-        "email": "Email adresa*",
-        "company": "Tvrtka*",
-        "message": "Poruka*",
+        "name": "Ime:",
+        "phone": "Telefon:",
+        "email": "E-mail adresa:",
+        "company": "Tvrtka:",
+        "message": "Poruka:",
         "send": "Pošalji",
-        "sending": "Šaljemo",
+        "sending": "Šaljem...",
         "sent": "Poslano",
         "retry": "Pokušajte ponovno",
         "statusSending": "Šaljemo vašu poruku.",
         "statusSuccess": "Hvala, vaša poruka je poslana.",
-        "statusError": "Poruku nije bilo moguće poslati. Pokušajte ponovno ili nam pišite izravno."
+        "statusError": "Došlo je do greške. Pokušajte ponovno."
       }
     },
     "journey": {
       "backdrop": "proces",
-      "titleStrong": "PUT",
+      "titleStrong": "OD IDEJE DO",
       "titleLight": "UNIFORME",
-      "quote": "Jer prvi dojam počinje onime što vaš tim nosi",
+      "quote": "Jer prvi dojam počinje uniformom",
       "steps": {
         "brief": {
-          "title": "Brief i konzultacije",
-          "copy": "Počinjemo razumijevanjem vašeg brenda, operativnih potreba i zahtjeva tima. Kroz detaljan brief definiramo standarde, funkcionalnost i vizualni smjer vaše kolekcije uniformi."
+          "title": "Upoznavanje potreba <br></br> i ciljeva",
+          "copy": "Proces započinjemo upoznavanjem vašeg brenda, operativnih potreba i zahtjeva tima. Kroz detaljne konzultacije definiramo standarde, funkcionalne zahtjeve i vizualni smjer buduće kolekcije uniformi."
         },
         "design": {
           "title": "Razvoj dizajna",
-          "copy": "Svaki koncept uniforme pažljivo je osmišljen kako bi odražavao identitet vašeg brenda. Od skica i odabira tkanina do stiliziranja i funkcionalnosti, svaki detalj je pomno promišljen."
+          "copy": "Razvoj dizajna <br></br> Svaka kolekcija razvija se s jasnim ciljem – prenijeti vrijednosti i osobnost vašeg brenda kroz promišljen dizajn. Od prvih skica i odabira tkanina do završnih detalja, svaki korak posvećen je kvaliteti i funkcionalnosti."
         },
         "sampling": {
-          "title": "Uzorci i odobrenje",
-          "copy": "Nakon potvrde koncepta dizajna izrađujemo prototipove i uzorke kako bismo osigurali savršen kroj, udobnost i konačan izgled prije početka proizvodnje."
+          "title": "Razvoj uzoraka i potvrda <br></br> dizajna",
+          "copy": "Prije početka proizvodnje izrađujemo uzorke kako bismo potvrdili kroj, funkcionalnost, udobnost i konačni izgled svakog modela."
         },
         "production": {
-          "title": "Veličine i proizvodnja",
-          "copy": "Nakon odobrenja uzorka prikupljamo podatke o veličinama za sve članove tima i koordiniramo cjelokupan proces proizvodnje s našim proizvodnim partnerima."
+          "title": "Određivanje veličina i proizvodnja",
+          "copy": "Kada su uzorci odobreni, preuzimamo organizaciju prikupljanja veličina i koordinaciju proizvodnje, osiguravajući učinkovit proces i dosljednu kvalitetu na svakom koraku."
         },
         "delivery": {
-          "title": "Isporuka",
-          "copy": "Gotove uniforme prolaze kontrolu kvalitete, pripremaju se i isporučuju spremne za nošenje."
+          "title": "Završna isporuka",
+          "copy": "Gotove uniforme prolaze završnu kontrolu kvalitete te se isporučuju spremne za nošenje i upotrebu."
         }
       },
       "visuals": {

@@ -32,6 +32,7 @@
     "next": "14.2.22",
     "next-intl": "^3.9.5",
     "nextjs-routes": "2.0.1",
+    "nextjs-toploader": "^3.9.17",
     "novel": "^0.1.22",
     "popmotion": "^11.0.5",
     "react": "^18",

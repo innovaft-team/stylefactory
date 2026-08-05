@@ -41,7 +41,9 @@ const JourneySectionMobile = () => {
           className="absolute left-46.25 top-23 w-38 z-10"
           style={{ fontFamily: notoSansJP.style.fontFamily }}
         >
-          <h3 className={heading}>{t("steps.brief.title")}</h3>
+          <h3 className={heading}>
+            {t.rich("steps.brief.title", { br: () => <br /> })}
+          </h3>
           <p className={copy}>{t("steps.brief.copy")}</p>
         </div>
 
@@ -64,7 +66,7 @@ const JourneySectionMobile = () => {
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
           <h3 className={heading}>{t("steps.design.title")}</h3>
-          <p className={copy}>{t("steps.design.copy")}</p>
+          <p className={copy}>{t.rich("steps.design.copy", { br: () => <br /> })}</p>
         </div>
 
         {/* 3 — Sampling & Approval */}
@@ -85,7 +87,9 @@ const JourneySectionMobile = () => {
           className="absolute left-37.75 top-174 w-47.5 z-10"
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
-          <h3 className={heading}>{t("steps.sampling.title")}</h3>
+          <h3 className={heading}>
+            {t.rich("steps.sampling.title", { br: () => <br /> })}
+          </h3>
           <p className={copy}>{t("steps.sampling.copy")}</p>
         </div>
 

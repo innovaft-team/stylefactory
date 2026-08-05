@@ -94,8 +94,17 @@ const ContactSection = () => {
         style={{ fontFamily: poppins.style.fontFamily }}
       >
         <h3 className="sm:text-xl md:text-[33px] font-medium uppercase relative z-20 text-center">
-          {t("titleStrong")}{" "}
-          <span className="text-[#48443e]/58">{t("titleLight")}</span>
+          {isHr ? (
+            <>
+              <span className="text-[#48443e]/58">{t("titleLight")}</span>{" "}
+              {t("titleStrong")}
+            </>
+          ) : (
+            <>
+              {t("titleStrong")}{" "}
+              <span className="text-[#48443e]/58">{t("titleLight")}</span>
+            </>
+          )}
         </h3>
         {/* Without `sizes` the browser assumes 100vw and multiplies by DPR, so
             a 412px phone at DPR 2.6 pulled the 2000w variant of this banner. */}
