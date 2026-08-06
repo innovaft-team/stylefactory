@@ -39,7 +39,7 @@ const JourneySectionMobile = () => {
         </span>
         <div
           className="absolute left-46.25 top-23 w-38 z-10"
-          style={{ fontFamily: notoSansJP.style.fontFamily }}
+          style={{ fontFamily: montserrat.style.fontFamily }}
         >
           <h3 className={heading}>
             {t.rich("steps.brief.title", { br: () => <br /> })}

@@ -43,7 +43,7 @@ export const allura = Allura({
 
 export const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["700"],
   display: "swap",
   preload: false,
 });

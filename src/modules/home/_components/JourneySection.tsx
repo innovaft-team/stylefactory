@@ -78,12 +78,12 @@ const JourneySection = () => {
           <div className="max-w-71.75 relative z-20 -mt-20">
             <h3
               className="text-lg font-bold"
-              style={{ fontFamily: notoSansJP.style.fontFamily }}
+              style={{ fontFamily: montserrat.style.fontFamily }}
             >
               {t.rich("steps.brief.title", { br: () => <br /> })}
             </h3>
             <p
-              style={{ fontFamily: notoSansJP.style.fontFamily }}
+              style={{ fontFamily: montserrat.style.fontFamily }}
               className="text-black max-w-125 mt-4 font-normal text-sm sm:text-base md:text-lg leading-[140%]"
             >
               {t("steps.brief.copy")}
