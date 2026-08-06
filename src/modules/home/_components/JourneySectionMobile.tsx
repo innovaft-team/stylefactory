@@ -1,5 +1,11 @@
 import React from "react";
-import { poppins, montserrat, inter, allura, notoSansJP } from "@/fonts";
+import {
+  poppins,
+  montserrat,
+  inter,
+  beautifullyDelicious,
+  notoSansJP,
+} from "@/fonts";
 import Image from "next/image";
 import styles from "@/styles/HomeRedesign.module.css";
 import { useTranslations } from "next-intl";
@@ -66,7 +72,9 @@ const JourneySectionMobile = () => {
           style={{ fontFamily: montserrat.style.fontFamily }}
         >
           <h3 className={heading}>{t("steps.design.title")}</h3>
-          <p className={copy}>{t.rich("steps.design.copy", { br: () => <br /> })}</p>
+          <p className={copy}>
+            {t.rich("steps.design.copy", { br: () => <br /> })}
+          </p>
         </div>
 
         {/* 3 — Sampling & Approval */}
@@ -116,7 +124,7 @@ const JourneySectionMobile = () => {
           5
         </span>
         <Image
-          className="absolute -right-8 top-269 w-28.25 h-81 object-cover"
+          className="absolute -right-8 top-269 w-28.25 object-cover"
           src={"/images/home-redesign/sub-footer-b.webp"}
           width={300}
           height={300}
@@ -131,11 +139,11 @@ const JourneySectionMobile = () => {
         </div>
 
         {/* Bottom Quote & Line */}
-        <div className="mt-20 absolute left-0 right-0 top-345 flex flex-col items-center justify-center px-4 w-full">
+        <div className="mt-10 absolute left-0 right-0 top-345 flex flex-col items-center justify-center px-4 w-full">
           <p
-            className="text-[22px] text-center"
+            className="text-[42px] text-center font-medium leading-[120%]"
             style={{
-              fontFamily: allura.style.fontFamily,
+              fontFamily: `${beautifullyDelicious.style.fontFamily}, 'BDScript-Regular', cursive, sans-serif`,
               color: "#8F8475",
             }}
           >

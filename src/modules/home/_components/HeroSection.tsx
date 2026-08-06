@@ -12,8 +12,7 @@ export const HeroSection = () => {
         alt={t("imageAlt")}
         fill
         priority
-        quality={90}
-        sizes="100vw"
+        unoptimized 
       />
       <div className="relative z-10 w-full">
         <div className="w-full max-w-300 text-white text-center md:text-left mx-auto md:mx-0">

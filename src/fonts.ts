@@ -57,6 +57,12 @@ export const allura = Allura({
   preload: false,
 });
 
+export const beautifullyDelicious = localFont({
+  src: "./assets/fonts/BDScript-Regular.ttf",
+  display: "swap",
+  preload: false,
+});
+
 /**
  * Noto Sans JP, self-hosted as a single-glyph subset.
  *

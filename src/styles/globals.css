@@ -1,6 +1,14 @@
 @import "tailwindcss/theme";
 @import "tailwindcss/utilities";
 
+@font-face {
+  font-family: 'BDScript-Regular';
+  src: url('/font/BDScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Smooth scrolling — global + blog / trends scroll container */
 html {
   scroll-behavior: smooth;

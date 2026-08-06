@@ -1,5 +1,11 @@
 import React from "react";
-import { poppins, montserrat, inter, allura, notoSansJP } from "@/fonts";
+import {
+  poppins,
+  montserrat,
+  inter,
+  beautifullyDelicious,
+  notoSansJP,
+} from "@/fonts";
 import Image from "next/image";
 import styles from "@/styles/HomeRedesign.module.css";
 import JourneySectionMobile from "./JourneySectionMobile";
@@ -186,9 +192,9 @@ const JourneySection = () => {
       {/* Bottom Quote & Line */}
       <div className="max-sm:hidden flex flex-col items-center justify-center w-full z-20 relative bg-white pb-0 px-10 -mt-24">
         <p
-          className="text-[42px] xl:text-[60px] text-center mb-6"
+          className="text-[42px] xl:text-[80px] text-center mb-6 leading-[87%]"
           style={{
-            fontFamily: allura.style.fontFamily,
+            fontFamily: `${beautifullyDelicious.style.fontFamily}, 'BDScript-Regular', cursive, sans-serif`,
             color: "#8F8475",
           }}
         >
