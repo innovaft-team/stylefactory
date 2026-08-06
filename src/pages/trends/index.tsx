@@ -1,8 +1,9 @@
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
 import { motion } from "framer-motion";
 import { PostList } from "@/components/PostList";
-import { BlogBuckets, fetchBlogs } from "@/hooks/useListBlogs";
-import { CreateBlogFormModal } from "@/components/CreateBlogForm";
+import { BlogBuckets } from "@/hooks/blog";
+import { fetchBlogs } from "@/hooks/useListBlogs";
+import { AdminPostControls } from "@/components/AdminPostControls";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useTranslations } from "next-intl";
 import { SeoHead } from "@/components/SeoHead";
@@ -13,7 +14,7 @@ import {
   createWebPageJsonLd,
   createWebsiteJsonLd,
 } from "@/utils/seo";
-import { getPostTitle, getUniquePostSlug } from "@/utils/posts";
+import { getPostTitle, getUniquePostSlug, stripPostContent } from "@/utils/posts";
 import { useRouter } from "next/router";
 
 export default function Home({
@@ -90,7 +91,7 @@ export default function Home({
             paddingBottom={{ mobile: "40px", desktop: "80px" }}
           />
         </motion.div>
-        <CreateBlogFormModal path={BlogBuckets.trends} />
+        <AdminPostControls path={BlogBuckets.trends} />
     </>
   );
 }
@@ -101,7 +102,7 @@ export async function getServerSideProps({
   return {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
-      blogs: await fetchBlogs(BlogBuckets.trends),
+      blogs: stripPostContent(await fetchBlogs(BlogBuckets.trends)),
     },
   };
 }

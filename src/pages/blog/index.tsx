@@ -1,6 +1,7 @@
-import { BlogBuckets, fetchBlogs } from "@/hooks/useListBlogs";
+import { BlogBuckets } from "@/hooks/blog";
+import { fetchBlogs } from "@/hooks/useListBlogs";
 import { PostList } from "@/components/PostList";
-import { CreateBlogFormModal } from "@/components/CreateBlogForm";
+import { AdminPostControls } from "@/components/AdminPostControls";
 import { NavigationLayout } from "@/components/layout/NavigationLayout";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { Box } from "@chakra-ui/react";
@@ -13,7 +14,7 @@ import {
   createWebPageJsonLd,
   createWebsiteJsonLd,
 } from "@/utils/seo";
-import { getPostTitle, getUniquePostSlug } from "@/utils/posts";
+import { getPostTitle, getUniquePostSlug, stripPostContent } from "@/utils/posts";
 import { useRouter } from "next/router";
 
 const Index = ({
@@ -80,7 +81,7 @@ const Index = ({
           paddingTop={{ mobile: "60px", desktop: "60px" }}
           paddingBottom={{ mobile: "50px", desktop: "50px" }}
         />
-        <CreateBlogFormModal path={BlogBuckets.blogs} />
+        <AdminPostControls path={BlogBuckets.blogs} />
     </Box>
   );
 };
@@ -91,7 +92,7 @@ export async function getServerSideProps({
   return {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
-      blogs: await fetchBlogs(BlogBuckets.blogs),
+      blogs: stripPostContent(await fetchBlogs(BlogBuckets.blogs)),
     },
   };
 }

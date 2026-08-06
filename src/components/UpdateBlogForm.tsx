@@ -29,7 +29,7 @@ import mime from "mime-types";
 
 import { MdEditor } from "md-editor-rt";
 import "md-editor-rt/lib/style.css";
-import { Blog } from "@/hooks/useListBlogs";
+import { Blog } from "@/hooks/blog";
 import { useUpdateBlog } from "@/hooks/useCreateBlog";
 import { useEffect, useState } from "react";
 import { useCurrentUser } from "../../config";

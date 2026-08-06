@@ -1,7 +1,8 @@
-import { BlogBuckets, fetchBlogs } from "@/hooks/useListBlogs";
+import { BlogBuckets } from "@/hooks/blog";
+import { fetchBlogs } from "@/hooks/useListBlogs";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { Box, chakra, CloseButton, Text, VStack } from "@chakra-ui/react";
-import { DialogMenu } from "@/components/DialogMenu";
+import { AdminDialogMenu } from "@/components/AdminDialogMenu";
 import { Carousel } from "@/components/Carousel/Carousel";
 import { cormorant_garamond, open_sans, playfair } from "@/fonts";
 import { useRouter } from "next/router";
@@ -16,11 +17,11 @@ import {
   localizedPath,
 } from "@/utils/seo";
 import {
-  getPostSeoData,
   getPostTitle,
   getUniquePostSlug,
   resolvePostByIdentifier,
 } from "@/utils/posts";
+import { getPostSeoData } from "@/utils/posts.server";
 
 /** Shared by the close button and the spacer that keeps the title centred. */
 const CLOSE_BUTTON_SIZE = { base: "32px", lg: "40px" };
@@ -137,7 +138,7 @@ const BlogPage = ({
         itemScope
         itemType={"https://schema.org/BlogPosting"}
       >
-        <DialogMenu
+        <AdminDialogMenu
           blog={blog}
           onDelete={() => router.back()}
           path={BlogBuckets.trends}

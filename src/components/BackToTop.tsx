@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+/** Every scrolling container in the app is `<Scroll>`, which sets this. */
+const SCROLL_CONTAINER_SELECTOR = '[aria-roledescription="scroll"]';
+
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = (event?: Event) => {
+    let frame = 0;
+
+    const measure = (event?: Event) => {
       let currentScroll = window.scrollY || document.documentElement.scrollTop || 0;
       let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -21,9 +26,15 @@ export const BackToTop = () => {
         }
       }
 
-      // Fallback scan for any scrolled container if target check wasn't triggered
+      // Fallback scan for any scrolled container if target check wasn't
+      // triggered. This used to walk every div/main/section in the document
+      // reading scrollTop, forcing a full layout on each scroll event. Every
+      // scrolling container in the app is <Scroll>, which tags itself with
+      // this attribute, so the narrow selector finds the same elements.
       if (currentScroll === 0) {
-        const scrollables = document.querySelectorAll<HTMLElement>("div, main, section");
+        const scrollables = document.querySelectorAll<HTMLElement>(
+          SCROLL_CONTAINER_SELECTOR,
+        );
         for (let i = 0; i < scrollables.length; i++) {
           const el = scrollables[i];
           if (el.scrollTop > 0) {
@@ -47,13 +58,24 @@ export const BackToTop = () => {
       }
     };
 
+    // Coalesce to one measurement per frame; scroll events fire far faster
+    // than the ring can meaningfully update.
+    const handleScroll = (event: Event) => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        measure(event);
+      });
+    };
+
     // Capture true to catch scroll events from inner overflow containers (like Chakra <Scroll />)
-    window.addEventListener("scroll", handleScroll, true);
-    
+    window.addEventListener("scroll", handleScroll, { capture: true, passive: true });
+
     // Initial check
-    handleScroll();
+    measure();
 
     return () => {
+      if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, []);
@@ -66,7 +88,7 @@ export const BackToTop = () => {
     });
 
     // Scroll any inner scrollable containers
-    const scrollables = document.querySelectorAll<HTMLElement>("div, main, section");
+    const scrollables = document.querySelectorAll<HTMLElement>(SCROLL_CONTAINER_SELECTOR);
     scrollables.forEach((el) => {
       if (el.scrollTop > 0) {
         el.scrollTo({

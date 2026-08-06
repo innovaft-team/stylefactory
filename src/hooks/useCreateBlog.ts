@@ -1,7 +1,7 @@
 import {NewBlogFormFieldValues} from "../components/CreateBlogForm";
 import {addDoc, collection, deleteDoc, doc, getFirestore, updateDoc} from "firebase/firestore";
 import {deleteObject, getStorage, ref, uploadBytes} from 'firebase/storage';
-import {Blog} from "./useListBlogs";
+import {Blog} from "./blog";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 import {useToast} from "@chakra-ui/react";

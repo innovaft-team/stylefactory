@@ -1,4 +1,5 @@
-import {Blog, BlogBuckets, fetchBlogs} from "@/hooks/useListBlogs";
+import {Blog, BlogBuckets} from "@/hooks/blog";
+import {fetchBlogs} from "@/hooks/useListBlogs";
 import {GetServerSidePropsContext} from "next";
 import {LOCALES, absoluteUrl, buildCanonicalUrl, buildLanguageAlternates} from "@/utils/seo";
 import {getPostTitle, getUniquePostSlug} from "@/utils/posts";

@@ -25,6 +25,16 @@ const nextConfig = withRoutes({
         // with WebP kept as the fallback for browsers that can't take it.
         formats: ["image/avif", "image/webp"],
         minimumCacheTTL: 31536000,
+        // Post images live in Firebase Storage, which serves them at full
+        // size as JPEG with `cache-control: private, max-age=0`. Routing them
+        // through the optimizer gets resizing, AVIF/WebP and a long cache.
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "firebasestorage.googleapis.com",
+                pathname: "/v0/b/**",
+            },
+        ],
     },
     compiler: {
         removeConsole: process.env.NODE_ENV === "production"
@@ -36,7 +46,6 @@ const nextConfig = withRoutes({
         // package lands in the shared _app chunk.
         optimizePackageImports: [
             "@chakra-ui/react",
-            "@chakra-ui/next-js",
             "framer-motion",
             "ahooks",
         ],

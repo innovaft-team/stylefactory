@@ -1,31 +1,14 @@
 import {useQuery} from "@tanstack/react-query";
 import {collection, doc, getDoc, getDocs, getFirestore} from "firebase/firestore";
-import {app, useFirestore} from "../../config";
+import {app} from "../../config";
+import {Blog, BlogBuckets} from "./blog";
+import {withCoverSizes} from "@/utils/imageSize";
 
-
-type PostVariant = 'horizonal' | 'vertical';
-
-export interface Blog {
-    id: string;
-    slug?: string;
-    slugs?: Partial<Record<"en" | "hr", string>>;
-    seoTitle?: string;
-    seoDescription?: string;
-    coverImageAlt?: string;
-    images: string[];
-    variant: PostVariant;
-    titleVariant: PostVariant;
-    cro: {
-        title: string;
-        content: string;
-    }
-    eng: {
-        title: string;
-        content: string;
-    }
-    isVideo?: boolean;
-    postedAt?: string;
-}
+// Re-exported so existing `from "@/hooks/useListBlogs"` imports keep working.
+// Prefer importing these from "@/hooks/blog" — that module is firebase-free and
+// therefore safe to pull into a client component.
+export type {Blog};
+export {BlogBuckets};
 
 
 export async function fetchBlog(path: string, id: string) {
@@ -37,14 +20,6 @@ export async function fetchBlog(path: string, id: string) {
     } as Blog
 }
 
-export const BlogBuckets = {
-    blogs: "/blogs",
-    trends: "/trends",
-
-    testBlogs: "/testBlogs",
-    testTrends: "/testTrends",
-} as const;
-
 export async function fetchBlogs(path: string) {
     const db = getFirestore(app)
     const snapshot = await getDocs(collection(db, path))
@@ -53,9 +28,11 @@ export async function fetchBlogs(path: string) {
         ...doc.data()
     } as Blog))
 
-    return res.sort((a, b) => {
+    const sorted = res.sort((a, b) => {
         return +new Date(b.postedAt ?? '2220-05-05T10:51:37.869Z') - +new Date(a.postedAt ?? '2020-05-05T10:51:37.869Z')
     });
+
+    return withCoverSizes(sorted);
 }
 
 

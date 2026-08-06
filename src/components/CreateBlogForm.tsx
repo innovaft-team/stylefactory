@@ -27,7 +27,7 @@ import { Controller, useForm, useWatch } from "react-hook-form";
 
 import { MdEditor } from "md-editor-rt";
 import "md-editor-rt/lib/style.css";
-import { Blog } from "@/hooks/useListBlogs";
+import { Blog } from "@/hooks/blog";
 import { useCreateBlog } from "@/hooks/useCreateBlog";
 import { useState } from "react";
 import { useCurrentUser } from "../../config";

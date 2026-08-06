@@ -1,10 +1,11 @@
 import { Box } from "@chakra-ui/react";
 
 import { motion } from "framer-motion";
-import { Blog } from "../hooks/useListBlogs";
+import { Blog } from "../hooks/blog";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { getPostMarkdown, renderMarkdownToHtml } from "@/utils/posts";
+import { getPostMarkdown } from "@/utils/posts";
+import { renderMarkdownToHtml } from "@/utils/posts.server";
 
 const AnimatedBox = motion(Box);
 

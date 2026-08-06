@@ -9,7 +9,7 @@ import {
 import { AreYouSureDialog } from "@/components/AreYouSureDialog";
 import React from "react";
 import { useDeleteBlog } from "@/hooks/useCreateBlog";
-import { Blog } from "@/hooks/useListBlogs";
+import { Blog } from "@/hooks/blog";
 import { useCurrentUser } from "../../config";
 import { UpdateBlogForm } from "@/components/UpdateBlogForm";
 

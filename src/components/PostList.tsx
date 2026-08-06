@@ -2,7 +2,7 @@ import { Box, VStack } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { Scroll } from "./layout/Scroll";
-import { Blog, BlogBuckets } from "../hooks/useListBlogs";
+import { Blog, BlogBuckets } from "../hooks/blog";
 import { PostItem } from "./PostItem";
 import Link from "next/link";
 import { getUniquePostSlug } from "@/utils/posts";
@@ -30,28 +30,60 @@ interface BlogListProps {
   paddingBottom?: ResponsiveSpacing;
 }
 
-function scrollHandler() {
+/**
+ * Fades each card out as it scrolls past the top of the container.
+ *
+ * The measurement is unchanged; the scheduling is not. This used to run
+ * synchronously on every scroll event and interleave reads
+ * (`getBoundingClientRect`, `offsetHeight`) with writes (`style.opacity`),
+ * forcing a layout per card per event. Now it coalesces to one pass per
+ * animation frame and does all the reads before any of the writes.
+ */
+function updateCardOpacity() {
   const scrollableContainer = document.getElementById("blog-scroll");
-  const elements = document.querySelectorAll("#blog-item");
+  if (!scrollableContainer) return;
 
-  if (!elements || !scrollableContainer) return;
+  const elements = document.querySelectorAll<HTMLElement>("#blog-item");
+  if (!elements.length) return;
 
-  // @ts-ignore
-  elements.forEach((element: HTMLElement) => {
-    const distanceToTop =
-      scrollableContainer.scrollTop + element.getBoundingClientRect().top;
-    const elementHeight = element.offsetHeight;
-    const scrollTop = scrollableContainer.scrollTop;
+  const scrollTop = scrollableContainer.scrollTop;
+
+  const measurements = Array.from(elements, (element) => ({
+    element,
+    distanceToTop: scrollTop + element.getBoundingClientRect().top,
+    elementHeight: element.offsetHeight,
+  }));
+
+  for (const { element, distanceToTop, elementHeight } of measurements) {
     let opacity = 1;
-    //
-    if (scrollTop > distanceToTop) {
+
+    if (scrollTop > distanceToTop && elementHeight > 0) {
       opacity = 1 - (scrollTop - distanceToTop) / elementHeight;
     }
-    //
+
     if (opacity >= 0) {
       element.style.opacity = opacity.toString();
     }
-  });
+  }
+}
+
+function createScrollHandler() {
+  let frame = 0;
+
+  const handler = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      updateCardOpacity();
+    });
+  };
+
+  handler.cancel = () => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+  };
+
+  return handler;
 }
 
 export const PostList = ({
@@ -62,9 +94,12 @@ export const PostList = ({
   useEffect(() => {
     const scrollElement = document.getElementById("blog-scroll");
     if (!scrollElement) return;
-    scrollElement.addEventListener("scroll", scrollHandler);
+
+    const scrollHandler = createScrollHandler();
+    scrollElement.addEventListener("scroll", scrollHandler, { passive: true });
 
     return () => {
+      scrollHandler.cancel();
       scrollElement.removeEventListener("scroll", scrollHandler);
     };
   }, []);
